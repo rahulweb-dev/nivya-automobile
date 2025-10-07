@@ -119,10 +119,10 @@ export default function Footer() {
           </p>
           <div className='flex justify-center my-6'>
             <Image
-              src='/logo/landmark-logo.png'
+              src='/logo.png'
               alt='Landmark'
-              width={90}
-              height={40}
+              width={200}
+              height={70}
             />
           </div>
           <p>Group Landmark © 2024. All Rights Reserved.</p>

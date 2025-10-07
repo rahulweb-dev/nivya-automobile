@@ -1,61 +1,110 @@
 'use client';
-import React, { useState } from 'react';
-import { FiMenu, FiX } from 'react-icons/fi';
+import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
+import { FiMenu, FiX } from 'react-icons/fi';
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  const links = [
-    { name: 'About Us', href: '#about' },
-    { name: 'Vehicles', href: '#vehicles' },
-    { name: 'Our Channels', href: '#channels' },
-    { name: 'Services', href: '#services' },
-    { name: 'Contact', href: '#contact' },
+  const navLinks = [
+    { name: 'Vehicles', href: '/vehicles' },
+    {
+      name: 'Certified Pre-Owned',
+      href: '/certified-pre-owned',
+      hasDropdown: true,
+    },
+    { name: 'Services', href: '/services', hasDropdown: true },
+    { name: 'About', href: '/about' },
+    { name: 'Contact Us', href: '/reach-us' },
   ];
 
   return (
-    <nav className='bg-white shadow-md w-full z-40'>
-      <div className='container mx-auto px-6 py-4 flex justify-between items-center'>
-        {/* Logo */}
-        <Link href='/' className='text-3xl font-extrabold text-blue-700'>
-          MyBrand
+    <header className='fixed w-full top-0 z-50 bg-[#0E1224] backdrop-blur-lg shadow-lg border-b border-white/10 text-white'>
+      <nav className='max-w-7xl mx-auto px-6 flex items-center justify-between h-20'>
+        {/* LOGO */}
+        <Link href='/' className='flex items-center space-x-2'>
+          <Image
+            src='/logo.png'
+            alt='Landmark Logo'
+            width={240}
+            height={70}
+            priority
+            className='hover:scale-105 transition-transform duration-500 ease-in-out'
+          />
         </Link>
 
-        {/* Desktop Links */}
-        <ul className='hidden md:flex space-x-8 text-gray-800 font-medium'>
-          {links.map((link) => (
-            <li key={link.name}>
+        {/* DESKTOP MENU */}
+        <ul className='hidden lg:flex items-center space-x-10'>
+          {navLinks.map((link, index) => (
+            <li key={index} className='relative group'>
               <Link
                 href={link.href}
-                className='hover:text-blue-600 transition-colors relative group'
+                className='font-semibold tracking-wide text-[15px] uppercase transition-all duration-300 flex items-center gap-1 hover:text-blue-300'
               >
                 {link.name}
-                <span className='absolute left-0 -bottom-1 w-0 h-[2px] bg-blue-600 transition-all duration-300 group-hover:w-full'></span>
+                {link.hasDropdown && <span className='ml-1 text-sm'>▾</span>}
               </Link>
+
+              {/* Underline hover effect */}
+              <span className='absolute bottom-0 left-0 w-0 h-[2px] bg-blue-400 transition-all duration-300 group-hover:w-full'></span>
+
+              {/* DROPDOWN */}
+              {link.hasDropdown && (
+                <div className='absolute left-0 mt-3 hidden group-hover:block animate-fadeIn'>
+                  <div className='bg-white/90 backdrop-blur-xl text-gray-900 rounded-xl shadow-2xl min-w-[220px] py-3 border border-gray-100'>
+                    <ul className='space-y-1'>
+                      <li>
+                        <Link
+                          href='#'
+                          className='block px-5 py-2 text-sm font-medium hover:bg-gray-100 hover:text-[#0b1a3d] rounded-md transition-all'
+                        >
+                          Option 1
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href='#'
+                          className='block px-5 py-2 text-sm font-medium hover:bg-gray-100 hover:text-[#0b1a3d] rounded-md transition-all'
+                        >
+                          Option 2
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href='#'
+                          className='block px-5 py-2 text-sm font-medium hover:bg-gray-100 hover:text-[#0b1a3d] rounded-md transition-all'
+                        >
+                          Option 3
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              )}
             </li>
           ))}
         </ul>
 
-        {/* Mobile Menu Button */}
+        {/* MOBILE MENU BUTTON */}
         <button
-          className='md:hidden text-3xl text-gray-700'
-          onClick={() => setIsOpen(!isOpen)}
+          className='lg:hidden text-white text-3xl focus:outline-none'
+          onClick={() => setMenuOpen(!menuOpen)}
         >
-          {isOpen ? <FiX /> : <FiMenu />}
+          {menuOpen ? <FiX /> : <FiMenu />}
         </button>
-      </div>
+      </nav>
 
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className='md:hidden bg-white border-t border-gray-200 shadow-md transition-all duration-300'>
-          <ul className='flex flex-col space-y-4 py-4 px-6 text-gray-800 font-medium'>
-            {links.map((link) => (
-              <li key={link.name}>
+      {/* MOBILE MENU */}
+      {menuOpen && (
+        <div className='lg:hidden bg-[#0b1a3d]/95 backdrop-blur-md border-t border-gray-700 shadow-xl animate-slideDown'>
+          <ul className='flex flex-col p-6 space-y-4 text-white'>
+            {navLinks.map((link, index) => (
+              <li key={index}>
                 <Link
                   href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className='block hover:text-blue-600 transition-colors'
+                  onClick={() => setMenuOpen(false)}
+                  className='block text-lg font-medium hover:text-blue-300 transition-all'
                 >
                   {link.name}
                 </Link>
@@ -64,6 +113,6 @@ export default function Navbar() {
           </ul>
         </div>
       )}
-    </nav>
+    </header>
   );
 }
