@@ -16,7 +16,7 @@ export default function Navbar() {
     },
     { name: 'Services', href: '/services', hasDropdown: true },
     { name: 'About', href: '/about' },
-    { name: 'Contact Us', href: '/reach-us' },
+    { name: 'Contact Us', href: '/contact-us' },
   ];
 
   return (
@@ -59,7 +59,7 @@ export default function Navbar() {
                           href='#'
                           className='block px-5 py-2 text-sm font-medium hover:bg-gray-100 hover:text-[#0b1a3d] rounded-md transition-all'
                         >
-                          Option 1
+                          BUY CAR
                         </Link>
                       </li>
                       <li>
@@ -67,15 +67,7 @@ export default function Navbar() {
                           href='#'
                           className='block px-5 py-2 text-sm font-medium hover:bg-gray-100 hover:text-[#0b1a3d] rounded-md transition-all'
                         >
-                          Option 2
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          href='#'
-                          className='block px-5 py-2 text-sm font-medium hover:bg-gray-100 hover:text-[#0b1a3d] rounded-md transition-all'
-                        >
-                          Option 3
+                          SELL CAR
                         </Link>
                       </li>
                     </ul>
@@ -114,5 +106,5 @@ export default function Navbar() {
         </div>
       )}
     </header>
-  );
+  );  
 }

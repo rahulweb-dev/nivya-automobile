@@ -1,4 +1,5 @@
 'use client';
+import { useState } from 'react';
 import {
   FaFacebookF,
   FaTwitter,
@@ -7,14 +8,20 @@ import {
 } from 'react-icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
+import TestDriveForm from '../forms/TestDriveForm';
+ // <-- make sure this path is correct
 
 export default function Footer() {
+  const [open, setOpen] = useState(false);
+  const [car, setCar] = useState(null);
+
   return (
     <footer className='bg-[#0E1224] text-gray-300 pt-12 relative'>
       <div className='max-w-7xl mx-auto px-6 md:px-12'>
         {/* Top CTA Section */}
         <div className='flex flex-col md:flex-row justify-center items-center gap-10 border-b border-gray-700 pb-8'>
-          <div className='flex items-center gap-2 text-white'>
+          {/* Enquire Now */}
+          <div className='flex items-center gap-2 text-white cursor-pointer hover:opacity-80 transition'>
             <Image
               src='https://www.grouplandmark.in/images/icon/enquire.svg'
               alt='Enquire'
@@ -23,7 +30,12 @@ export default function Footer() {
             />
             <span>Enquire Now</span>
           </div>
-          <div className='flex items-center gap-2 text-white'>
+
+          {/* Book A Test Drive */}
+          <button
+            onClick={() => setOpen(true)}
+            className='flex items-center gap-2 text-white cursor-pointer hover:opacity-80 transition'
+          >
             <Image
               src='https://www.grouplandmark.in/images/icon/openBooKTest.svg'
               alt='Test Drive'
@@ -31,8 +43,10 @@ export default function Footer() {
               height={24}
             />
             <span>Book A Test Drive</span>
-          </div>
-          <div className='flex items-center gap-2 text-white'>
+          </button>
+
+          {/* Find A Store */}
+          <div className='flex items-center gap-2 text-white cursor-pointer hover:opacity-80 transition'>
             <Image
               src='https://www.grouplandmark.in/images/icon/location.svg'
               alt='Find Store'
@@ -48,63 +62,37 @@ export default function Footer() {
           <div>
             <h3 className='text-white font-semibold mb-4'>CAR</h3>
             <ul className='space-y-2 text-sm'>
-              <li>
-                <Link href='#'>New Cars</Link>
-              </li>
-              <li>
-                <Link href='#'>Certified Pre-Owned</Link>
-              </li>
-              <li>
-                <Link href='#'>Luxury Pre-Owned</Link>
-              </li>
-              <li>
-                <Link href='#'>Sell Car</Link>
-              </li>
+              <li><Link href='#'>New Cars</Link></li>
+              <li><Link href='#'>Certified Pre-Owned</Link></li>
+              <li><Link href='#'>Luxury Pre-Owned</Link></li>
+              <li><Link href='#'>Sell Car</Link></li>
             </ul>
           </div>
 
           <div>
             <h3 className='text-white font-semibold mb-4'>ABOUT US</h3>
             <ul className='space-y-2 text-sm'>
-              <li>
-                <Link href='#'>About Us</Link>
-              </li>
-              <li>
-                <Link href='#'>Timeline</Link>
-              </li>
-              <li>
-                <Link href='#'>Our leadership</Link>
-              </li>
+              <li><Link href='#'>About Us</Link></li>
+              <li><Link href='#'>Timeline</Link></li>
+              <li><Link href='#'>Our Leadership</Link></li>
             </ul>
           </div>
 
           <div>
             <h3 className='text-white font-semibold mb-4'>DISCOVER MORE</h3>
             <ul className='space-y-2 text-sm'>
-              <li>
-                <Link href='#'>CSR</Link>
-              </li>
-              <li>
-                <Link href='#'>Press</Link>
-              </li>
-              <li>
-                <Link href='#'>Insurance</Link>
-              </li>
+              <li><Link href='#'>CSR</Link></li>
+              <li><Link href='#'>Press</Link></li>
+              <li><Link href='#'>Insurance</Link></li>
             </ul>
           </div>
 
           <div>
             <h3 className='text-white font-semibold mb-4'>CONTACT</h3>
             <ul className='space-y-2 text-sm'>
-              <li>
-                <Link href='#'>Get in Touch</Link>
-              </li>
-              <li>
-                <Link href='#'>Careers</Link>
-              </li>
-              <li>
-                <Link href='#'>Locate Us</Link>
-              </li>
+              <li><Link href='#'>Get in Touch</Link></li>
+              <li><Link href='#'>Careers</Link></li>
+              <li><Link href='#'>Locate Us</Link></li>
             </ul>
           </div>
         </div>
@@ -118,12 +106,7 @@ export default function Footer() {
             <Link href='#'>Return Policy</Link>
           </p>
           <div className='flex justify-center my-6'>
-            <Image
-              src='/logo.png'
-              alt='Landmark'
-              width={200}
-              height={70}
-            />
+            <Image src='/logo.png' alt='Landmark' width={200} height={70} />
           </div>
           <p>Group Landmark © 2024. All Rights Reserved.</p>
         </div>
@@ -131,28 +114,16 @@ export default function Footer() {
 
       {/* Social Icons */}
       <div className='fixed right-0 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-[600]'>
-        <a
-          href='#'
-          className='bg-black p-3 rounded-md hover:opacity-80 transition hover:bg-white hover:text-black'
-        >
+        <a href='#' className='bg-black p-3 rounded-md hover:opacity-80 transition hover:bg-white hover:text-black'>
           <FaFacebookF />
         </a>
-        <a
-          href='#'
-          className='bg-black p-3 rounded-md hover:opacity-80 transition hover:bg-white hover:text-black'
-        >
+        <a href='#' className='bg-black p-3 rounded-md hover:opacity-80 transition hover:bg-white hover:text-black'>
           <FaTwitter />
         </a>
-        <a
-          href='#'
-          className='bg-black p-3 rounded-md hover:opacity-80 transition hover:bg-white hover:text-black'
-        >
+        <a href='#' className='bg-black p-3 rounded-md hover:opacity-80 transition hover:bg-white hover:text-black'>
           <FaInstagram />
         </a>
-        <a
-          href='#'
-          className='bg-black p-3 rounded-md hover:opacity-80 transition hover:bg-white hover:text-black'
-        >
+        <a href='#' className='bg-black p-3 rounded-md hover:opacity-80 transition hover:bg-white hover:text-black'>
           <FaLinkedinIn />
         </a>
       </div>
@@ -166,6 +137,11 @@ export default function Footer() {
           ↑
         </a>
       </div>
+
+      {/* Test Drive Form Modal */}
+      {open && (
+        <TestDriveForm open={open} setOpen={setOpen} car={car} />
+      )}
     </footer>
   );
 }

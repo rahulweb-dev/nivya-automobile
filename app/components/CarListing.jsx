@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { Download } from 'lucide-react';
+import Link from 'next/link';
 
 const cars = [
   {
@@ -11,6 +12,7 @@ const cars = [
     price: '₹ 10.50 L /-',
     subtext: 'ex-showroom',
     brochure: '#',
+    link: '/victoris',
   },
   {
     name: 'ALTO K10',
@@ -19,6 +21,7 @@ const cars = [
     price: '₹ 5.78 L* /-',
     subtext: 'ex-showroom',
     brochure: '#',
+    link: '/ALTOK10',
   },
   {
     name: 'SWIFT',
@@ -27,6 +30,7 @@ const cars = [
     price: '₹ 3.69 L* /-',
     subtext: 'ex-showroom',
     brochure: '#',
+    link: '/swift',
   },
   {
     name: 'BREZZA',
@@ -35,6 +39,7 @@ const cars = [
     price: '₹ 8.25 L /-',
     subtext: 'ex-showroom',
     brochure: '#',
+    link: '/brezza',
   },
   {
     name: 'DZIRE',
@@ -43,6 +48,7 @@ const cars = [
     price: '₹ 6.25 L* /-',
     subtext: 'ex-showroom',
     brochure: '#',
+    link: '/dzire',
   },
   {
     name: 'S-PRESSO',
@@ -51,6 +57,7 @@ const cars = [
     price: '₹ 3.49* /-',
     subtext: 'ex-showroom',
     brochure: '#',
+    link: '/spresso',
   },
   {
     name: 'WAGONR',
@@ -59,6 +66,7 @@ const cars = [
     price: '₹ 4.98* /-',
     subtext: 'ex-showroom',
     brochure: '#',
+    link: '/wagonr',
   },
   {
     name: 'ERTIGA',
@@ -67,6 +75,7 @@ const cars = [
     price: '₹ 8.80* /-',
     subtext: 'ex-showroom',
     brochure: '#',
+    link: '/ertiga',
   },
   {
     name: 'CELERIO',
@@ -75,6 +84,7 @@ const cars = [
     price: '₹ 4.69* /-',
     subtext: 'ex-showroom',
     brochure: '#',
+    link: '/celerio',
   },
   {
     name: 'EECO',
@@ -83,6 +93,7 @@ const cars = [
     price: '₹ 5.20* /-',
     subtext: 'ex-showroom',
     brochure: '#',
+    link: '/eeco',
   },
 ];
 
@@ -159,7 +170,7 @@ export default function CarListing() {
                 {/* Buttons */}
                 <div className='flex justify-center gap-3'>
                   <button className='border border-white/30 text-white text-xs font-semibold py-2 px-6 rounded-full hover:bg-white/10 transition-all duration-200'>
-                    EXPLORE
+                    <Link href={car.link}>EXPLORE</Link>
                   </button>
                   <button className='bg-white text-black text-xs font-semibold py-2 px-6 rounded-full hover:bg-gray-200 transition-all duration-200'>
                     BOOK NOW
