@@ -5,6 +5,7 @@ import About from './components/About';
 import WhyChooseUs from './components/WhyChooseUs';
 import OurServices from './components/OurServices';
 import CarListing from './components/CarListing';
+import Services from './components/service';
 
 const sliders = [
   {
@@ -33,6 +34,7 @@ export default function page() {
       <About />
       <CarListing/>
       <WhyChooseUs />
+      <Services/>
       <OurServices/>
     </div>
   );
