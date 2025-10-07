@@ -61,13 +61,13 @@ export default function Banner({ sliders = [] }) {
         {/* Navigation Buttons */}
         <div
           ref={navigationPrevRef}
-          className='absolute z-10 p-3 bg-black rounded-full shadow-md cursor-pointer left-4 md:left-10 top-1/2 -translate-y-1/2 hover:bg-gray-500 transition'
+          className='absolute z-10 p-3 bg-white rounded-full shadow-md cursor-pointer left-4 md:left-10 top-1/2 -translate-y-1/2 hover:bg-gray-500 transition'
         >
           <GrFormPrevious size={24} />
         </div>
         <div
           ref={navigationNextRef}
-          className='absolute z-10 p-3 bg-black rounded-full shadow-md cursor-pointer right-4 md:right-10 top-1/2 -translate-y-1/2 hover:bg-gray-500 transition'
+          className='absolute z-10 p-3 bg-white rounded-full shadow-md cursor-pointer right-4 md:right-10 top-1/2 -translate-y-1/2 hover:bg-gray-500 transition'
         >
           <GrFormNext size={24} />
         </div>
