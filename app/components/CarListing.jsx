@@ -95,9 +95,9 @@ export default function CarListing() {
         <div className='absolute w-72 h-72 bg-indigo-500/10 blur-3xl rounded-full bottom-10 right-20' />
       </div>
 
-      <div className='max-w-7xl mx-auto px-6 text-center text-black'>
+      <div className='max-w-7xl mx-auto px-6 text-center text-black '>
         {/* Section Heading */}
-        <h2 className='text-3xl md:text-4xl font-bold mb-3 tracking-tight'>
+        <h2 className='text-3xl md:text-4xl  mb-3 tracking-tight '>
           Explore Our Latest Cars
         </h2>
         <p className='text-gray-400 mb-12 max-w-2xl mx-auto text-sm md:text-base'>

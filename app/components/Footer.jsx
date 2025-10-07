@@ -133,35 +133,35 @@ export default function Footer() {
       <div className='fixed right-0 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-[600]'>
         <a
           href='#'
-          className='bg-[#1877F2] p-3 rounded-md hover:opacity-80 transition'
+          className='bg-black p-3 rounded-md hover:opacity-80 transition hover:bg-white hover:text-black'
         >
           <FaFacebookF />
         </a>
         <a
           href='#'
-          className='bg-[#1DA1F2] p-3 rounded-md hover:opacity-80 transition'
+          className='bg-black p-3 rounded-md hover:opacity-80 transition hover:bg-white hover:text-black'
         >
           <FaTwitter />
         </a>
         <a
           href='#'
-          className='bg-[#E1306C] p-3 rounded-md hover:opacity-80 transition'
+          className='bg-black p-3 rounded-md hover:opacity-80 transition hover:bg-white hover:text-black'
         >
           <FaInstagram />
         </a>
         <a
           href='#'
-          className='bg-[#0077B5] p-3 rounded-md hover:opacity-80 transition'
+          className='bg-black p-3 rounded-md hover:opacity-80 transition hover:bg-white hover:text-black'
         >
           <FaLinkedinIn />
         </a>
       </div>
 
       {/* Scroll to Top */}
-      <div className='fixed right-6 bottom-6'>
+      <div className='fixed right-6 bottom-6 z-40'>
         <a
           href='#'
-          className='bg-white/10 hover:bg-white/20 text-white p-3 rounded-full transition'
+          className='bg-black hover:bg-white/20 text-white p-3 rounded-full transition'
         >
           ↑
         </a>
