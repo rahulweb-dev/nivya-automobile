@@ -17,9 +17,10 @@ const geistMono = Geist_Mono({
 });
 
 const nunito = Nunito({
+  variable: '--font-nunito',  // ✅ Add variable for Tailwind usage
   subsets: ['latin'],
-  variable: '--font-nunito',
-  weight: ['300', '400', '600', '700', '800'],
+  weight: ['200','300','400','600','700','800'],
+  style: ['normal', 'italic'],
 });
 
 export const metadata = {

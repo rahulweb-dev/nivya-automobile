@@ -21,13 +21,13 @@ const VehicleForm = ({ Vehicle }) => {
   };
 
   return (
-    <div className="flex bg-gray-900">
-      <div className="w-full p-10 shadow-2xl bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl">
+    <div className="flex justify-center py-16 bg-gray-900">
+      <div className="w-full max-w-3xl p-10 shadow-2xl bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl">
         <h2 className="mb-8 text-3xl font-bold text-center text-yellow-300">
           Vehicle Inquiry Form
         </h2>
 
-        <form onSubmit={handleSubmit} className="grid grid-cols-3 gap-6">
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-6">
           {/* Name */}
           <input
             name="name"
@@ -64,10 +64,10 @@ const VehicleForm = ({ Vehicle }) => {
             {Vehicle}
           </select>
 
-          {/* Submit Button - full width */}
+          {/* Submit Button */}
           <button
             type="submit"
-            className="w-full col-span-3 py-4 mt-4 font-semibold text-gray-900 transition-colors bg-white rounded-xl hover:bg-yellow-500"
+            className="w-full py-4 mt-4 font-semibold text-gray-900 transition-colors bg-yellow-400 rounded-xl hover:bg-yellow-500"
           >
             Submit
           </button>
