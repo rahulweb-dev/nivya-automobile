@@ -2,21 +2,21 @@ import React from "react";
 
 export default function About() {
   return (
-    <section className="bg-white py-16 px-6 md:px-12 lg:px-20">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+    <section className="px-6 py-16 bg-white md:px-12 lg:px-20">
+      <div className="grid items-center gap-10 mx-auto max-w-7xl md:grid-cols-2">
         {/* Left Text Section */}
         <div>
           <h3 className="text-[#0a0a1a] font-semibold text-lg mb-2">
             About Us
           </h3>
           <h2 className="text-3xl md:text-4xl font-bold text-[#0a0a1a] mb-4 leading-snug">
-            Welcome to Group Landmark – <br />
+            Welcome to Nivya Automobiles – <br />
             <span className="text-[#0a0a1a] font-semibold">
               Where Your Passion Meets Our Excellence
             </span>
           </h2>
-          <p className="text-gray-600 leading-relaxed mb-8">
-            Since 1998, Group Landmark has been at the forefront of premium and
+          <p className="mb-8 leading-relaxed text-gray-600">
+            Nivya Automobiles has been at the forefront of premium and
             luxury automotive retail in India. With 139 state-of-the-art
             facilities across 32 cities in 12 states and union territories, our
             journey is a testament to our unwavering commitment to delivering
@@ -34,7 +34,7 @@ export default function About() {
             <iframe
               className="w-full h-full"
               src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-              title="Group Landmark - The Journey Of 25 Years"
+              title="Nivya Automobiles"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             ></iframe>

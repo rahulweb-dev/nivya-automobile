@@ -21,21 +21,21 @@ export default function Navbar() {
 
   return (
     <header className='fixed w-full top-0 z-50 bg-[#0E1224] backdrop-blur-lg shadow-lg border-b border-white/10 text-white'>
-      <nav className='max-w-7xl mx-auto px-6 flex items-center justify-between h-20'>
+      <nav className='flex items-center justify-between h-20 px-6 mx-auto max-w-7xl'>
         {/* LOGO */}
         <Link href='/' className='flex items-center space-x-2'>
           <Image
-            src='/logo.png'
-            alt='Landmark Logo'
-            width={240}
+            src='/nivya_logo.png'
+            alt='nivya Logo'
+            width={140}
             height={70}
             priority
-            className='hover:scale-105 transition-transform duration-500 ease-in-out'
+            className='transition-transform duration-500 ease-in-out hover:scale-105'
           />
         </Link>
 
         {/* DESKTOP MENU */}
-        <ul className='hidden lg:flex items-center space-x-10'>
+        <ul className='items-center hidden space-x-10 lg:flex'>
           {navLinks.map((link, index) => (
             <li key={index} className='relative group'>
               <Link
@@ -51,7 +51,7 @@ export default function Navbar() {
 
               {/* DROPDOWN */}
               {link.hasDropdown && (
-                <div className='absolute left-0 mt-3 hidden group-hover:block animate-fadeIn'>
+                <div className='absolute left-0 hidden mt-3 group-hover:block animate-fadeIn'>
                   <div className='bg-white/90 backdrop-blur-xl text-gray-900 rounded-xl shadow-2xl min-w-[220px] py-3 border border-gray-100'>
                     <ul className='space-y-1'>
                       <li>
@@ -80,7 +80,7 @@ export default function Navbar() {
 
         {/* MOBILE MENU BUTTON */}
         <button
-          className='lg:hidden text-white text-3xl focus:outline-none'
+          className='text-3xl text-white lg:hidden focus:outline-none'
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? <FiX /> : <FiMenu />}
@@ -96,7 +96,7 @@ export default function Navbar() {
                 <Link
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className='block text-lg font-medium hover:text-blue-300 transition-all'
+                  className='block text-lg font-medium transition-all hover:text-blue-300'
                 >
                   {link.name}
                 </Link>

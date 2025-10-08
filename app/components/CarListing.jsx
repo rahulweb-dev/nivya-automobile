@@ -12,7 +12,7 @@ const cars = [
     price: '₹ 10.50 L /-',
     subtext: 'ex-showroom',
     brochure: '#',
-    link: '/victoris',
+    link: '/vehicles/victoris',
   },
   {
     name: 'ALTO K10',
@@ -21,7 +21,7 @@ const cars = [
     price: '₹ 5.78 L* /-',
     subtext: 'ex-showroom',
     brochure: '#',
-    link: '/ALTOK10',
+    link: '/vehicles/alto-k10',
   },
   {
     name: 'SWIFT',
@@ -30,7 +30,7 @@ const cars = [
     price: '₹ 3.69 L* /-',
     subtext: 'ex-showroom',
     brochure: '#',
-    link: '/swift',
+    link: '/vehicles/swift',
   },
   {
     name: 'BREZZA',
@@ -39,7 +39,7 @@ const cars = [
     price: '₹ 8.25 L /-',
     subtext: 'ex-showroom',
     brochure: '#',
-    link: '/brezza',
+    link: '/vehicles/brezza',
   },
   {
     name: 'DZIRE',
@@ -48,7 +48,7 @@ const cars = [
     price: '₹ 6.25 L* /-',
     subtext: 'ex-showroom',
     brochure: '#',
-    link: '/dzire',
+    link: '/vehicles/dzire',
   },
   {
     name: 'S-PRESSO',
@@ -57,7 +57,7 @@ const cars = [
     price: '₹ 3.49* /-',
     subtext: 'ex-showroom',
     brochure: '#',
-    link: '/spresso',
+    link: '/vehicles/spresso',
   },
   {
     name: 'WAGONR',
@@ -66,7 +66,7 @@ const cars = [
     price: '₹ 4.98* /-',
     subtext: 'ex-showroom',
     brochure: '#',
-    link: '/wagonr',
+    link: '/vehicles/wagonr',
   },
   {
     name: 'ERTIGA',
@@ -75,7 +75,7 @@ const cars = [
     price: '₹ 8.80* /-',
     subtext: 'ex-showroom',
     brochure: '#',
-    link: '/ertiga',
+    link: '/vehicles/ertiga',
   },
   {
     name: 'CELERIO',
@@ -84,7 +84,7 @@ const cars = [
     price: '₹ 4.69* /-',
     subtext: 'ex-showroom',
     brochure: '#',
-    link: '/celerio',
+    link: '/vehicles/celerio',
   },
   {
     name: 'EECO',
@@ -93,44 +93,44 @@ const cars = [
     price: '₹ 5.20* /-',
     subtext: 'ex-showroom',
     brochure: '#',
-    link: '/eeco',
+    link: '/vehicles/eeco',
   },
 ];
 
 export default function CarListing() {
   return (
-    <section className='relative py-20 bg-gray-200 overflow-hidden'>
+    <section className='relative py-20 overflow-hidden bg-gray-200'>
       {/* Subtle background glow */}
       <div className='absolute inset-0 -z-10'>
-        <div className='absolute w-72 h-72 bg-blue-500/10 blur-3xl rounded-full top-10 left-20' />
-        <div className='absolute w-72 h-72 bg-indigo-500/10 blur-3xl rounded-full bottom-10 right-20' />
+        <div className='absolute rounded-full w-72 h-72 bg-blue-500/10 blur-3xl top-10 left-20' />
+        <div className='absolute rounded-full w-72 h-72 bg-indigo-500/10 blur-3xl bottom-10 right-20' />
       </div>
 
-      <div className='max-w-7xl mx-auto px-6 text-center text-black '>
+      <div className='px-6 mx-auto text-center text-black max-w-7xl '>
         {/* Section Heading */}
-        <h2 className='text-3xl md:text-4xl  mb-3 tracking-tight '>
+        <h2 className='mb-3 text-3xl tracking-tight md:text-4xl '>
           Explore Our Latest Cars
         </h2>
-        <p className='text-gray-400 mb-12 max-w-2xl mx-auto text-sm md:text-base'>
+        <p className='max-w-2xl mx-auto mb-12 text-sm text-gray-400 md:text-base'>
           Discover premium models crafted for performance, reliability, and
           timeless design.
         </p>
 
         {/* Car Grid */}
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10'>
+        <div className='grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3'>
           {cars.map((car, index) => (
             <div
               key={index}
-              className='group bg-neutral-800 border border-neutral-700 rounded-2xl shadow-md hover:shadow-lg hover:border-neutral-500 transition-all duration-300 overflow-hidden'
+              className='overflow-hidden transition-all duration-300 border shadow-md group bg-neutral-800 border-neutral-700 rounded-2xl hover:shadow-lg hover:border-neutral-500'
             >
               {/* Top Bar */}
-              <div className='flex justify-between items-center px-5 pt-4'>
-                <span className='text-xs font-medium text-gray-400 tracking-wide'>
+              <div className='flex items-center justify-between px-5 pt-4'>
+                <span className='text-xs font-medium tracking-wide text-gray-400'>
                   {car.name === 'eVITARA'}
                 </span>
                 <a
                   href={car.brochure}
-                  className='flex items-center gap-1 text-gray-400 text-xs hover:text-white transition'
+                  className='flex items-center gap-1 text-xs text-gray-400 transition hover:text-white'
                 >
                   <Download className='w-4 h-4' />
                   Brochure
@@ -138,7 +138,7 @@ export default function CarListing() {
               </div>
 
               {/* Car Image (full visible) */}
-              <div className='w-full flex items-center justify-center bg-neutral-900 mt-4 px-4 py-4'>
+              <div className='flex items-center justify-center w-full px-4 py-4 mt-4 bg-neutral-900'>
                 <Image
                   src={car.image}
                   alt={car.name}
@@ -157,22 +157,22 @@ export default function CarListing() {
                       alt={`${car.name} logo`}
                       width={28}
                       height={28}
-                      className='object-contain rounded-full border border-white/10'
+                      className='object-contain border rounded-full border-white/10'
                     />
                   )}
-                  <h3 className='text-lg font-semibold text-white tracking-tight'>
+                  <h3 className='text-lg font-semibold tracking-tight text-white'>
                     {car.name}
                   </h3>
                 </div>
                 <p className='text-xl font-bold text-white'>{car.price}</p>
-                <p className='text-gray-400 text-xs mb-6'>{car.subtext}</p>
+                <p className='mb-6 text-xs text-gray-400'>{car.subtext}</p>
 
                 {/* Buttons */}
                 <div className='flex justify-center gap-3'>
-                  <button className='border border-white/30 text-white text-xs font-semibold py-2 px-6 rounded-full hover:bg-white/10 transition-all duration-200'>
+                  <button className='px-6 py-2 text-xs font-semibold text-white transition-all duration-200 border rounded-full border-white/30 hover:bg-white/10'>
                     <Link href={car.link}>EXPLORE</Link>
                   </button>
-                  <button className='bg-white text-black text-xs font-semibold py-2 px-6 rounded-full hover:bg-gray-200 transition-all duration-200'>
+                  <button className='px-6 py-2 text-xs font-semibold text-black transition-all duration-200 bg-white rounded-full hover:bg-gray-200'>
                     BOOK NOW
                   </button>
                 </div>
