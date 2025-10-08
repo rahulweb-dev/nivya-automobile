@@ -1,116 +1,78 @@
 'use client';
-import { useState } from 'react';
+import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaClock } from 'react-icons/fa';
 
-export default function ContactSection() {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    message: '',
-  });
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
+export default function Contact() {
   return (
-    <section className="bg-[#f2e9e0] py-16 px-6 md:px-20">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
-        {/* Left: Contact Info */}
-        <div>
-          <h2 className="text-3xl font-bold mb-4 text-gray-900">Contact us</h2>
-          <p className="text-gray-600 mb-10">
-            We’d love to hear from you. Please fill out this form, and we’ll reply soon.
-          </p>
+    <div className="bg-[#0E1224] text-white min-h-screen">
+      {/* Header */}
+      <div className="text-center py-16 bg-[url('/bg-pattern.svg')] bg-cover bg-center">
+        <h2 className="font-semibold tracking-wide text-pink-500 uppercase">Contact Us</h2>
+        <h1 className="mt-4 text-4xl font-bold md:text-5xl">Get In Touch</h1>
+      </div>
 
-          <div className="space-y-6 text-gray-700">
-            <div>
-              <h4 className="font-semibold">Email</h4>
-              <p>Contact by email, and we will respond shortly.</p>
-              <a href="mailto:hey@bizus.com" className="text-black font-medium">
-                hey@bizus.com
-              </a>
-            </div>
-
-            <div>
-              <h4 className="font-semibold">Phone</h4>
-              <p>Call on weekdays from 9 AM to 5 PM.</p>
-              <p className="font-medium">+1 (222) 333 444</p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold">Mobile</h4>
-              <p>Call on weekends from 9 AM to 5 PM.</p>
-              <p className="font-medium">+1 (222) 333 444</p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold">Office</h4>
-              <p>
-                Visit one of our headquarters.
-                <br />
-                8749 Green Station, Euless,
-                <br />
-                ON 29PM, Canada
-              </p>
-            </div>
+      {/* Contact Info Section */}
+      <section className="bg-[#E9F0FF] py-16">
+        <div className="grid max-w-6xl grid-cols-1 gap-6 px-6 mx-auto text-center sm:grid-cols-2 lg:grid-cols-4">
+          <div className="py-8 bg-white shadow-md rounded-2xl">
+            <FaMapMarkerAlt className="mx-auto mb-3 text-3xl text-blue-600" />
+            <h3 className="font-semibold text-gray-800">Location</h3>
+            <p className="mt-2 text-gray-500">Sunshine Business Park<br />Sector 01, Poland</p>
+          </div>
+          <div className="py-8 bg-white shadow-md rounded-2xl">
+            <FaPhoneAlt className="mx-auto mb-3 text-3xl text-blue-600" />
+            <h3 className="font-semibold text-gray-800">Contact</h3>
+            <p className="mt-2 text-gray-500">+4890 356 555<br />+4890 356 666</p>
+          </div>
+          <div className="py-8 bg-white shadow-md rounded-2xl">
+            <FaEnvelope className="mx-auto mb-3 text-3xl text-blue-600" />
+            <h3 className="font-semibold text-gray-800">Email</h3>
+            <p className="mt-2 text-gray-500">Techbiz@example.com<br />gmail@example.com</p>
+          </div>
+          <div className="py-8 bg-white shadow-md rounded-2xl">
+            <FaClock className="mx-auto mb-3 text-3xl text-blue-600" />
+            <h3 className="font-semibold text-gray-800">Visit Between</h3>
+            <p className="mt-2 text-gray-500">Mon–Sat: 9:00–5:00<br />Sunday: Closed</p>
           </div>
         </div>
+      </section>
 
-        {/* Right: Form */}
-        <div className="bg-[#f8f4ef] p-8 rounded-2xl shadow-sm">
-          <h3 className="text-xl font-semibold mb-6 text-gray-800">Write us a message</h3>
-          <form className="space-y-5">
-            <div className="grid grid-cols-2 gap-4">
-              <input
-                type="text"
-                name="firstName"
-                placeholder="First name"
-                value={formData.firstName}
-                onChange={handleChange}
-                className="p-3 w-full rounded-lg border border-gray-300 bg-white placeholder-gray-500"
-              />
-              <input
-                type="text"
-                name="lastName"
-                placeholder="Last name"
-                value={formData.lastName}
-                onChange={handleChange}
-                className="p-3 w-full rounded-lg border border-gray-300 bg-white placeholder-gray-500"
-              />
-            </div>
+      {/* Contact Form */}
+      <section className="bg-[#E9F0FF] py-20">
+        <div className="grid max-w-6xl grid-cols-1 gap-10 px-6 mx-auto lg:grid-cols-2">
+          {/* Form */}
+          <div className="p-8 bg-white shadow-md rounded-2xl">
+            <h2 className="mb-6 text-2xl font-bold text-gray-800">Send Us A Message</h2>
+            <form className="space-y-4">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                <input type="text" placeholder="Full Name" className="w-full p-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-500" />
+                <input type="email" placeholder="Your Email" className="w-full p-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-500" />
+              </div>
+              <input type="text" placeholder="Your Phone" className="w-full p-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-500" />
+              <textarea placeholder="Message" rows="4" className="w-full p-3 border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+              <button type="submit" className="px-6 py-3 font-semibold text-white transition bg-blue-600 rounded-lg shadow-md hover:bg-blue-700">
+                Send Message
+              </button>
+            </form>
+          </div>
 
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={formData.email}
-              onChange={handleChange}
-              className="p-3 w-full rounded-lg border border-gray-300 bg-white placeholder-gray-500"
-            />
-
-            <textarea
-              name="message"
-              rows="4"
-              placeholder="Leave us a message..."
-              value={formData.message}
-              onChange={handleChange}
-              className="p-3 w-full rounded-lg border border-gray-300 bg-white placeholder-gray-500"
-            />
-
-            <label className="flex items-center text-sm">
-              <input type="checkbox" className="mr-2 accent-black" /> I agree to the Privacy Policy.
-            </label>
-
-            <button
-              type="submit"
-              className="bg-black text-white w-full py-3 rounded-lg font-medium hover:bg-gray-800 transition"
-            >
-              Send
-            </button>
-          </form>
+          {/* Map */}
+          <div className="overflow-hidden shadow-md rounded-2xl">
+            <iframe
+              title="Google Map"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.847345213495!2d-74.00601548459348!3d40.71277597933033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQyJzQ2LjAiTiA3NMKwMDAnMjIuMCJX!5e0!3m2!1sen!2sus!4v1625154561780!5m2!1sen!2sus"
+              width="100%"
+              height="450"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+            ></iframe>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+    
+
+      
+    </div>
   );
 }

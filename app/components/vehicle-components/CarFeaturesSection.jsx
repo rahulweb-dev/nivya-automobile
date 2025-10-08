@@ -85,7 +85,7 @@ const featureData = {
 const tabs = Object.keys(featureData);
 
 export default function FeaturesSection() {
-  const [activeTab, setActiveTab] = useState('Features');
+  const [activeTab, setActiveTab] = useState('Exterior');
 
   return (
     <section className='w-full px-6 py-12 text-white bg-gray-900 '>
