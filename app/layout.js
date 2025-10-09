@@ -4,6 +4,7 @@ import './globals.css';
 
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
+import { Toaster } from 'react-hot-toast';
 
 // Fonts
 const geistSans = Geist({
@@ -17,9 +18,9 @@ const geistMono = Geist_Mono({
 });
 
 const nunito = Nunito({
-  variable: '--font-nunito',  // ✅ Add variable for Tailwind usage
+  variable: '--font-nunito',
   subsets: ['latin'],
-  weight: ['200','300','400','600','700','800'],
+  weight: ['200', '300', '400', '600', '700', '800'],
   style: ['normal', 'italic'],
 });
 
@@ -31,12 +32,20 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html
-      lang='en'
+      lang="en"
       className={`${nunito.variable} ${geistSans.variable} ${geistMono.variable}`}
     >
-      <body className='font-[var(--font-nunito)] antialiased bg-white text-gray-900'>
+      <body className="flex flex-col min-h-screen font-[var(--font-nunito)] antialiased bg-white text-gray-900">
+        {/* Toasts */}
+        <Toaster position="top-center" reverseOrder={false} />
+
+        {/* Navbar */}
         <Navbar />
-        {children}
+
+        {/* Main content (takes full remaining height) */}
+        <main className="flex-grow">{children}</main>
+
+        {/* Footer (sticks to bottom) */}
         <Footer />
       </body>
     </html>

@@ -6,10 +6,7 @@ import dynamic from 'next/dynamic';
 import { FaGasPump, FaCarSide } from 'react-icons/fa';
 import { GiGearStickPattern } from 'react-icons/gi';
 
-// Lazy load form
-const VehicleForm = dynamic(() => import('@/app/forms/VehicleForm'), {
-  ssr: false,
-});
+
 
 // Reusable Highlight Card
 const HighlightCard = memo(({ label, value, icon: Icon }) => (
@@ -165,13 +162,7 @@ export default function CarPromoBanner({
       {/* Divider */}
       <div className='w-full h-px bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent'></div>
 
-      <VehicleForm
-        Vehicle={
-          <>
-            <option value='Alto-k10'>Alto K10</option>
-          </>
-        }
-      />
+     
     </section>
   );
 }

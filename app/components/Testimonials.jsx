@@ -27,22 +27,22 @@ export default function Testimonials() {
   ];
 
   return (
-    <section className='py-20 bg-white relative overflow-hidden'>
-      <div className='max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10 items-center'>
+    <section className='relative py-20 overflow-hidden bg-white'>
+      <div className='grid items-center grid-cols-1 gap-10 px-6 mx-auto max-w-7xl md:grid-cols-2'>
         {/* LEFT SIDE */}
         <div data-aos='fade-right'>
-          <h2 className='text-4xl md:text-5xl font-extrabold text-gray-900 leading-snug mb-6'>
+          <h2 className='mb-6 text-4xl font-extrabold leading-snug text-gray-900 md:text-5xl'>
             What Our <br />
-            <span className='text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-pink-500'>
+            <span className='text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] to-[#ca800a]'>
               Customers Says
             </span>
           </h2>
-          <p className='text-gray-600 mb-8 leading-relaxed'>
+          <p className='mb-8 leading-relaxed text-gray-600'>
             Relation so in confined smallest children unpacked delicate. Why sir
             end believe uncivil respect. Always get adieus nature day course for
             common.
           </p>
-          <button className='bg-black text-white font-medium px-6 py-3 rounded-lg shadow-md hover:shadow-xl transition-all duration-300'>
+          <button className='px-6 py-3 font-medium text-white transition-all duration-300 bg-black rounded-lg shadow-md hover:shadow-xl'>
             View More
           </button>
         </div>
@@ -73,13 +73,13 @@ export default function Testimonials() {
                     alt={t.name}
                     width={60}
                     height={60}
-                    className='rounded-full object-cover'
+                    className='object-cover rounded-full'
                   />
                   <div className='flex-1'>
-                    <h4 className='font-semibold text-gray-900 mb-1'>
+                    <h4 className='mb-1 font-semibold text-gray-900'>
                       {t.name}
                     </h4>
-                    <p className='text-gray-500 text-sm leading-relaxed'>
+                    <p className='text-sm leading-relaxed text-gray-500'>
                       {t.text}
                     </p>
                   </div>

@@ -139,13 +139,15 @@ export default function CarListing() {
 
               {/* Car Image (full visible) */}
               <div className='flex items-center justify-center w-full px-4 py-4 mt-4 bg-neutral-900'>
-                <Image
-                  src={car.image}
-                  alt={car.name}
-                  width={400}
-                  height={220}
-                  className='object-contain transition-transform duration-300 group-hover:scale-[1.03]'
-                />
+                <Link href={car.link}>
+                  <Image
+                    src={car.image}
+                    alt={car.name}
+                    width={400}
+                    height={220}
+                    className='object-contain transition-transform duration-300 group-hover:scale-[1.03]'
+                  />
+                </Link>
               </div>
 
               {/* Details */}

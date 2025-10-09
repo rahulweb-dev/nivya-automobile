@@ -1,154 +1,121 @@
 'use client';
 import { useState } from 'react';
+import { toast } from 'react-hot-toast';
 
-export default function ServiceBooking({ open, setOpen, service }) {
-  const [form, setForm] = useState({
+export default function ServiceForm() {
+  const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    email: '',
-    date: '',
-    time: '',
-    notes: '',
+    service: '',
+    message: '',
   });
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
 
-  if (!open) return null;
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
-    // mock submit - replace with real API call
-    await new Promise((r) => setTimeout(r, 900));
-    setLoading(false);
-    setSuccess(true);
-    // keep modal open to show success; close after short delay
-    setTimeout(() => {
-      setSuccess(false);
-      setOpen(false);
-      setForm({ name: '', phone: '', email: '', date: '', time: '', notes: '' });
-    }, 1400);
+    if (!formData.name || !formData.phone || !formData.service) {
+      toast.error('Please fill in all required fields.');
+      return;
+    }
+    toast.success('Form submitted successfully!');
+    setFormData({ name: '', phone: '', service: '', message: '' });
   };
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
-      role="dialog"
-      aria-modal="true"
-    >
-      <div
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-        onClick={() => setOpen(false)}
-      />
+    <div className='w-full max-w-full mx-auto bg-[#181818] text-white p-10 rounded-3xl shadow-lg'>
+      <h2 className='mb-8 text-3xl font-semibold text-center md:text-left'>
+        Book a Service Appointment
+      </h2>
 
-      <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-xl mx-auto p-6 z-10">
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <h3 className="text-xl font-semibold text-gray-900">
-              Book: {service.title}
-            </h3>
-            <p className="text-sm text-gray-600">{service.subtitle}</p>
-          </div>
-          <button
-            onClick={() => setOpen(false)}
-            aria-label="Close"
-            className="text-gray-500 hover:text-gray-700"
-          >
-            ✕
-          </button>
+      <form
+        onSubmit={handleSubmit}
+        className='grid items-start grid-cols-1 gap-6 md:grid-cols-2'
+      >
+        {/* Name */}
+        <div className='flex flex-col space-y-2'>
+          <label className='text-sm text-gray-300'>Name</label>
+          <input
+            type='text'
+            name='name'
+            value={formData.name}
+            onChange={handleChange}
+            className='py-2 text-white bg-transparent border-b border-gray-400 focus:border-white focus:outline-none'
+          />
         </div>
 
-        <form onSubmit={handleSubmit} className="mt-5 space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <input
-              required
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-              placeholder="Full name"
-              className="p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-            />
-            <input
-              required
-              name="phone"
-              value={form.phone}
-              onChange={handleChange}
-              placeholder="Phone"
-              className="p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-            />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <input
-              name="email"
-              type="email"
-              value={form.email}
-              onChange={handleChange}
-              placeholder="Email (optional)"
-              className="p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black col-span-2"
-            />
-            <input
-              required
-              name="date"
-              type="date"
-              value={form.date}
-              onChange={handleChange}
-              className="p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-            />
-          </div>
-
-          <div className="flex gap-3">
-            <select
-              required
-              name="time"
-              value={form.time}
-              onChange={handleChange}
-              className="p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black w-1/2"
-            >
-              <option value="">Select time</option>
-              <option>09:00 AM</option>
-              <option>10:00 AM</option>
-              <option>11:00 AM</option>
-              <option>01:00 PM</option>
-              <option>03:00 PM</option>
-            </select>
-
-            <div className="flex-1 text-right">
-              <div className="text-sm text-gray-500">Estimated</div>
-              <div className="font-semibold text-gray-900">{service.price}</div>
-            </div>
-          </div>
-
-          <textarea
-            name="notes"
-            rows="3"
-            value={form.notes}
+        {/* Mobile Number */}
+        <div className='flex flex-col space-y-2'>
+          <label className='text-sm text-gray-300'>Mobile Number</label>
+          <input
+            type='text'
+            name='phone'
+            value={formData.phone}
             onChange={handleChange}
-            placeholder="Anything we should know? (optional)"
-            className="p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black w-full"
+            className='py-2 text-white bg-transparent border-b border-gray-400 focus:border-white focus:outline-none'
           />
+        </div>
 
-          <div className="flex items-center justify-between gap-4">
-            <button
-              type="submit"
-              disabled={loading}
-              className="bg-black text-white px-6 py-3 rounded-lg font-medium shadow disabled:opacity-60"
-            >
-              {loading ? 'Booking...' : success ? 'Booked ✓' : 'Confirm Booking'}
-            </button>
+        {/* Select Service */}
+        <div className='flex flex-col space-y-2'>
+          <label className='text-sm text-gray-300'>Select Service</label>
+          <select
+            name='service'
+            value={formData.service}
+            onChange={handleChange}
+            className='py-2 text-white bg-transparent border-b border-gray-400 focus:border-white focus:outline-none'
+          >
+            <option value='' disabled className='text-gray-500 bg-[#181818]'>
+              Select Service
+            </option>
+            <option value='Maintenance' className='text-black'>
+              Maintenance
+            </option>
+            <option value='Detailing' className='text-black'>
+              Detailing
+            </option>
+            <option value='Insurance/Warranty' className='text-black'>
+              Insurance/Warranty
+            </option>
+            <option value='Consultation' className='text-black'>
+              Consultation
+            </option>
+          </select>
+        </div>
 
-            <button
-              type="button"
-              onClick={() => setOpen(false)}
-              className="text-sm text-gray-600 underline"
-            >
-              Cancel
-            </button>
-          </div>
-        </form>
-      </div>
+        {/* Message */}
+        <div className='flex flex-col space-y-2'>
+          <label className='text-sm text-gray-300'>Message</label>
+          <textarea
+            name='message'
+            rows='1'
+            value={formData.message}
+            onChange={handleChange}
+            className='py-2 text-white bg-transparent border-b border-gray-400 resize-none focus:border-white focus:outline-none'
+          ></textarea>
+        </div>
+
+        {/* Submit Button */}
+        <div className='flex justify-center mt-6 md:col-span-2 md:justify-end'>
+          <button
+            type='submit'
+            className='px-8 py-2 font-semibold text-black transition-all bg-white rounded-full shadow-md hover:bg-gray-200'
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+
+      <p className='mt-6 text-xs text-center text-gray-400 md:text-left'>
+        <span className='font-semibold text-gray-300'>*</span> Disclaimer: By
+        clicking 'Submit', you have agreed to our{' '}
+        <a href='#' className='text-blue-400 underline hover:text-blue-500'>
+          Terms and Conditions
+        </a>
+        .
+      </p>
     </div>
   );
 }
