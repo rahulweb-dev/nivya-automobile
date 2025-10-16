@@ -1,0 +1,148 @@
+'use client';
+import { useState } from 'react';
+import { toast } from 'react-hot-toast';
+
+export default function ServiceForm() {
+  const [formData, setFormData] = useState({
+    name: '',
+    number: '',
+    service: '',
+    message: '',
+  });
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!formData.name || !formData.number || !formData.service) {
+      toast.error('Please fill in all required fields.');
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const res = await fetch('/api/service', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        toast.success('✅ Form submitted successfully!');
+        setFormData({ name: '', number: '', service: '', message: '' });
+      } else {
+        toast.error(data.error || '❌ Something went wrong.');
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error('⚠️ Server error. Please try again later.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className='w-full max-w-full mx-auto bg-[#181818] text-white p-10 rounded-3xl shadow-lg'>
+      <h2 className='mb-8 text-3xl font-semibold text-center md:text-left'>
+        Book a Service Appointment
+      </h2>
+
+      <form
+        onSubmit={handleSubmit}
+        className='grid items-start grid-cols-1 gap-6 md:grid-cols-2'
+      >
+        {/* Name */}
+        <div className='flex flex-col space-y-2'>
+          <label className='text-sm text-gray-300'>Name</label>
+          <input
+            type='text'
+            name='name'
+            value={formData.name}
+            onChange={handleChange}
+            className='py-2 text-white bg-transparent border-b border-gray-400 focus:border-white focus:outline-none'
+          />
+        </div>
+
+        {/* Mobile Number */}
+        <div className='flex flex-col space-y-2'>
+          <label className='text-sm text-gray-300'>Mobile Number</label>
+          <input
+            type='text'
+            name='number'
+            maxLength={10}
+            minLength={10}
+            value={formData.number}
+            onChange={handleChange}
+            className='py-2 text-white bg-transparent border-b border-gray-400 focus:border-white focus:outline-none'
+          />
+        </div>
+
+        {/* Select Service */}
+        <div className='flex flex-col space-y-2'>
+          <label className='text-sm text-gray-300'>Select Service</label>
+          <select
+            name='service'
+            value={formData.service}
+            onChange={handleChange}
+            className='py-2 text-white bg-transparent border-b border-gray-400 focus:border-white focus:outline-none'
+          >
+            <option value='' disabled className='text-gray-500 bg-[#181818]'>
+              Select Service
+            </option>
+            <option value='Maintenance' className='text-black'>
+              Maintenance
+            </option>
+            <option value='Detailing' className='text-black'>
+              Detailing
+            </option>
+            <option value='Insurance/Warranty' className='text-black'>
+              Insurance/Warranty
+            </option>
+            <option value='Consultation' className='text-black'>
+              Consultation
+            </option>
+          </select>
+        </div>
+
+        {/* Message */}
+        <div className='flex flex-col space-y-2'>
+          <label className='text-sm text-gray-300'>Message</label>
+          <textarea
+            name='message'
+            rows='1'
+            value={formData.message}
+            onChange={handleChange}
+            className='py-2 text-white bg-transparent border-b border-gray-400 resize-none focus:border-white focus:outline-none'
+          ></textarea>
+        </div>
+
+        {/* Submit Button */}
+        <div className='flex justify-center mt-6 md:col-span-2 md:justify-end'>
+          <button
+            type='submit'
+            disabled={loading}
+            className='px-8 py-2 font-semibold text-black transition-all bg-white rounded-full shadow-md hover:bg-gray-200 disabled:opacity-60'
+          >
+            {loading ? 'Submitting...' : 'Submit'}
+          </button>
+        </div>
+      </form>
+
+      <p className='mt-6 text-xs text-center text-gray-400 md:text-left'>
+        <span className='font-semibold text-gray-300'>*</span> Disclaimer: By
+        clicking 'Submit', you have agreed to our{' '}
+        <a href='#' className='text-blue-400 underline hover:text-blue-500'>
+          Terms and Conditions
+        </a>
+        .
+      </p>
+    </div>
+  );
+}
