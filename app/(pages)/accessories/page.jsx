@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 
+import toast from 'react-hot-toast';
+
 // ---------- Data ----------
 const accessoriesData = {
   Exteriors: [
@@ -859,6 +861,7 @@ const CategoryTabs = ({ active, onChange }) => (
   </div>
 );
 
+// ---------- Accessory Card ----------
 const AccessoryCard = ({
   item,
   onOrder,
@@ -866,6 +869,9 @@ const AccessoryCard = ({
   formData,
   setFormData,
   onSubmit,
+  errors,
+  isSubmitting,
+  message,
 }) => (
   <div className='flex flex-col items-center p-4 transition border rounded-lg shadow-sm hover:shadow-lg'>
     <img
@@ -876,6 +882,7 @@ const AccessoryCard = ({
     />
     <h3 className='mb-1 text-sm font-medium text-center'>{item.name}</h3>
     <p className='mb-3 text-xs text-gray-500'>{item.code}</p>
+
     <button
       onClick={() => onOrder(item)}
       className='px-4 py-2 text-white transition bg-black rounded hover:bg-gray-800'
@@ -900,22 +907,47 @@ const AccessoryCard = ({
           placeholder='Your Name'
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-          required
-          className='w-full px-3 py-2 mb-2 text-sm border rounded-md'
+          className={`w-full px-3 py-2 mb-2 text-sm border rounded-md ${
+            errors.name ? 'border-red-500' : ''
+          }`}
         />
+        {errors.name && (
+          <p className='mb-2 text-xs text-red-500'>{errors.name}</p>
+        )}
+
         <input
           type='tel'
           placeholder='Phone Number'
           value={formData.phone}
           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-          required
-          className='w-full px-3 py-2 mb-3 text-sm border rounded-md'
+          className={`w-full px-3 py-2 mb-2 text-sm border rounded-md ${
+            errors.phone ? 'border-red-500' : ''
+          }`}
         />
+        {errors.phone && (
+          <p className='mb-2 text-xs text-red-500'>{errors.phone}</p>
+        )}
+
+        {message && (
+          <p
+            className={`mb-2 text-center text-sm ${
+              message.type === 'success' ? 'text-green-600' : 'text-red-500'
+            }`}
+          >
+            {message.text}
+          </p>
+        )}
+
         <button
           type='submit'
-          className='w-full py-2 text-white bg-red-500 rounded hover:bg-red-600'
+          disabled={isSubmitting}
+          className={`w-full py-2 mt-2 text-white rounded ${
+            isSubmitting
+              ? 'bg-gray-400 cursor-not-allowed'
+              : 'bg-red-500 hover:bg-red-600'
+          }`}
         >
-          Submit Order
+          {isSubmitting ? 'Submitting...' : 'Submit Order'}
         </button>
       </form>
     )}
@@ -927,20 +959,74 @@ export default function AccessoriesPage() {
   const [activeCategory, setActiveCategory] = useState('Exteriors');
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [formData, setFormData] = useState({ name: '', phone: '' });
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState(null);
 
   const accessories = accessoriesData[activeCategory];
 
   const handleOrderClick = (product) => {
     setSelectedProduct(selectedProduct?.code === product.code ? null : product);
     setFormData({ name: '', phone: '' });
+    setErrors({});
+    setMessage(null);
   };
 
-  const handleSubmit = (e) => {
+  // ---------- Validation ----------
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
+    }
+    const phonePattern = /^[6-9]\d{9}$/; // 10-digit Indian phone number
+    if (!phonePattern.test(formData.phone)) {
+      newErrors.phone = 'Enter a valid 10-digit phone number';
+    }
+    return newErrors;
+  };
+
+  // ---------- Submit Handler ----------
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(
-      `✅ Order submitted!\nProduct: ${selectedProduct.name}\nCode: ${selectedProduct.code}\nName: ${formData.name}\nPhone: ${formData.phone}`
-    );
-    setSelectedProduct(null);
+
+    const validationErrors = validateForm();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    setIsSubmitting(true);
+    setErrors({});
+    setMessage(null);
+
+    try {
+      const res = await fetch('/api/accessories', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          customerName: formData.name,
+          customerPhone: formData.phone,
+          itemCode: selectedProduct.code,
+          itemName: selectedProduct.name,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Something went wrong.');
+      }
+
+      // ✅ Show success toast
+      toast.success(data.message || '✅ Order placed!');
+      setFormData({ name: '', phone: '' });
+      setSelectedProduct(null);
+    } catch (error) {
+      toast.error({ type: 'error', text: error.message });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -966,6 +1052,9 @@ export default function AccessoriesPage() {
               setFormData={setFormData}
               onOrder={handleOrderClick}
               onSubmit={handleSubmit}
+              errors={errors}
+              isSubmitting={isSubmitting}
+              message={message}
             />
           ))}
         </div>

@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { Download } from 'lucide-react';
 import Link from 'next/link';
-import PopupForm from '../forms/Booknowform';
+import PopupForm from './forms/Booknowform';
 import { useState } from 'react';
 
 const cars = [
@@ -100,7 +100,7 @@ const cars = [
 ];
 
 export default function CarListing() {
-    const [formOpen, setFormOpen] = useState(false);
+  const [formOpen, setFormOpen] = useState(false);
   return (
     <section className='relative py-20 overflow-hidden bg-gray-200'>
       {/* Subtle background glow */}
@@ -177,8 +177,11 @@ export default function CarListing() {
                   <button className='px-6 py-2 text-xs font-semibold text-white transition-all duration-200 border rounded-full border-white/30 hover:bg-white/10'>
                     <Link href={car.link}>EXPLORE</Link>
                   </button>
-                  <button   onClick={() => setFormOpen(true)} className='px-6 py-2 text-xs font-semibold text-black transition-all duration-200 bg-white rounded-full hover:bg-gray-200'>
-                   BOOK NOW
+                  <button
+                    onClick={() => setFormOpen(true)}
+                    className='px-6 py-2 text-xs font-semibold text-black transition-all duration-200 bg-white rounded-full hover:bg-gray-200'
+                  >
+                    BOOK NOW
                   </button>
                 </div>
               </div>
@@ -186,7 +189,7 @@ export default function CarListing() {
           ))}
         </div>
       </div>
-          {/* Popup Form */}
+      {/* Popup Form */}
       {formOpen && <PopupForm open={formOpen} setOpen={setFormOpen} />}
     </section>
   );

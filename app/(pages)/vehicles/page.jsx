@@ -1,5 +1,5 @@
 import React from 'react';
-import CarListing from '../components/CarListing';
+import CarListing from '../../components/CarListing';
 
 export default function page() {
   return (

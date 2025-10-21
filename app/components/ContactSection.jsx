@@ -5,7 +5,7 @@ import {
   FaEnvelope,
   FaClock,
 } from 'react-icons/fa';
-import ContactForm from '../forms/ContactForm';
+import ContactForm from './forms/ContactForm';
 
 export default function Contact() {
   return (

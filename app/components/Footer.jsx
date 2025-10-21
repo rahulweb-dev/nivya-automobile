@@ -8,7 +8,7 @@ import {
 } from 'react-icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
-import TestDriveForm from '../forms/TestDriveForm';
+import TestDriveForm from './forms/TestDriveForm';
 // <-- make sure this path is correct
 
 export default function Footer() {
@@ -126,7 +126,7 @@ export default function Footer() {
         {/* Divider */}
         <div className='pt-6 text-sm text-center text-gray-400 border-t border-gray-700'>
           <p className='max-w-3xl mx-auto mb-4'>
-            <Link href='#'>Privacy Policy</Link>  | 
+            <Link href='#'>Privacy Policy</Link> |
             <Link href='#'>Terms of Service</Link>
           </p>
           <div className='flex justify-center my-6'>
@@ -177,6 +177,5 @@ export default function Footer() {
       {/* Test Drive Form Modal */}
       {open && <TestDriveForm open={open} setOpen={setOpen} car={car} />}
     </footer>
-    
   );
 }

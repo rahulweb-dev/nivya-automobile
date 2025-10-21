@@ -4,8 +4,6 @@ import { createMRTColumnHelper } from 'material-react-table';
 import toast from 'react-hot-toast';
 import EnqTable from '../dashboard/EnqTable';
 
-
-
 const Arena = () => {
   const [arenaData, setArenaData] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
@@ -19,21 +17,15 @@ const Arena = () => {
         let response;
 
         if (rangeValue === '') {
-          response = await fetch(
-            `/api/contact?rangeValue=allData&channel=Arena`
-          );
+          response = await fetch(`/api/insurance`);
         } else if (
           rangeValue === 'Between' &&
           dateRange.startDate &&
           dateRange.endDate
         ) {
-          response = await fetch(
-            `/api/contact?rangeValue=${rangeValue}&startDate=${dateRange.startDate}&endDate=${dateRange.endDate}&channel=Arena`
-          );
+          response = await fetch(`/api/insurance`);
         } else if (rangeValue !== 'Between') {
-          response = await fetch(
-            `/api/contact?rangeValue=${rangeValue}&channel=Arena`
-          );
+          response = await fetch(`/api/insurance`);
         }
 
         if (!response.ok) throw new Error('Network response was not ok');
@@ -43,7 +35,7 @@ const Arena = () => {
           setArenaData(result.data);
           setLoading(false);
           if (result.data.length === 0) toast.error('No data found');
-          else toast.success('Arena Data fetched successfully');
+          else toast.success('Insurance Data fetched successfully');
         } else {
           toast.error('Failed to fetch data');
           setArenaData([]);
@@ -66,6 +58,7 @@ const Arena = () => {
     {
       header: 'S.No',
       size: 80,
+      accessorFn: (row, index) => index + 1, // generate S.No dynamically
       cell: (info) =>
         info.row.index +
         1 +
@@ -75,14 +68,22 @@ const Arena = () => {
     columnHelper.accessor('name', { header: 'Name', size: 120 }),
     columnHelper.accessor('number', { header: 'Phone Number', size: 120 }),
     columnHelper.accessor('email', { header: 'Email', size: 120 }),
-    columnHelper.accessor('message', { header: 'Message', size: 300 }),
+    columnHelper.accessor('message', { header: 'Message', size: 100 }),
+    columnHelper.accessor('createdAt', {
+      header: 'Date',
+      size: 120,
+      cell: (info) => {
+        const date = new Date(info.getValue());
+        return date.toISOString().split('T')[0]; // YYYY-MM-DD format
+      },
+    }),
   ];
 
   return (
     <div className='bg-white min-h-[calc(100vh-25px)] p-2 rounded-lg mr-2 mt-1'>
       <div className='px-4 min-h-40'>
         <h5 className='my-4 text-xl uppercase text-primaryBlue'>
-          Arena Enquiries
+          Insurance Enquiries
         </h5>
         <EnqTable
           data={arenaData}
