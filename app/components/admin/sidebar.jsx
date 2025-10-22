@@ -1,33 +1,38 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { HiMenu } from 'react-icons/hi';
-import { SiSuzuki } from 'react-icons/si';
-import { FaCarSide } from "react-icons/fa";
+import { FaCarSide } from 'react-icons/fa';
 import { GiCheckMark } from 'react-icons/gi';
 import { FiLogOut, FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import Image from 'next/image';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import SidebarMenuItem from './sidebarmenu';
-import { MdOutlineCurrencyRupee } from "react-icons/md";
-import { FaCarOn } from "react-icons/fa6";
-import { FaTools } from "react-icons/fa";
-import { MdContacts } from "react-icons/md";
-import { GoTools } from "react-icons/go";
+import { MdOutlineCurrencyRupee } from 'react-icons/md';
+import { FaCarOn } from 'react-icons/fa6';
+import { FaTools } from 'react-icons/fa';
+import { MdContacts } from 'react-icons/md';
+import { GoTools } from 'react-icons/go';
+import axios from 'axios';
+
 export default function Sidebar({ isCollapsed, toggleSidebar, pathname }) {
   const router = useRouter();
   const [truevalueOpen, setTruevalueOpen] = useState(false);
 
-  // Automatically open the Truevalue menu when inside its pages
-  useEffect(() => {
-    if (pathname.startsWith('/admin/truevalue')) {
-      setTruevalueOpen(true);
-    }
-  }, [pathname]);
+  const handleLogout = async () => {
+    try {
+      await axios.post(
+        '/api/admin/logout',
+        {},
+        { withCredentials: true } // ✅ Important for cookies
+      );
 
-  const handleLogout = () => {
-    toast.success('Logout Successfully');
-    router.push('/admin/login');
+      toast.success('Logged out successfully');
+      router.push('/admin/login');
+    } catch (error) {
+      console.error('Logout error:', error);
+      toast.error('Failed to logout');
+    }
   };
 
   return (

@@ -9,7 +9,7 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import TestDriveForm from './forms/TestDriveForm';
-// <-- make sure this path is correct
+
 
 export default function Footer() {
   const [open, setOpen] = useState(false);
@@ -60,7 +60,7 @@ export default function Footer() {
         {/* Main Links */}
         <div className='grid grid-cols-1 gap-8 py-10 sm:grid-cols-2 md:grid-cols-4'>
           <div>
-            <h3 className='mb-4 font-semibold text-white'>CAR</h3>
+            <h3 className='mb-4 font-semibold text-white'>CARS</h3>
             <ul className='space-y-2 text-sm'>
               <li>
                 <Link href='#'>New Cars</Link>
@@ -78,16 +78,16 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className='mb-4 font-semibold text-white'>ABOUT US</h3>
+            <h3 className='mb-4 font-semibold text-white'>SERVICES</h3>
             <ul className='space-y-2 text-sm'>
               <li>
-                <Link href='#'>About Us</Link>
+                <Link href='/finance'>Finance</Link>
               </li>
               <li>
-                <Link href='#'>Timeline</Link>
+                <Link href='/book-a-service'>Book-a-service</Link>
               </li>
               <li>
-                <Link href='#'>Our Leadership</Link>
+                <Link href='/insurance'>Insurance</Link>
               </li>
             </ul>
           </div>
@@ -96,13 +96,13 @@ export default function Footer() {
             <h3 className='mb-4 font-semibold text-white'>DISCOVER MORE</h3>
             <ul className='space-y-2 text-sm'>
               <li>
-                <Link href='#'>CSR</Link>
+                <Link href='/accessories'>Accessories</Link>
               </li>
               <li>
-                <Link href='#'>Press</Link>
+                <Link href='/career'>Career</Link>
               </li>
               <li>
-                <Link href='#'>Insurance</Link>
+                <Link href='/insurance'>Insurance</Link>
               </li>
             </ul>
           </div>
