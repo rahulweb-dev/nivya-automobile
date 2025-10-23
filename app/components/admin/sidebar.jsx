@@ -16,6 +16,7 @@ import { GoTools } from 'react-icons/go';
 import axios from 'axios';
 import { ImWindows8 } from 'react-icons/im';
 import { VscBook } from 'react-icons/vsc';
+import { BsPostcard } from 'react-icons/bs';
 
 export default function Sidebar({ isCollapsed, toggleSidebar, pathname }) {
   const router = useRouter();
@@ -123,17 +124,17 @@ export default function Sidebar({ isCollapsed, toggleSidebar, pathname }) {
           {/* True Value with dropdown */}
           <div className='relative group'>
             <div
-              className={`flex items-center gap-3 cursor-pointer px-4 py-2 transition-all duration-200 rounded-lg ${
+              className={`flex items-center gap-3 cursor-pointer px-8 py-2 transition-all duration-200 rounded-lg ${
                 pathname.startsWith('/admin/truevalue')
-                  ? 'bg-blue-50 font-semibold text-blue-600'
-                  : 'hover:bg-gray-100 text-gray-800'
+                  ? 'bg-blue-50 font-semibold text-blue-600 '
+                  : 'hover:bg-gray-100 text-gray-800 '
               }`}
               onClick={() => setTruevalueOpen((prev) => !prev)}
             >
               <GiCheckMark className='text-lg' />
               {!isCollapsed && (
                 <>
-                  <span className='flex-1'>True Value</span>
+                  <span className='flex-1 '>True Value</span>
                   {truevalueOpen ? <FiChevronUp /> : <FiChevronDown />}
                 </>
               )}
@@ -148,7 +149,7 @@ export default function Sidebar({ isCollapsed, toggleSidebar, pathname }) {
                     isCollapsed={isCollapsed}
                     text='Post a Vehicle'
                     to='/admin/truevalue/post-vehicle'
-                    icon={GiCheckMark}
+                    icon={BsPostcard}
                   />
                   <SidebarMenuItem
                     isCollapsed={isCollapsed}
@@ -160,7 +161,7 @@ export default function Sidebar({ isCollapsed, toggleSidebar, pathname }) {
               )
             ) : (
               // Sidebar collapsed: show tooltip-style dropdown on hover
-              <div className='absolute top-0 z-50 hidden w-48 p-2 bg-white border border-gray-200 rounded shadow-md left-full group-hover:block'>
+              <div className='absolute top-0 hidden w-48 p-2 bg-white border border-gray-200 rounded shadow-md left-full group-hover:block'>
                 <SidebarMenuItem
                   isCollapsed={false}
                   text='Post a Vehicle'
