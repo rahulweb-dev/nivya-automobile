@@ -4,7 +4,7 @@ import React from 'react';
 
 export default function SidebarMenuItem({ isCollapsed, text, to, active, icon: Icon }) {
   return (
-    <Link href={to} className="w-full mb-4">
+    <Link href={to} className="w-full mb-2">
       <div
         title={isCollapsed ? text : ''}
         className={`flex items-center px-4 h-[50px] rounded-lg transition-all duration-200

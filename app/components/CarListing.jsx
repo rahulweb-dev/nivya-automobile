@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { Download } from 'lucide-react';
 import Link from 'next/link';
-import PopupForm from './forms/Booknowform';
+import BookNowForm from './forms/Booknowform';
 import { useState } from 'react';
 
 const cars = [
@@ -12,8 +12,8 @@ const cars = [
     image: 'https://www.skyautomobiles.in/thumbnail/victoris.png',
     logo: 'https://www.varunmaruti.com/uploads/products/pro_1614579022Dzire1.jpg',
     price: '₹ 10.50 L /-',
-    subtext: 'ex-showroom',
-    brochure: '#',
+    brochure:
+      'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/cars/victoris/brochure/Maruti-Suzuki-Arena-Victoris-Brochure.pdf',
     link: '/vehicles/victoris',
   },
   {
@@ -21,7 +21,6 @@ const cars = [
     image: 'https://www.skyautomobiles.in/thumbnail/altoK10.webp',
     logo: 'https://www.varunmaruti.com/uploads/products/pro_1614579022Dzire1.jpg',
     price: '₹ 5.78 L* /-',
-    subtext: 'ex-showroom',
     brochure: '#',
     link: '/vehicles/alto-k10',
   },
@@ -30,7 +29,6 @@ const cars = [
     image: 'https://www.skyautomobiles.in/thumbnail/swift02.webp',
     logo: 'https://www.varunmaruti.com/uploads/products/pro_1614579022Dzire1.jpg',
     price: '₹ 3.69 L* /-',
-    subtext: 'ex-showroom',
     brochure: '#',
     link: '/vehicles/swift',
   },
@@ -39,7 +37,6 @@ const cars = [
     image: 'https://www.skyautomobiles.in/thumbnail/brezza-page.webp',
     logo: 'https://www.varunmaruti.com/uploads/products/pro_1614579022Dzire1.jpg',
     price: '₹ 8.25 L /-',
-    subtext: 'ex-showroom',
     brochure: '#',
     link: '/vehicles/brezza',
   },
@@ -48,7 +45,6 @@ const cars = [
     image: 'https://www.skyautomobiles.in/thumbnail/bluishblack.png',
     logo: 'https://www.varunmaruti.com/uploads/products/pro_1614579022Dzire1.jpg',
     price: '₹ 6.25 L* /-',
-    subtext: 'ex-showroom',
     brochure: '#',
     link: '/vehicles/dzire',
   },
@@ -57,7 +53,6 @@ const cars = [
     image: 'https://www.skyautomobiles.in/thumbnail/spresso.webp',
     logo: 'https://www.varunmaruti.com/uploads/products/pro_1614579022Dzire1.jpg',
     price: '₹ 3.49* /-',
-    subtext: 'ex-showroom',
     brochure: '#',
     link: '/vehicles/spresso',
   },
@@ -66,7 +61,6 @@ const cars = [
     image: 'https://www.skyautomobiles.in/thumbnail/wagnor.webp',
     logo: 'https://www.varunmaruti.com/uploads/products/pro_1614579022Dzire1.jpg',
     price: '₹ 4.98* /-',
-    subtext: 'ex-showroom',
     brochure: '#',
     link: '/vehicles/wagonr',
   },
@@ -75,7 +69,6 @@ const cars = [
     image: 'https://www.skyautomobiles.in/thumbnail/ertiga.webp',
     logo: 'https://www.varunmaruti.com/uploads/products/pro_1614579022Dzire1.jpg',
     price: '₹ 8.80* /-',
-    subtext: 'ex-showroom',
     brochure: '#',
     link: '/vehicles/ertiga',
   },
@@ -84,7 +77,6 @@ const cars = [
     image: 'https://www.skyautomobiles.in/thumbnail/celerio.webp',
     logo: 'https://www.varunmaruti.com/uploads/products/pro_1614579022Dzire1.jpg',
     price: '₹ 4.69* /-',
-    subtext: 'ex-showroom',
     brochure: '#',
     link: '/vehicles/celerio',
   },
@@ -93,7 +85,6 @@ const cars = [
     image: 'https://www.skyautomobiles.in/thumbnail/Eeco.webp',
     logo: 'https://www.varunmaruti.com/uploads/products/pro_1614579022Dzire1.jpg',
     price: '₹ 5.20* /-',
-    subtext: 'ex-showroom',
     brochure: '#',
     link: '/vehicles/eeco',
   },
@@ -101,6 +92,13 @@ const cars = [
 
 export default function CarListing() {
   const [formOpen, setFormOpen] = useState(false);
+  const [selectedCar, setSelectedCar] = useState(null); // Track which car is selected
+
+  const handleBookNow = (car) => {
+    setSelectedCar(car);
+    setFormOpen(true);
+  };
+
   return (
     <section className='relative py-20 overflow-hidden bg-gray-200'>
       {/* Subtle background glow */}
@@ -109,9 +107,8 @@ export default function CarListing() {
         <div className='absolute rounded-full w-72 h-72 bg-indigo-500/10 blur-3xl bottom-10 right-20' />
       </div>
 
-      <div className='px-6 mx-auto text-center text-black max-w-7xl '>
-        {/* Section Heading */}
-        <h2 className='mb-3 text-3xl tracking-tight md:text-4xl '>
+      <div className='px-6 mx-auto text-center text-black max-w-7xl'>
+        <h2 className='mb-3 text-3xl tracking-tight md:text-4xl'>
           Explore Our Latest Cars
         </h2>
         <p className='max-w-2xl mx-auto mb-12 text-sm text-gray-400 md:text-base'>
@@ -119,28 +116,25 @@ export default function CarListing() {
           timeless design.
         </p>
 
-        {/* Car Grid */}
         <div className='grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3'>
           {cars.map((car, index) => (
             <div
               key={index}
-              className='overflow-hidden transition-all duration-300 border shadow-md group bg-neutral-800 border-neutral-700 rounded-2xl hover:shadow-lg hover:border-neutral-500'
+              className='overflow-hidden transition-all duration-300 border shadow-md group bg-[#8E8D8A] border-neutral-700 rounded-2xl hover:shadow-lg hover:border-neutral-500'
             >
               {/* Top Bar */}
               <div className='flex items-center justify-between px-5 pt-4'>
-                <span className='text-xs font-medium tracking-wide text-gray-400'>
-                  {car.name === 'eVITARA'}
-                </span>
+                <span className='text-xs font-medium tracking-wide text-gray-400'></span>
                 <a
                   href={car.brochure}
-                  className='flex items-center gap-1 text-xs text-gray-400 transition hover:text-white'
+                  className='flex items-center gap-1 text-xs text-black transition hover:text-white'
                 >
                   <Download className='w-4 h-4' />
                   Brochure
                 </a>
               </div>
 
-              {/* Car Image (full visible) */}
+              {/* Car Image */}
               <div className='flex items-center justify-center w-full px-4 py-4 mt-4 bg-[#8E8D8A]'>
                 <Link href={car.link}>
                   <Image
@@ -155,22 +149,11 @@ export default function CarListing() {
 
               {/* Details */}
               <div className='p-6 text-center'>
-                <div className='flex items-center justify-center gap-2 mb-1'>
-                  {car.logo && (
-                    <Image
-                      src={car.logo}
-                      alt={`${car.name} logo`}
-                      width={28}
-                      height={28}
-                      className='object-contain border rounded-full border-white/10'
-                    />
-                  )}
-                  <h3 className='text-lg font-semibold tracking-tight text-white'>
-                    {car.name}
-                  </h3>
-                </div>
+                <h3 className='text-lg font-semibold tracking-tight text-white'>
+                  {car.name}
+                </h3>
                 <p className='text-xl font-bold text-white'>{car.price}</p>
-                <p className='mb-6 text-xs text-gray-400'>{car.subtext}</p>
+                <p className='mb-6 text-xs text-gray-100'>ex-showroom,</p>
 
                 {/* Buttons */}
                 <div className='flex justify-center gap-3'>
@@ -178,7 +161,7 @@ export default function CarListing() {
                     <Link href={car.link}>EXPLORE</Link>
                   </button>
                   <button
-                    onClick={() => setFormOpen(true)}
+                    onClick={() => handleBookNow(car)}
                     className='px-6 py-2 text-xs font-semibold text-black transition-all duration-200 bg-white rounded-full hover:bg-gray-200'
                   >
                     BOOK NOW
@@ -189,8 +172,15 @@ export default function CarListing() {
           ))}
         </div>
       </div>
+
       {/* Popup Form */}
-      {formOpen && <PopupForm open={formOpen} setOpen={setFormOpen} />}
+      {formOpen && selectedCar && (
+        <BookNowForm
+          open={formOpen}
+          setOpen={setFormOpen}
+          carName={selectedCar.name}
+        />
+      )}
     </section>
   );
 }

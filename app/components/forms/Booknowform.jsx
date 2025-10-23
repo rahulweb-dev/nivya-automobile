@@ -2,22 +2,18 @@
 import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 
-export default function PopupForm({ open, setOpen }) {
+export default function BookNowForm({ open, setOpen, carName }) {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     mobile: '',
-    email: '',
   });
   const [errors, setErrors] = useState({});
 
   // Lock scroll when modal is open
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
+    if (open) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = 'auto';
     return () => (document.body.style.overflow = 'auto');
   }, [open]);
 
@@ -30,7 +26,6 @@ export default function PopupForm({ open, setOpen }) {
     const newErrors = {};
     if (!formData.name) newErrors.name = 'This field is required*';
     if (!formData.mobile) newErrors.mobile = 'This field is required*';
-    if (!formData.email) newErrors.email = 'This field is required*';
 
     return newErrors;
   };
@@ -48,12 +43,13 @@ export default function PopupForm({ open, setOpen }) {
       const res = await fetch('/api/book-service', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, car: carName }), // send car name to API
       });
       const result = await res.json();
       if (result.success) {
-        toast.success('✅ Service booked successfully!');
-        setFormData({ name: '', mobile: '', email: '' });
+        toast.success(`✅ ${carName} booked successfully!`);
+        console.log(result);
+        setFormData({ name: '', mobile: '' });
         setOpen(false);
       } else {
         toast.error(`❌ Error: ${result.error}`);
@@ -68,10 +64,8 @@ export default function PopupForm({ open, setOpen }) {
 
   return (
     <>
-      {/* Overlay */}
       {open && (
         <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-md'>
-          {/* Form Container */}
           <div className='relative w-full max-w-md p-6 rounded-lg shadow-lg bg-white/90'>
             {/* Close Button */}
             <button
@@ -81,12 +75,15 @@ export default function PopupForm({ open, setOpen }) {
               ✕
             </button>
 
-            <h2 className='mb-6 text-xl font-bold text-center'>
+            {/* Form Heading */}
+            <h2 className='mb-2 text-xl font-bold text-center'>
               BOOK A VEHICLE
             </h2>
+            <p className='mb-6 text-sm text-center text-gray-500'>
+              Selected Vehicle: <strong>{carName}</strong>
+            </p>
 
             <form className='space-y-4' onSubmit={handleSubmit}>
-              {/* Name */}
               <div>
                 <input
                   type='text'
@@ -101,7 +98,6 @@ export default function PopupForm({ open, setOpen }) {
                 )}
               </div>
 
-              {/* Mobile */}
               <div>
                 <input
                   type='text'
@@ -116,22 +112,6 @@ export default function PopupForm({ open, setOpen }) {
                 )}
               </div>
 
-              {/* Email */}
-              <div>
-                <input
-                  type='email'
-                  name='email'
-                  placeholder='Email'
-                  value={formData.email}
-                  onChange={handleChange}
-                  className='w-full px-3 py-2 border-b border-gray-400 focus:outline-none'
-                />
-                {errors.email && (
-                  <p className='text-xs text-red-500'>{errors.email}</p>
-                )}
-              </div>
-
-              {/* Buttons */}
               <div className='flex justify-between mt-4'>
                 <button
                   type='button'

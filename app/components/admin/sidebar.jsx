@@ -14,6 +14,8 @@ import { FaTools } from 'react-icons/fa';
 import { MdContacts } from 'react-icons/md';
 import { GoTools } from 'react-icons/go';
 import axios from 'axios';
+import { ImWindows8 } from 'react-icons/im';
+import { VscBook } from 'react-icons/vsc';
 
 export default function Sidebar({ isCollapsed, toggleSidebar, pathname }) {
   const router = useRouter();
@@ -76,56 +78,57 @@ export default function Sidebar({ isCollapsed, toggleSidebar, pathname }) {
         <div className='flex flex-col mt-7'>
           <SidebarMenuItem
             isCollapsed={isCollapsed}
+            text='Dashboard'
+            to='/admin/dashboard'
+            icon={ImWindows8}
+          />
+          <SidebarMenuItem
+            isCollapsed={isCollapsed}
             text='On-Road-Price'
             to='/admin/vehicle-enquiry'
             icon={FaCarSide}
-            active={pathname === '/admin/vehicle-enquiry'}
           />
           <SidebarMenuItem
             isCollapsed={isCollapsed}
             text='Book a Service'
             to='/admin/book-a-service'
             icon={FaTools}
-            active={pathname === '/admin/book-a-service'}
           />
           <SidebarMenuItem
             isCollapsed={isCollapsed}
             text='Finance'
             to='/admin/finance'
             icon={MdOutlineCurrencyRupee}
-            active={pathname === '/admin/finance'}
           />
           <SidebarMenuItem
             isCollapsed={isCollapsed}
             text='Insurance'
             to='/admin/insurance'
             icon={FaCarOn}
-            active={pathname === '/admin/insurance'}
           />
           <SidebarMenuItem
             isCollapsed={isCollapsed}
             text='Accessories'
             to='/admin/accessories'
             icon={GoTools}
-            active={pathname === '/admin/accessories'}
           />
+
           <SidebarMenuItem
             isCollapsed={isCollapsed}
             text='Contact Us'
             to='/admin/contact-us'
             icon={MdContacts}
-            active={pathname === '/admin/contact-us'}
           />
 
-          {/* Truevalue with dropdown */}
-          <div className='relative'>
+          {/* True Value with dropdown */}
+          <div className='relative group'>
             <div
               className={`flex items-center gap-3 cursor-pointer px-4 py-2 transition-all duration-200 rounded-lg ${
                 pathname.startsWith('/admin/truevalue')
                   ? 'bg-blue-50 font-semibold text-blue-600'
                   : 'hover:bg-gray-100 text-gray-800'
               }`}
-              onClick={() => setTruevalueOpen(!truevalueOpen)}
+              onClick={() => setTruevalueOpen((prev) => !prev)}
             >
               <GiCheckMark className='text-lg' />
               {!isCollapsed && (
@@ -137,25 +140,49 @@ export default function Sidebar({ isCollapsed, toggleSidebar, pathname }) {
             </div>
 
             {/* Dropdown items */}
-            {truevalueOpen && !isCollapsed && (
-              <div className='flex flex-col pl-3 mt-1 ml-10 space-y-1 border-l border-gray-200'>
+            {!isCollapsed ? (
+              // Sidebar expanded
+              (truevalueOpen || pathname.startsWith('/admin/truevalue')) && (
+                <div className='flex flex-col mt-1 space-y-1 border-l border-gray-200 '>
+                  <SidebarMenuItem
+                    isCollapsed={isCollapsed}
+                    text='Post a Vehicle'
+                    to='/admin/truevalue/post-vehicle'
+                    icon={GiCheckMark}
+                  />
+                  <SidebarMenuItem
+                    isCollapsed={isCollapsed}
+                    text='Enquiries'
+                    to='/admin/truevalue/enquiries'
+                    icon={GiCheckMark}
+                  />
+                </div>
+              )
+            ) : (
+              // Sidebar collapsed: show tooltip-style dropdown on hover
+              <div className='absolute top-0 z-50 hidden w-48 p-2 bg-white border border-gray-200 rounded shadow-md left-full group-hover:block'>
                 <SidebarMenuItem
-                  isCollapsed={isCollapsed}
+                  isCollapsed={false}
                   text='Post a Vehicle'
                   to='/admin/truevalue/post-vehicle'
                   icon={GiCheckMark}
-                  active={pathname === '/admin/truevalue/post-vehicle'}
                 />
                 <SidebarMenuItem
-                  isCollapsed={isCollapsed}
+                  isCollapsed={false}
                   text='Enquiries'
                   to='/admin/truevalue/enquiries'
                   icon={GiCheckMark}
-                  active={pathname === '/admin/truevalue/enquiries'}
                 />
               </div>
             )}
           </div>
+
+          <SidebarMenuItem
+            isCollapsed={isCollapsed}
+            text='Careers'
+            to='/admin/careers'
+            icon={VscBook}
+          />
         </div>
       </section>
 
