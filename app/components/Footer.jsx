@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   FaFacebookF,
   FaTwitter,
@@ -10,21 +10,45 @@ import Image from 'next/image';
 import Link from 'next/link';
 import TestDriveForm from './forms/TestDriveForm';
 
-
 export default function Footer() {
   const [open, setOpen] = useState(false);
   const [car, setCar] = useState(null);
 
+  // Scroll to top button states
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [hideNearFooter, setHideNearFooter] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const viewportHeight = window.innerHeight;
+      const fullHeight = document.body.scrollHeight;
+
+      // Show button after 300px scroll
+      setShowScrollTop(scrollY > 300);
+
+      // Hide button near bottom (last 200px)
+      setHideNearFooter(scrollY + viewportHeight >= fullHeight - 200);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <footer className='bg-[#0E1224] text-gray-300 pt-12 relative'>
-      <div className='px-6 mx-auto max-w-7xl md:px-12'>
+    <footer className="bg-[#0E1224] text-gray-300 pt-12 relative">
+      <div className="px-6 mx-auto max-w-7xl md:px-12">
         {/* Top CTA Section */}
-        <div className='flex flex-col items-center justify-center gap-10 pb-8 border-b border-gray-700 md:flex-row'>
+        <div className="flex flex-col items-center justify-center gap-10 pb-8 border-b border-gray-700 md:flex-row">
           {/* Enquire Now */}
-          <div className='flex items-center gap-2 text-white transition cursor-pointer hover:opacity-80'>
+          <div className="flex items-center gap-2 text-white transition cursor-pointer hover:opacity-80">
             <Image
-              src='https://www.grouplandmark.in/images/icon/enquire.svg'
-              alt='Enquire'
+              src="https://www.grouplandmark.in/images/icon/enquire.svg"
+              alt="Enquire"
               width={24}
               height={24}
             />
@@ -34,11 +58,11 @@ export default function Footer() {
           {/* Book A Test Drive */}
           <button
             onClick={() => setOpen(true)}
-            className='flex items-center gap-2 text-white transition cursor-pointer hover:opacity-80'
+            className="flex items-center gap-2 text-white transition cursor-pointer hover:opacity-80"
           >
             <Image
-              src='https://www.grouplandmark.in/images/icon/openBooKTest.svg'
-              alt='Test Drive'
+              src="https://www.grouplandmark.in/images/icon/openBooKTest.svg"
+              alt="Test Drive"
               width={24}
               height={24}
             />
@@ -46,10 +70,10 @@ export default function Footer() {
           </button>
 
           {/* Find A Store */}
-          <div className='flex items-center gap-2 text-white transition cursor-pointer hover:opacity-80'>
+          <div className="flex items-center gap-2 text-white transition cursor-pointer hover:opacity-80">
             <Image
-              src='https://www.grouplandmark.in/images/icon/location.svg'
-              alt='Find Store'
+              src="https://www.grouplandmark.in/images/icon/location.svg"
+              alt="Find Store"
               width={24}
               height={24}
             />
@@ -58,121 +82,123 @@ export default function Footer() {
         </div>
 
         {/* Main Links */}
-        <div className='grid grid-cols-1 gap-8 py-10 sm:grid-cols-2 md:grid-cols-4'>
+        <div className="grid grid-cols-1 gap-8 py-10 sm:grid-cols-2 md:grid-cols-4">
           <div>
-            <h3 className='mb-4 font-semibold text-white'>CARS</h3>
-            <ul className='space-y-2 text-sm'>
+            <h3 className="mb-4 font-semibold text-white">CARS</h3>
+            <ul className="space-y-2 text-sm">
               <li>
-                <Link href='#'>New Cars</Link>
+                <Link href="#">New Cars</Link>
               </li>
               <li>
-                <Link href='#'>Certified Pre-Owned</Link>
+                <Link href="#">Certified Pre-Owned</Link>
               </li>
               <li>
-                <Link href='#'>Luxury Pre-Owned</Link>
+                <Link href="#">Luxury Pre-Owned</Link>
               </li>
               <li>
-                <Link href='#'>Sell Car</Link>
+                <Link href="#">Sell Car</Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className='mb-4 font-semibold text-white'>SERVICES</h3>
-            <ul className='space-y-2 text-sm'>
+            <h3 className="mb-4 font-semibold text-white">SERVICES</h3>
+            <ul className="space-y-2 text-sm">
               <li>
-                <Link href='/finance'>Finance</Link>
+                <Link href="/finance">Finance</Link>
               </li>
               <li>
-                <Link href='/book-a-service'>Book-a-service</Link>
+                <Link href="/book-a-service">Book-a-service</Link>
               </li>
               <li>
-                <Link href='/insurance'>Insurance</Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className='mb-4 font-semibold text-white'>DISCOVER MORE</h3>
-            <ul className='space-y-2 text-sm'>
-              <li>
-                <Link href='/accessories'>Accessories</Link>
-              </li>
-              <li>
-                <Link href='/career'>Career</Link>
-              </li>
-              <li>
-                <Link href='/insurance'>Insurance</Link>
+                <Link href="/insurance">Insurance</Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className='mb-4 font-semibold text-white'>CONTACT</h3>
-            <ul className='space-y-2 text-sm'>
+            <h3 className="mb-4 font-semibold text-white">DISCOVER MORE</h3>
+            <ul className="space-y-2 text-sm">
               <li>
-                <Link href='#'>Get in Touch</Link>
+                <Link href="/accessories">Accessories</Link>
               </li>
               <li>
-                <Link href='#'>Careers</Link>
+                <Link href="/career">Career</Link>
               </li>
               <li>
-                <Link href='#'>Locate Us</Link>
+                <Link href="/insurance">Insurance</Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="mb-4 font-semibold text-white">CONTACT</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="#">Get in Touch</Link>
+              </li>
+              <li>
+                <Link href="#">Careers</Link>
+              </li>
+              <li>
+                <Link href="#">Locate Us</Link>
               </li>
             </ul>
           </div>
         </div>
 
         {/* Divider */}
-        <div className='pt-6 text-sm text-center text-gray-400 border-t border-gray-700'>
-          <p className='max-w-3xl mx-auto mb-4'>
-            <Link href='#'>Privacy Policy</Link> |
-            <Link href='#'>Terms of Service</Link>
+        <div className="pt-6 text-sm text-center text-gray-400 border-t border-gray-700">
+          <p className="max-w-3xl mx-auto mb-4">
+            <Link href="#">Privacy Policy</Link> |{' '}
+            <Link href="#">Terms of Service</Link>
           </p>
-          <div className='flex justify-center my-6'>
-            <Image src='/nivya_logo.png' alt='nivya' width={200} height={70} />
+          <div className="flex justify-center my-6">
+            <Image src="/nivya_logo.png" alt="nivya" width={200} height={70} />
           </div>
           <p>Nivya-automobiles © 2025. All Rights Reserved.</p>
         </div>
       </div>
 
       {/* Social Icons */}
-      <div className='fixed right-0 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-[600]'>
+      <div className="fixed right-0 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-[600]">
         <a
-          href='#'
-          className='p-3 transition bg-black rounded-md hover:opacity-80 hover:bg-white hover:text-black'
+          href="#"
+          className="p-3 transition bg-black rounded-md hover:opacity-80 hover:bg-white hover:text-black"
         >
           <FaFacebookF />
         </a>
         <a
-          href='#'
-          className='p-3 transition bg-black rounded-md hover:opacity-80 hover:bg-white hover:text-black'
+          href="#"
+          className="p-3 transition bg-black rounded-md hover:opacity-80 hover:bg-white hover:text-black"
         >
           <FaTwitter />
         </a>
         <a
-          href='#'
-          className='p-3 transition bg-black rounded-md hover:opacity-80 hover:bg-white hover:text-black'
+          href="#"
+          className="p-3 transition bg-black rounded-md hover:opacity-80 hover:bg-white hover:text-black"
         >
           <FaInstagram />
         </a>
         <a
-          href='#'
-          className='p-3 transition bg-black rounded-md hover:opacity-80 hover:bg-white hover:text-black'
+          href="#"
+          className="p-3 transition bg-black rounded-md hover:opacity-80 hover:bg-white hover:text-black"
         >
           <FaLinkedinIn />
         </a>
       </div>
 
-      {/* Scroll to Top */}
-      <div className='fixed z-40 right-6 bottom-6'>
-        <a
-          href='#'
-          className='p-3 text-white transition bg-black rounded-full hover:bg-white/20'
-        >
-          ↑
-        </a>
-      </div>
+      {/* Scroll to Top Button */}
+      {showScrollTop && !hideNearFooter && (
+        <div className="fixed z-40 right-6 bottom-6">
+          <button
+            onClick={scrollToTop}
+            className="p-3 text-white transition bg-black rounded-full hover:bg-white/20"
+          >
+            ↑
+          </button>
+        </div>
+      )}
 
       {/* Test Drive Form Modal */}
       {open && <TestDriveForm open={open} setOpen={setOpen} car={car} />}

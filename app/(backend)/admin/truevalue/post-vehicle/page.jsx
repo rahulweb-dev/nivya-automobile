@@ -188,25 +188,34 @@ export default function PostVehicle() {
   const handleSubmit = async (e, draft = false) => {
     e.preventDefault();
     setMessage('');
-    // Convert File objects to something your API wants (FormData or base64).
-    // This example keeps JSON but you should change to FormData if uploading files to backend.
+
     try {
+      // Map form state to API fields
       const payload = {
-        ...form,
-        draft,
-        images: form.images.map((img) => ({
-          name: img.name,
-          isPrimary: img.isPrimary,
-          // note: we send a placeholder url string here — replace with real upload flow
-          url: img.url,
-        })),
+        name: `${form.brand} ${form.bodyType}`, // backend expects 'name'
+        brand: form.brand,
+        modelYear: form.registeredCity || '', // if you want to store model year here
+        price: form.price,
+        kmDriven: form.mileage || '', // mileage field
+        fuelType: form.fuelType,
+        transmission: form.transmission.join(', '), // optional, comma-separated
+        bodyType: form.bodyType,
+        color: form.color,
+        userType: form.userType,
+        location: form.transactionLocation || form.registeredCity || '',
+        image: form.images.find((img) => img.isPrimary)?.url || '', // primary image
+        features: form.features,
+        gallery: form.images.map((img) => img.url),
+        description: form.description || '',
+        draft, // optional draft flag
       };
-      // sample endpoint - keep your original logic
+
       const res = await fetch('/api/truevaluevehicle', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
+
       const data = await res.json();
       if (data?.success) {
         setMessage(draft ? 'Saved as draft' : 'Vehicle posted successfully');

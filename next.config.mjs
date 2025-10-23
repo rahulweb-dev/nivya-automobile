@@ -18,7 +18,12 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'www.saboomaruti.in',
       },
-       {
+      {
+        protocol: 'https',
+        hostname: 'www.marutisuzuki.com',
+      },
+
+      {
         protocol: 'https',
         hostname: 'images-saboomaruti-in.s3.ap-south-1.amazonaws.com',
       },

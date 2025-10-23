@@ -35,7 +35,7 @@ export default function ServiceForm() {
       const data = await res.json();
 
       if (res.ok) {
-        toast.success('✅ Form submitted successfully!');
+        toast.success(' Form submitted successfully!');
         setFormData({ name: '', number: '', service: '', message: '' });
       } else {
         toast.error(data.error || '❌ Something went wrong.');
@@ -49,7 +49,7 @@ export default function ServiceForm() {
   };
 
   return (
-    <div className='w-full max-w-full mx-auto bg-[#181818] text-white p-10 rounded-3xl shadow-lg'>
+    <div className='w-full max-w-full p-10 mx-auto text-black bg-white shadow-lg rounded-3xl'>
       <h2 className='mb-8 text-3xl font-semibold text-center md:text-left'>
         Book a Service Appointment
       </h2>
@@ -60,19 +60,19 @@ export default function ServiceForm() {
       >
         {/* Name */}
         <div className='flex flex-col space-y-2'>
-          <label className='text-sm text-gray-300'>Name</label>
+          <label className='text-sm text-black'>Name</label>
           <input
             type='text'
             name='name'
             value={formData.name}
             onChange={handleChange}
-            className='py-2 text-white bg-transparent border-b border-gray-400 focus:border-white focus:outline-none'
+            className='py-2 text-black bg-transparent border-b border-gray-400 focus:border-black focus:outline-none'
           />
         </div>
 
         {/* Mobile Number */}
         <div className='flex flex-col space-y-2'>
-          <label className='text-sm text-gray-300'>Mobile Number</label>
+          <label className='text-sm text-black'>Mobile Number</label>
           <input
             type='text'
             name='number'
@@ -80,18 +80,18 @@ export default function ServiceForm() {
             minLength={10}
             value={formData.number}
             onChange={handleChange}
-            className='py-2 text-white bg-transparent border-b border-gray-400 focus:border-white focus:outline-none'
+            className='py-2 text-black bg-transparent border-b border-gray-400 focus:border-black focus:outline-none'
           />
         </div>
 
         {/* Select Service */}
         <div className='flex flex-col space-y-2'>
-          <label className='text-sm text-gray-300'>Select Service</label>
+          <label className='text-sm text-black'>Select Service</label>
           <select
             name='service'
             value={formData.service}
             onChange={handleChange}
-            className='py-2 text-white bg-transparent border-b border-gray-400 focus:border-white focus:outline-none'
+            className='py-2 text-black bg-transparent border-b border-gray-400 focus:border-black focus:outline-none'
           >
             <option value='' disabled className='text-gray-500 bg-[#181818]'>
               Select Service
@@ -113,13 +113,13 @@ export default function ServiceForm() {
 
         {/* Message */}
         <div className='flex flex-col space-y-2'>
-          <label className='text-sm text-gray-300'>Message</label>
+          <label className='text-sm text-black'>Message</label>
           <textarea
             name='message'
             rows='1'
             value={formData.message}
             onChange={handleChange}
-            className='py-2 text-white bg-transparent border-b border-gray-400 resize-none focus:border-white focus:outline-none'
+            className='py-2 text-black bg-transparent border-b border-gray-400 resize-none focus:border-black focus:outline-none'
           ></textarea>
         </div>
 
@@ -128,7 +128,7 @@ export default function ServiceForm() {
           <button
             type='submit'
             disabled={loading}
-            className='px-8 py-2 font-semibold text-black transition-all bg-white rounded-full shadow-md hover:bg-gray-200 disabled:opacity-60'
+            className='px-8 py-2 font-semibold text-white transition-all bg-black rounded-full shadow-md hover:bg-gray-700 disabled:opacity-60'
           >
             {loading ? 'Submitting...' : 'Submit'}
           </button>

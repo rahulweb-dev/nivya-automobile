@@ -4,7 +4,6 @@ export const vehicles = {
   'alto-k10': {
     name: 'Maruti Alto K10',
     price: '₹3.69 - 5.44 Lakh*',
-
     type: 'Hatchback',
     fuel: 'Petrol / CNG',
     engine: '998cc',
@@ -13,21 +12,45 @@ export const vehicles = {
     colors: [
       {
         name: 'Red',
-        code: '#b30000',
+        code: '#BF001B',
         image:
           'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_red.webp',
       },
       {
-        name: 'White',
-        code: '#f5f5f5',
+        name: 'Blue',
+        code: '#0047AB',
         image:
           'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_blue.webp',
+      },
+      {
+        name: 'Grey',
+        code: '#6E6E6E',
+        image:
+          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_grey.webp',
+      },
+      {
+        name: 'Silver',
+        code: '#C0C0C0',
+        image:
+          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_silver.webp',
+      },
+      {
+        name: 'White',
+        code: '#FFFFFF',
+        image:
+          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_white.webp',
+      },
+      {
+        name: 'Gold',
+        code: '#D4AF37',
+        image:
+          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_gold.webp',
       },
       {
         name: 'Black',
         code: '#000000',
         image:
-          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_grey.webp',
+          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/cars/alto-k10/altok10-black.webp',
       },
     ],
     carVariants: [
@@ -42,18 +65,18 @@ export const vehicles = {
   },
   victoris: {
     name: 'Maruti VICTORIS',
-    price: '₹3.69 - 5.44 Lakh*',
+    price: '₹10.50 - 19.99 Lakh*',
     type: 'Hatchback',
     fuel: 'Petrol / CNG',
-    engine: '998cc',
-    image: 'https://www.saboomaruti.in/images/alto-k10.png',
+    engine: 'K15C Smart Hybrid',
+    image: 'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/cars/victoris/colors/red-removebg-preview.png',
     desc: 'Compact, stylish, and efficient — the Alto K10 brings comfort and performance at an affordable price.',
     colors: [
       {
         name: 'Red',
         code: '#b30000',
         image:
-          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_red.webp',
+          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/cars/victoris/colors/red-removebg-preview.png',
       },
       {
         name: 'White',
@@ -289,7 +312,7 @@ export const vehicles = {
         name: 'Red',
         code: '#b30000',
         image:
-          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_red.webp',
+          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/cars/swift-2024/colors/car-01.webp',
       },
       {
         name: 'White',
@@ -359,7 +382,7 @@ export const vehicles = {
         name: 'Red',
         code: '#b30000',
         image:
-          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_red.webp',
+          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/cars/brezza/colors/brave_khaki.webp',
       },
       {
         name: 'White',
@@ -435,7 +458,7 @@ export const vehicles = {
         name: 'Red',
         code: '#b30000',
         image:
-          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_red.webp',
+          'https://www.marutisuzuki.com/images/dzire_brand/images/threesixty/red.webp',
       },
       {
         name: 'White',

@@ -1,5 +1,6 @@
 'use client';
 
+import ResponsiveBanner from '@/app/components/ResponsiveBanner';
 import { useState } from 'react';
 
 import toast from 'react-hot-toast';
@@ -1030,35 +1031,44 @@ export default function AccessoriesPage() {
   };
 
   return (
-    <div className='container px-4 py-8 mx-auto'>
-      <h2 className='mb-6 text-2xl font-semibold text-center'>
-        Genuine Accessories
-      </h2>
+    <>
+      <div className='mt-20'>
+        <ResponsiveBanner
+          desktopSrc='https://www.skyautomobiles.in/_next/image?url=%2Fimages%2Fother%2Fcontact%20us%20banner.webp&w=3840&q=75'
+          mobileSrc='https://www.skyautomobiles.in/_next/image?url=%2Fimages%2Fother%2Foffer_mobile.webp&w=1080&q=75'
+          altText='Sky Automobiles Contact Us Banner'
+        />
+      </div>
+      <div className='container px-4 py-8 mx-auto'>
+        <h2 className='mb-6 text-2xl font-semibold text-center'>
+          Genuine Accessories
+        </h2>
 
-      <CategoryTabs active={activeCategory} onChange={setActiveCategory} />
+        <CategoryTabs active={activeCategory} onChange={setActiveCategory} />
 
-      {accessories.length === 0 ? (
-        <p className='text-center text-gray-500'>
-          No accessories available for this category.
-        </p>
-      ) : (
-        <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
-          {accessories.map((item) => (
-            <AccessoryCard
-              key={item.code}
-              item={item}
-              isOpen={selectedProduct?.code === item.code}
-              formData={formData}
-              setFormData={setFormData}
-              onOrder={handleOrderClick}
-              onSubmit={handleSubmit}
-              errors={errors}
-              isSubmitting={isSubmitting}
-              message={message}
-            />
-          ))}
-        </div>
-      )}
-    </div>
+        {accessories.length === 0 ? (
+          <p className='text-center text-gray-500'>
+            No accessories available for this category.
+          </p>
+        ) : (
+          <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+            {accessories.map((item) => (
+              <AccessoryCard
+                key={item.code}
+                item={item}
+                isOpen={selectedProduct?.code === item.code}
+                formData={formData}
+                setFormData={setFormData}
+                onOrder={handleOrderClick}
+                onSubmit={handleSubmit}
+                errors={errors}
+                isSubmitting={isSubmitting}
+                message={message}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </>
   );
 }
