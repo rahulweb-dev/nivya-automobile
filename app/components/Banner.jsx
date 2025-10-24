@@ -39,19 +39,19 @@ export default function Banner({ sliders = [] }) {
                   alt={item.alt || 'Banner'}
                   width={1920}
                   height={800}
-                  className='w-full h-auto object-cover'
+                  className='object-cover w-full h-auto'
                   priority={index === 0}
                 />
               </div>
 
               {/* Mobile Image */}
-              <div className='block md:hidden'>
+              <div className='block mt-20 md:hidden'>
                 <Image
                   src={item.mobileImg}
                   alt={item.alt || 'Banner'}
                   width={800}
                   height={800}
-                  className='w-full h-auto object-cover'
+                  className='object-cover w-full h-auto'
                 />
               </div>
             </Link>
@@ -61,13 +61,13 @@ export default function Banner({ sliders = [] }) {
         {/* Navigation Buttons */}
         <div
           ref={navigationPrevRef}
-          className='absolute z-10 p-3 bg-white rounded-full shadow-md cursor-pointer left-4 md:left-10 top-1/2 -translate-y-1/2 hover:bg-gray-500 transition'
+          className='absolute z-10 p-3 transition -translate-y-1/2 bg-white rounded-full shadow-md cursor-pointer left-4 md:left-10 top-1/2 hover:bg-gray-500'
         >
           <GrFormPrevious size={24} />
         </div>
         <div
           ref={navigationNextRef}
-          className='absolute z-10 p-3 bg-white rounded-full shadow-md cursor-pointer right-4 md:right-10 top-1/2 -translate-y-1/2 hover:bg-gray-500 transition'
+          className='absolute z-10 p-3 transition -translate-y-1/2 bg-white rounded-full shadow-md cursor-pointer right-4 md:right-10 top-1/2 hover:bg-gray-500'
         >
           <GrFormNext size={24} />
         </div>
