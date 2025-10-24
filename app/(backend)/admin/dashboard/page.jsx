@@ -16,18 +16,91 @@ import {
   Tooltip,
   ResponsiveContainer,
   CartesianGrid,
+  PieChart,
+  Pie,
+  Cell,
+  Legend,
 } from 'recharts';
 
 export default function DashboardPage() {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const COLORS = [
+    '#6366F1',
+    '#14B8A6',
+    '#F97316',
+    '#06B6D4',
+    '#F43F5E',
+    '#A855F7',
+  ];
+
   useEffect(() => {
     const fetchLeads = async () => {
       try {
-        const res = await fetch('/api/leads');
+        const res = await fetch('/api/leads'); // API must return an array of leads or aggregated counts
         const data = await res.json();
-        setStats(data);
+
+        // If API returns aggregated counts
+        const total = data.total || (data.leads ? data.leads.length : 0);
+        const today = data.today || 0;
+        const yesterday = data.yesterday || 0;
+        const growthRate = data.growthRate ?? 0;
+
+        // Pie chart data
+        const pieData = [
+          { name: 'Vehicle', value: data.vehicle || 0 },
+          { name: 'Service', value: data.service || 0 },
+          { name: 'Finance', value: data.finance || 0 },
+          { name: 'Accessories', value: data.accessories || 0 },
+          { name: 'Insurance', value: data.insurance || 0 },
+          { name: 'True Value', value: data.truevalue || 0 },
+        ];
+
+        // Monthly chart data (last 6 months)
+        const todayDate = new Date();
+        const monthNames = [];
+        const monthlyCounts = {};
+        for (let i = 5; i >= 0; i--) {
+          const d = new Date();
+          d.setMonth(todayDate.getMonth() - i);
+          const month = d.toLocaleString('default', { month: 'short' });
+          const year = d.getFullYear();
+          const key = `${month} ${year}`;
+          monthNames.push(key);
+          monthlyCounts[key] = 0;
+        }
+
+        // If API returns leads array with createdAt
+        if (data.leads && data.leads.length > 0) {
+          data.leads.forEach((lead) => {
+            const d = new Date(lead.createdAt);
+            const key = `${d.toLocaleString('default', {
+              month: 'short',
+            })} ${d.getFullYear()}`;
+            if (monthlyCounts[key] !== undefined) monthlyCounts[key] += 1;
+          });
+        }
+
+        const monthlyData = monthNames.map((month) => ({
+          month,
+          leads: monthlyCounts[month] || 0,
+        }));
+
+        setStats({
+          total,
+          today,
+          yesterday,
+          growthRate,
+          vehicle: data.vehicle || 0,
+          service: data.service || 0,
+          finance: data.finance || 0,
+          accessories: data.accessories || 0,
+          insurance: data.insurance || 0,
+          truevalue: data.truevalue || 0,
+          monthlyData,
+          pieData,
+        });
       } catch (err) {
         console.error('Error fetching leads:', err);
       } finally {
@@ -37,16 +110,6 @@ export default function DashboardPage() {
 
     fetchLeads();
   }, []);
-
-  // Mock fallback if API not ready
-  const monthlyData = stats?.monthlyData || [
-    { month: 'Jan', leads: 120 },
-    { month: 'Feb', leads: 150 },
-    { month: 'Mar', leads: 200 },
-    { month: 'Apr', leads: 180 },
-    { month: 'May', leads: 250 },
-    { month: 'Jun', leads: 230 },
-  ];
 
   if (loading)
     return (
@@ -61,35 +124,35 @@ export default function DashboardPage() {
         Dashboard Overview
       </h1>
 
-      {/* ======= Main Stats ======= */}
+      {/* Main Stats */}
       <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4'>
         <StatCard
           icon={<FaUsers />}
           title='Total Leads'
-          value={stats?.total || 0}
+          value={stats.total}
           color='bg-blue-600'
         />
         <StatCard
           icon={<FaCalendarDay />}
           title="Today's Leads"
-          value={stats?.today || 0}
+          value={stats.today}
           color='bg-green-500'
         />
         <StatCard
           icon={<FaClock />}
           title="Yesterday's Leads"
-          value={stats?.yesterday || 0}
+          value={stats.yesterday}
           color='bg-purple-500'
         />
         <StatCard
           icon={<FaChartBar />}
           title='Growth Rate'
-          value={`${stats?.growthRate || 0}%`}
-          color='bg-pink-500'
+          value={`${stats.growthRate}%`}
+          color={stats.growthRate >= 0 ? 'bg-green-500' : 'bg-red-500'}
         />
       </div>
 
-      {/* ======= Category Breakdown ======= */}
+      {/* Category Breakdown */}
       <h2 className='mt-10 mb-4 text-lg font-semibold text-gray-700'>
         Leads by Category
       </h2>
@@ -97,60 +160,93 @@ export default function DashboardPage() {
         <StatCard
           icon={<FaCar />}
           title='Vehicle Leads'
-          value={stats?.vehicle || 0}
+          value={stats.vehicle}
           color='bg-indigo-500'
         />
         <StatCard
           icon={<FaTools />}
           title='Service Leads'
-          value={stats?.service || 0}
+          value={stats.service}
           color='bg-teal-500'
         />
         <StatCard
           icon={<FaChartBar />}
           title='Finance Leads'
-          value={stats?.finance || 0}
+          value={stats.finance}
           color='bg-orange-500'
         />
         <StatCard
           icon={<FaChartBar />}
           title='Accessories Leads'
-          value={stats?.accessories || 0}
+          value={stats.accessories}
           color='bg-cyan-600'
         />
         <StatCard
           icon={<FaChartBar />}
           title='Insurance Leads'
-          value={stats?.insurance || 0}
+          value={stats.insurance}
           color='bg-rose-600'
         />
         <StatCard
           icon={<FaChartBar />}
           title='True Value Leads'
-          value={stats?.truevalue || 0}
+          value={stats.truevalue}
           color='bg-violet-600'
         />
       </div>
 
-      {/* ======= Monthly Chart ======= */}
-      <div className='p-6 mt-10 bg-white shadow-lg rounded-2xl'>
-        <h2 className='mb-4 text-lg font-semibold text-gray-700'>
-          Monthly Lead Growth
-        </h2>
-        <ResponsiveContainer width='100%' height={300}>
-          <BarChart data={monthlyData}>
-            <CartesianGrid strokeDasharray='3 3' />
-            <XAxis dataKey='month' />
-            <Tooltip />
-            <Bar dataKey='leads' fill='#3b82f6' radius={[8, 8, 0, 0]} />
-          </BarChart>
-        </ResponsiveContainer>
+      {/* Monthly Chart */}
+      <div className='grid grid-cols-2 space-x-3'>
+        <div className='p-6 mt-10 bg-white shadow-lg rounded-2xl'>
+          <h2 className='mb-4 text-lg font-semibold text-gray-700'>
+            Monthly Lead Growth
+          </h2>
+          <ResponsiveContainer width='100%' height={300}>
+            <BarChart data={stats.monthlyData}>
+              <CartesianGrid strokeDasharray='3 3' />
+              <XAxis dataKey='month' />
+              <Tooltip />
+              <Bar dataKey='leads' fill='#3b82f6' radius={[8, 8, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+
+        <div className='p-6 mt-10 bg-white shadow-lg rounded-2xl'>
+          <h2 className='mb-4 text-lg font-semibold text-gray-700'>
+            Leads Distribution
+          </h2>
+          <ResponsiveContainer width='100%' height={300}>
+            <PieChart>
+              <Pie
+                data={stats.pieData}
+                dataKey='value'
+                nameKey='name'
+                cx='50%'
+                cy='50%'
+                outerRadius={100}
+                fill='#8884d8'
+                label
+              >
+                {stats.pieData.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={COLORS[index % COLORS.length]}
+                  />
+                ))}
+              </Pie>
+              <Legend verticalAlign='bottom' height={36} />
+              <Tooltip />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
       </div>
+
+      {/* Pie Chart */}
     </div>
   );
 }
 
-// ======= Reusable Card Component =======
+// Reusable Stat Card
 function StatCard({ icon, title, value, color }) {
   return (
     <motion.div

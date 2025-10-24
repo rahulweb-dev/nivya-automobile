@@ -77,9 +77,17 @@ export default function NewCarsForm() {
         required
       >
         <option value=''>Select Car</option>
-        <option value='Swift'>Swift</option>
-        <option value='Baleno'>Baleno</option>
-        <option value='Fronx'>Fronx</option>
+        <option value='VICTORIS'>VICTORIS</option>
+        <option value='ALTO K10'>ALTO K10</option>
+        <option value='SWIFT'>SWIFT</option>
+
+        <option value='BREZZA'>BREZZA</option>
+        <option value='DZIRE'>DZIRE</option>
+        <option value='S-PRESSO'>S-PRESSO</option>
+        <option value='WAGONR'>WAGONR</option>
+        <option value='ERTIGA'>ERTIGA</option>
+        <option value='CELERIO'>CELERIO</option>
+        <option value='EECO'>EECO</option>
       </select>
       <button
         type='submit'

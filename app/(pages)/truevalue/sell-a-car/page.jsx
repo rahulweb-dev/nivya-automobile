@@ -12,7 +12,6 @@ export default function TrueValueSell() {
     name: '',
     email: '',
     number: '',
-    regNumber: '',
     authorize: false,
   });
 
@@ -60,10 +59,6 @@ export default function TrueValueSell() {
     if (!/^[6-9]\d{9}$/.test(form.number))
       newErrors.number = 'Enter a valid 10-digit mobile number.';
 
-    if (!/^[A-Z]{2}\d{2}[A-Z]{1,2}\d{4}$/i.test(form.regNumber))
-      newErrors.regNumber =
-        'Enter valid registration number (e.g. MH12AB1234).';
-
     if (!form.authorize)
       newErrors.authorize = 'You must authorize contact before submitting.';
 
@@ -93,7 +88,6 @@ export default function TrueValueSell() {
           name: '',
           email: '',
           number: '',
-          regNumber: '',
           authorize: false,
         });
         setErrors({});
@@ -116,7 +110,7 @@ export default function TrueValueSell() {
           mobileSrc='https://www.skyautomobiles.in/_next/image?url=%2Fimages%2Fother%2Fsell_car_mobile.webp&w=1080&q=75'
           altText='Sky Automobiles Contact Us Banner'
         />
-        <div className='absolute inset-0 flex items-center justify-center px-4 sm:px-8'>
+        {/* <div className='absolute inset-0 flex items-center justify-center px-4 sm:px-8'>
           <div className='flex flex-col items-center justify-between w-full max-w-5xl gap-6 p-6 shadow-2xl bg-white/60 backdrop-blur-md sm:p-10 rounded-2xl sm:flex-row'>
             <h1 className='text-2xl font-extrabold leading-snug text-center text-blue-900 uppercase sm:text-4xl sm:text-left'>
               Gaadi Bikti Hai{' '}
@@ -135,7 +129,7 @@ export default function TrueValueSell() {
               ))}
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* Form Section */}
@@ -205,28 +199,6 @@ export default function TrueValueSell() {
             />
             {errors.number && (
               <p className='mt-1 text-sm text-red-500'>{errors.number}</p>
-            )}
-          </div>
-
-          {/* Registration Number */}
-          <div className='flex flex-col sm:col-span-3'>
-            <label className='mb-2 font-medium text-gray-600'>
-              Registration Number*
-            </label>
-            <input
-              type='text'
-              name='regNumber'
-              value={form.regNumber}
-              onChange={handleChange}
-              placeholder='Enter without spaces'
-              required
-              className={`px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-800 focus:outline-none ${
-                errors.regNumber ? 'border-red-500' : 'border-gray-300'
-              }`}
-            />
-            <p className='mt-1 text-xs text-gray-400'>Example: MH12AB1234</p>
-            {errors.regNumber && (
-              <p className='mt-1 text-sm text-red-500'>{errors.regNumber}</p>
             )}
           </div>
 

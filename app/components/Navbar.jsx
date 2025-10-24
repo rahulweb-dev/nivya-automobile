@@ -150,10 +150,7 @@ export default function Navbar() {
 
               {/* --- DROPDOWNS --- */}
               {link.key === 'services' && openDropdown === 'services' && (
-                <DropdownMenu>
-                  <DropdownItem href='/finance' onClick={closeAllMenus}>
-                    Finance
-                  </DropdownItem>
+                <DropdownMenu>  
                   <DropdownItem href='/book-a-service' onClick={closeAllMenus}>
                     Book a Service
                   </DropdownItem>
@@ -179,6 +176,9 @@ export default function Navbar() {
 
               {link.key === 'more' && openDropdown === 'more' && (
                 <DropdownMenu>
+                  <DropdownItem href='/finance' onClick={closeAllMenus}>
+                    Finance
+                  </DropdownItem>
                   <DropdownItem href='/insurance' onClick={closeAllMenus}>
                     Insurance
                   </DropdownItem>
@@ -364,7 +364,7 @@ function DropdownItem({ href, children, onClick }) {
       <Link
         href={href}
         onClick={onClick}
-        className='block px-5 py-2 text-sm font-medium hover:bg-gray-100 hover:text-[#0b1a3d] rounded-md transition-all'
+        className='block px-5 py-2 text-sm font-medium hover:bg-gray-500 hover:text-[#dee2ec]  transition-all'
       >
         {children}
       </Link>

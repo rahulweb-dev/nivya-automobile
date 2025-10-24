@@ -6,16 +6,16 @@ import { NextResponse } from 'next/server';
 export async function POST(req) {
   try {
     await ConnectDB();
-    const { name, email, number, regNumber } = await req.json();
+    const { name, email, number } = await req.json();
 
-    if (!name || !email || !number || !regNumber) {
+    if (!name || !email || !number) {
       return NextResponse.json(
         { error: 'All required fields must be filled' },
         { status: 400 }
       );
     }
 
-    const newEntry = await Sellcar.create({ name, email, number, regNumber });
+    const newEntry = await Sellcar.create({ name, email, number });
 
     return NextResponse.json(
       { success: true, data: newEntry },

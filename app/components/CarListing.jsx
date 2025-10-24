@@ -120,7 +120,7 @@ export default function CarListing() {
           {cars.map((car, index) => (
             <div
               key={index}
-              className='overflow-hidden transition-all duration-300 border shadow-md group bg-[#8E8D8A] border-neutral-700 rounded-2xl hover:shadow-lg hover:border-neutral-500'
+              className='overflow-hidden transition-all duration-300 border shadow-md group bg-[#e7e7e7] border-neutral-700 rounded-2xl hover:shadow-lg hover:border-neutral-500'
             >
               {/* Top Bar */}
               <div className='flex items-center justify-between px-5 pt-4'>
@@ -135,7 +135,7 @@ export default function CarListing() {
               </div>
 
               {/* Car Image */}
-              <div className='flex items-center justify-center w-full px-4 py-4 mt-4 bg-[#8E8D8A]'>
+              <div className='flex items-center justify-center w-full px-4 py-4 mt-4 bg-[#e7e7e7]'>
                 <Link href={car.link}>
                   <Image
                     src={car.image}
@@ -149,15 +149,15 @@ export default function CarListing() {
 
               {/* Details */}
               <div className='p-6 text-center'>
-                <h3 className='text-lg font-semibold tracking-tight text-white'>
+                <h3 className='text-lg font-semibold tracking-tight text-black'>
                   {car.name}
                 </h3>
-                <p className='text-xl font-bold text-white'>{car.price}</p>
-                <p className='mb-6 text-xs text-gray-100'>ex-showroom,</p>
+                <p className='text-xl font-bold text-black'>{car.price}</p>
+                <p className='mb-6 text-xs text-gray-600'>ex-showroom,</p>
 
                 {/* Buttons */}
                 <div className='flex justify-center gap-3'>
-                  <button className='px-6 py-2 text-xs font-semibold text-white transition-all duration-200 border rounded-full border-white/30 hover:bg-white/10'>
+                  <button className='px-6 py-2 text-xs font-semibold text-black transition-all duration-200 border rounded-full border-white/30 hover:bg-black hover:text-white'>
                     <Link href={car.link}>EXPLORE</Link>
                   </button>
                   <button
