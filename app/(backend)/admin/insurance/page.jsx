@@ -4,47 +4,52 @@ import { createMRTColumnHelper } from 'material-react-table';
 import toast from 'react-hot-toast';
 import EnqTable from '../dashboard/EnqTable';
 
-const Arena = () => {
-  const [arenaData, setArenaData] = useState([]);
+const Insurance = () => {
+  const [insuranceData, setInsuranceData] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [rangeValue, setRangeValue] = useState('');
+  const [rangeValue, setRangeValue] = useState('allData'); // default allData
   const [dateRange, setDateRange] = useState({ startDate: '', endDate: '' });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let response;
+        setLoading(true);
 
-        if (rangeValue === '') {
-          response = await fetch(`/api/insurance`);
-        } else if (
-          rangeValue === 'Between' &&
-          dateRange.startDate &&
-          dateRange.endDate
-        ) {
-          response = await fetch(`/api/insurance`);
-        } else if (rangeValue !== 'Between') {
-          response = await fetch(`/api/insurance`);
+        let url = `/api/insurance`;
+
+        if (rangeValue === 'Between' && dateRange.startDate && dateRange.endDate) {
+          url += `?rangeValue=${rangeValue}&startDate=${dateRange.startDate}&endDate=${dateRange.endDate}`;
+        } else if (rangeValue !== 'Between' && rangeValue !== 'allData') {
+          url += `?rangeValue=${rangeValue}`;
         }
+
+        const response = await fetch(url);
 
         if (!response.ok) throw new Error('Network response was not ok');
 
         const result = await response.json();
+
         if (result.success) {
-          setArenaData(result.data);
-          setLoading(false);
-          if (result.data.length === 0) toast.error('No data found');
+          // map createdAt to date for EnqTable filtering
+          const mappedData = result.data.map((item) => ({
+            ...item,
+            date: item.createdAt,
+          }));
+
+          setInsuranceData(mappedData);
+
+          if (mappedData.length === 0) toast.error('No data found');
           else toast.success('Insurance Data fetched successfully');
         } else {
           toast.error('Failed to fetch data');
-          setArenaData([]);
-          setLoading(false);
+          setInsuranceData([]);
         }
       } catch (error) {
         console.error('Fetch error:', error);
         toast.error('Something went wrong while fetching data');
-        setArenaData([]);
+        setInsuranceData([]);
+      } finally {
         setLoading(false);
       }
     };
@@ -58,7 +63,7 @@ const Arena = () => {
     {
       header: 'S.No',
       size: 80,
-      accessorFn: (row, index) => index + 1, // generate S.No dynamically
+      accessorFn: (row, index) => index + 1,
       cell: (info) =>
         info.row.index +
         1 +
@@ -72,10 +77,7 @@ const Arena = () => {
     columnHelper.accessor('createdAt', {
       header: 'Date',
       size: 120,
-      cell: (info) => {
-        const date = new Date(info.getValue());
-        return date.toISOString().split('T')[0]; // YYYY-MM-DD format
-      },
+      cell: (info) => new Date(info.getValue()).toISOString().split('T')[0],
     }),
   ];
 
@@ -86,9 +88,9 @@ const Arena = () => {
           Insurance Enquiries
         </h5>
         <EnqTable
-          data={arenaData}
+          data={insuranceData}
           columns={columns}
-          fileName='Arena Enquiries'
+          fileName='Insurance Enquiries'
           rangeValue={rangeValue}
           setRangeValue={setRangeValue}
           dateRange={dateRange}
@@ -102,4 +104,4 @@ const Arena = () => {
   );
 };
 
-export default Arena;
+export default Insurance;

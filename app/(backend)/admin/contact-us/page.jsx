@@ -8,49 +8,48 @@ const Arena = () => {
   const [arenaData, setArenaData] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [rangeValue, setRangeValue] = useState('');
+  const [rangeValue, setRangeValue] = useState('allData'); // default allData
   const [dateRange, setDateRange] = useState({ startDate: '', endDate: '' });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let response;
+        setLoading(true);
+        let url = `/api/contact`;
 
-        if (rangeValue === '') {
-          response = await fetch(
-            `/api/contact?rangeValue=allData&channel=Arena`
-          );
-        } else if (
-          rangeValue === 'Between' &&
-          dateRange.startDate &&
-          dateRange.endDate
-        ) {
-          response = await fetch(
-            `/api/contact?rangeValue=${rangeValue}&startDate=${dateRange.startDate}&endDate=${dateRange.endDate}&channel=Arena`
-          );
-        } else if (rangeValue !== 'Between') {
-          response = await fetch(
-            `/api/contact?rangeValue=${rangeValue}&channel=Arena`
-          );
+        if (rangeValue === 'Between' && dateRange.startDate && dateRange.endDate) {
+          url += `?rangeValue=${rangeValue}&startDate=${dateRange.startDate}&endDate=${dateRange.endDate}&channel=Arena`;
+        } else if (rangeValue !== 'Between' && rangeValue !== 'allData') {
+          url += `?rangeValue=${rangeValue}&channel=Arena`;
+        } else {
+          url += `?rangeValue=allData&channel=Arena`;
         }
+
+        const response = await fetch(url);
 
         if (!response.ok) throw new Error('Network response was not ok');
 
         const result = await response.json();
+
         if (result.success) {
-          setArenaData(result.data);
-          setLoading(false);
-          if (result.data.length === 0) toast.error('No data found');
-          else toast.success('contact-us Data fetched successfully');
+          const mappedData = result.data.map((item) => ({
+            ...item,
+            date: item.createdAt, // optional for EnqTable
+          }));
+
+          setArenaData(mappedData);
+
+          if (mappedData.length === 0) toast.error('No data found');
+          else toast.success('Contact Enquiries fetched successfully');
         } else {
           toast.error('Failed to fetch data');
           setArenaData([]);
-          setLoading(false);
         }
       } catch (error) {
         console.error('Fetch error:', error);
         toast.error('Something went wrong while fetching data');
         setArenaData([]);
+      } finally {
         setLoading(false);
       }
     };
@@ -64,7 +63,7 @@ const Arena = () => {
     {
       header: 'S.No',
       size: 80,
-      accessorFn: (row, index) => index + 1, // generate S.No dynamically
+      accessorFn: (row, index) => index + 1,
       cell: (info) =>
         info.row.index +
         1 +
@@ -78,10 +77,7 @@ const Arena = () => {
     columnHelper.accessor('createdAt', {
       header: 'Date',
       size: 120,
-      cell: (info) => {
-        const date = new Date(info.getValue());
-        return date.toISOString().split('T')[0]; // YYYY-MM-DD format
-      },
+      cell: (info) => new Date(info.getValue()).toISOString().split('T')[0],
     }),
   ];
 
@@ -94,7 +90,7 @@ const Arena = () => {
         <EnqTable
           data={arenaData}
           columns={columns}
-          fileName='Arena Enquiries'
+          fileName='Contact Enquiries'
           rangeValue={rangeValue}
           setRangeValue={setRangeValue}
           dateRange={dateRange}

@@ -5,31 +5,41 @@ import toast from 'react-hot-toast';
 import EnqTable from '../dashboard/EnqTable';
 
 const Accessories = () => {
-  const [arenaData, setArenaData] = useState([]);
+  const [accessoriesData, setAccessoriesData] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [rangeValue, setRangeValue] = useState('allData'); // default allData
+  const [dateRange, setDateRange] = useState({ startDate: '', endDate: '' }); // unused, but required by EnqTable
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
+
         const response = await fetch(`/api/accessories`);
         if (!response.ok) throw new Error('Network response was not ok');
 
         const result = await response.json();
+
         if (result.success) {
-          setArenaData(result.data);
-          setLoading(false);
-          if (result.data.length === 0) toast.error('No data found');
+          const mappedData = result.data.map((item) => ({
+            ...item,
+            date: item.createdAt,
+          }));
+
+          setAccessoriesData(mappedData);
+
+          if (mappedData.length === 0) toast.error('No data found');
           else toast.success('Accessories Data fetched successfully');
         } else {
           toast.error('Failed to fetch data');
-          setArenaData([]);
-          setLoading(false);
+          setAccessoriesData([]);
         }
       } catch (error) {
         console.error('Fetch error:', error);
         toast.error('Something went wrong while fetching data');
-        setArenaData([]);
+        setAccessoriesData([]);
+      } finally {
         setLoading(false);
       }
     };
@@ -40,10 +50,10 @@ const Accessories = () => {
   const columnHelper = createMRTColumnHelper();
 
   const columns = [
-      {
+    {
       header: 'S.No',
       size: 80,
-      accessorFn: (row, index) => index + 1, // generate S.No dynamically
+      accessorFn: (row, index) => index + 1,
       cell: (info) =>
         info.row.index +
         1 +
@@ -52,15 +62,12 @@ const Accessories = () => {
     },
     columnHelper.accessor('customerName', { header: 'Name', size: 120 }),
     columnHelper.accessor('customerPhone', { header: 'Phone Number', size: 120 }),
-    columnHelper.accessor('itemCode', { header: 'ItemCode ', size: 120 }),
-    columnHelper.accessor('itemName', { header: 'ItemName', size: 300 }),
+    columnHelper.accessor('itemCode', { header: 'Item Code', size: 120 }),
+    columnHelper.accessor('itemName', { header: 'Item Name', size: 300 }),
     columnHelper.accessor('createdAt', {
       header: 'Date',
       size: 120,
-      cell: (info) => {
-        const date = new Date(info.getValue());
-        return date.toISOString().split('T')[0]; // YYYY-MM-DD
-      },
+      cell: (info) => new Date(info.getValue()).toISOString().split('T')[0],
     }),
   ];
 
@@ -71,13 +78,16 @@ const Accessories = () => {
           Accessories Enquiries
         </h5>
         <EnqTable
-          data={arenaData}
+          data={accessoriesData}
           columns={columns}
           fileName='Accessories Enquiries'
           refreshing={refreshing}
           setRefreshing={setRefreshing}
           loading={loading}
-          setDateRange={() => {}} // pass empty function
+          rangeValue={rangeValue}
+          setRangeValue={setRangeValue}
+          dateRange={dateRange}
+          setDateRange={setDateRange}
         />
       </div>
     </div>

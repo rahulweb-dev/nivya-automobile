@@ -25,7 +25,7 @@ const EnqTable = ({
   setRefreshing,
   loading,
 }) => {
-  // Handle form submit (Between Dates)
+  // Handle "Between Dates" submit
   const handleSubmit = (e) => {
     e.preventDefault();
     setRefreshing(!refreshing);
@@ -53,12 +53,63 @@ const EnqTable = ({
   useEffect(() => {
     if (rangeValue !== 'Between') {
       setDateRange({ startDate: '', endDate: '' });
-      // Force refresh when selecting "All Data"
       if (rangeValue === 'allData') {
         setRefreshing(!refreshing);
       }
     }
   }, [rangeValue]);
+
+  // Filter data based on selected range
+  const filteredData = React.useMemo(() => {
+    if (!data || !data.length) return [];
+
+    const today = new Date();
+    const yesterday = new Date();
+    yesterday.setDate(today.getDate() - 1);
+
+    return data.filter((row) => {
+      const rowDate = new Date(row.date); // <-- Make sure your data has a 'date' field
+
+      switch (rangeValue) {
+        case 'allData':
+          return true;
+        case 'today':
+          return rowDate.toDateString() === today.toDateString();
+        case 'yesterday':
+          return rowDate.toDateString() === yesterday.toDateString();
+        case 'thisMonth':
+          return (
+            rowDate.getMonth() === today.getMonth() &&
+            rowDate.getFullYear() === today.getFullYear()
+          );
+        case 'lastMonth':
+          const lastMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+          return (
+            rowDate.getMonth() === lastMonth.getMonth() &&
+            rowDate.getFullYear() === lastMonth.getFullYear()
+          );
+        case 'last3Months':
+          const threeMonthsAgo = new Date(today);
+          threeMonthsAgo.setMonth(today.getMonth() - 3);
+          return rowDate >= threeMonthsAgo && rowDate <= today;
+        case 'last6Months':
+          const sixMonthsAgo = new Date(today);
+          sixMonthsAgo.setMonth(today.getMonth() - 6);
+          return rowDate >= sixMonthsAgo && rowDate <= today;
+        case 'last12Months':
+          const twelveMonthsAgo = new Date(today);
+          twelveMonthsAgo.setFullYear(today.getFullYear() - 1);
+          return rowDate >= twelveMonthsAgo && rowDate <= today;
+        case 'Between':
+          if (!dateRange.startDate || !dateRange.endDate) return false;
+          const start = new Date(dateRange.startDate);
+          const end = new Date(dateRange.endDate);
+          return rowDate >= start && rowDate <= end;
+        default:
+          return true;
+      }
+    });
+  }, [data, rangeValue, dateRange]);
 
   return (
     <Box
@@ -76,10 +127,9 @@ const EnqTable = ({
         </div>
       )}
 
-      {/* Only render MRT on client */}
       <MaterialReactTable
         columns={columns}
-        data={data}
+        data={filteredData} // <-- Use filtered data
         enableBottomToolbar
         enableStickyHeader
         enableStickyFooter
@@ -122,9 +172,7 @@ const EnqTable = ({
                   type='date'
                   name='startDate'
                   value={dateRange.startDate}
-                  max={
-                    dateRange.endDate || new Date().toISOString().split('T')[0]
-                  }
+                  max={dateRange.endDate || new Date().toISOString().split('T')[0]}
                   required
                   onChange={handleDateChange}
                   className='border rounded-md px-4 py-1.5'
