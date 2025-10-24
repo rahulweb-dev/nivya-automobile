@@ -1,46 +1,39 @@
-'use client';
-import React from 'react';
-import { useParams } from 'next/navigation';
+import VehiclePageClient from './VehiclePageClient';
 import { vehicles } from '@/app/constants';
-import CarPromoBanner from '@/app/components/vehicle-components/CarPromoBanner';
-import FeaturesSection from '@/app/components/vehicle-components/CarFeaturesSection';
-import VariantsGrid from '@/app/components/vehicle-components/VariantsGrid';
 
-
-export default function VehiclePage() {
-  const { id } = useParams();
-
-  const vehicle = vehicles[id];
+// This function runs on the server
+export async function generateMetadata({ params }) {
+  const vehicle = vehicles[params.id];
 
   if (!vehicle) {
-    return (
-      <div className='h-[70vh] flex items-center justify-center text-gray-600 text-lg'>
-        Vehicle not found 😔
-      </div>
-    );
+    return {
+      title: 'Vehicle Not Found | Nivya Automobiles',
+      description: 'The requested vehicle could not be found.',
+    };
   }
 
-  return (
-    <div className='min-h-screen bg-gray-50 mt-11'>
-      <CarPromoBanner
-        carName={vehicle.name}
-        price={vehicle.price}
-        type={vehicle.type}
-        fuelType={vehicle.fuel}
-        engine={vehicle.engine}
-        imageUrl='https://www.skyautomobiles.in/images/car/arena/altok10/altok-10-metallic-sizzling-red1.png'
-        colors={vehicle.colors}
-      />
-     
-      <FeaturesSection />
-      {vehicle.carVariants && vehicle.carVariants.length > 0 && (
-        <VariantsGrid title='Explore Variants' variants={vehicle.carVariants} />
-      )}
-    </div>
-  );
+  return {
+    title: `${vehicle.name} | Nivya Automobiles`,
+    description: `Explore ${vehicle.name}, ${vehicle.type} with ${vehicle.fuel} engine, starting at ₹${vehicle.price}.`,
+    openGraph: {
+      title: `${vehicle.name} | Nivya Automobiles`,
+      description: `Check out the features, variants, and pricing of ${vehicle.name}.`,
+      url: `https://www.nivyaautomobiles.com/vehicles/${params.id}`,
+      images: [
+        {
+          url:
+            vehicle.imageUrl ||
+            'https://www.nivyaautomobiles.com/images/default-car.png',
+          width: 1200,
+          height: 630,
+          alt: vehicle.name,
+        },
+      ],
+      type: 'website',
+    },
+  };
 }
 
-
-
-
-
+export default function VehiclePage({ params }) {
+  return <VehiclePageClient vehicleId={params.id} />;
+}
