@@ -27,6 +27,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'images-saboomaruti-in.s3.ap-south-1.amazonaws.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'www.broaddcast.com',
+      },
     ],
   },
 };
