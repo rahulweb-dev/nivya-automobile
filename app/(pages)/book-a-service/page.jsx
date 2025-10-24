@@ -14,13 +14,14 @@ export default function ServicePage() {
           altText='Sky Automobiles Contact Us Banner'
         />
       </div>
-      <section className='relative flex flex-col items-center justify-center min-h-screen gap-16 p-8 overflow-hidden text-black '>
+      <div className='container mx-auto max-w-7xl'>
+      <section className='relative flex flex-col items-center justify-center gap-16 p-8 overflow-hidden text-black '>
         {/* Background Glow Effects */}
 
         <div className='absolute rounded-full bg-gradient-to-r from-[#bcac77] to-[#bc7501] bottom-10 right-10 w-72 h-72 opacity-20 blur-3xl'></div>
 
         {/* Booking Form */}
-        <div className='w-full max-w-full mt-14'>
+        <div className='w-full max-w-full mt-8'>
           <ServiceForm />
         </div>
 
@@ -33,7 +34,7 @@ export default function ServicePage() {
             <ServiceFeatures />
           </div>
         </div>
-      </section>
+      </section></div>
     </>
   );
 }

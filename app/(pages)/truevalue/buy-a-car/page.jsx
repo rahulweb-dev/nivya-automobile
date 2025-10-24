@@ -66,7 +66,6 @@ export default function TrueValuePage() {
 
   return (
     <>
-      {' '}
       <div className='mt-20'>
         <ResponsiveBanner
           desktopSrc='https://www.skyautomobiles.in/_next/image?url=%2Fimages%2Fother%2Fsell_car.webp&w=3840&q=75'
@@ -74,121 +73,123 @@ export default function TrueValuePage() {
           altText='Sky Automobiles Contact Us Banner'
         />
       </div>
-      <div className='relative min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 '>
-        {/* Floating Filter Button (Mobile only) */}
-        <button
-          onClick={() => setShowSidebar(true)}
-          className='fixed z-40 p-3 text-white bg-blue-600 rounded-full shadow-lg bottom-6 right-6 md:hidden'
-        >
-          <Filter className='w-5 h-5' />
-        </button>
+      <div className='mx-auto max-w-7xl'>
+        <div className='relative bg-gradient-to-br from-gray-50 via-white to-gray-100 '>
+          {/* Floating Filter Button (Mobile only) */}
+          <button
+            onClick={() => setShowSidebar(true)}
+            className='fixed z-40 p-3 text-white bg-blue-600 rounded-full shadow-lg bottom-6 right-6 md:hidden'
+          >
+            <Filter className='w-5 h-5' />
+          </button>
 
-        <div className='container flex flex-col gap-6 p-4 mx-auto mt-24 md:flex-row'>
-          {/* Sidebar (Mobile) */}
-          {/* Sidebar (Mobile) */}
-          <AnimatePresence>
-            {showSidebar && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className='fixed inset-0 z-50 flex md:hidden'
-              >
-                {/* Background overlay */}
-                <div
-                  className='absolute inset-0 bg-black/40'
-                  onClick={() => setShowSidebar(false)}
-                ></div>
-
-                {/* Sidebar content */}
-                <motion.aside
-                  initial={{ x: '-100%' }}
-                  animate={{ x: 0 }}
-                  exit={{ x: '-100%' }}
-                  transition={{ type: 'tween', duration: 0.25 }}
-                  className='relative z-50 flex flex-col w-4/5 h-full max-w-sm overflow-y-auto bg-white shadow-2xl rounded-r-2xl'
+          <div className='container flex flex-col gap-6 p-4 mx-auto mt-24 md:flex-row'>
+            {/* Sidebar (Mobile) */}
+            {/* Sidebar (Mobile) */}
+            <AnimatePresence>
+              {showSidebar && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className='fixed inset-0 z-50 flex md:hidden'
                 >
-                  <div className='flex items-center justify-between p-4 border-b border-gray-200'>
-                    <h3 className='text-lg font-semibold text-gray-700'>
-                      Filters
-                    </h3>
-                    <button
-                      onClick={() => setShowSidebar(false)}
-                      className='flex items-center gap-1 px-3 py-1 text-sm text-white bg-blue-600 rounded-md hover:bg-blue-700'
-                    >
-                      <X className='w-4 h-4' /> Close
-                    </button>
-                  </div>
+                  {/* Background overlay */}
+                  <div
+                    className='absolute inset-0 bg-black/40'
+                    onClick={() => setShowSidebar(false)}
+                  ></div>
 
-                  <div className='p-5 pb-24'>
-                    <TrueValueFilter
-                      filters={filters}
-                      setFilters={setFilters}
-                      brands={brands}
-                      fuelTypes={fuelTypes}
-                      colors={colors}
-                      transmissions={transmissions}
-                      bodyTypes={bodyTypes}
-                      userTypes={userTypes}
-                      modelYears={modelYears}
-                      clearFilters={() => setFilters(defaultFilters)}
-                    />
-                  </div>
-                </motion.aside>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                  {/* Sidebar content */}
+                  <motion.aside
+                    initial={{ x: '-100%' }}
+                    animate={{ x: 0 }}
+                    exit={{ x: '-100%' }}
+                    transition={{ type: 'tween', duration: 0.25 }}
+                    className='relative z-50 flex flex-col w-4/5 h-full max-w-sm overflow-y-auto bg-white shadow-2xl rounded-r-2xl'
+                  >
+                    <div className='flex items-center justify-between p-4 border-b border-gray-200'>
+                      <h3 className='text-lg font-semibold text-gray-700'>
+                        Filters
+                      </h3>
+                      <button
+                        onClick={() => setShowSidebar(false)}
+                        className='flex items-center gap-1 px-3 py-1 text-sm text-white bg-blue-600 rounded-md hover:bg-blue-700'
+                      >
+                        <X className='w-4 h-4' /> Close
+                      </button>
+                    </div>
 
-          {/* Sidebar (Desktop) */}
-          <aside className='sticky hidden w-full p-6 space-y-4 border shadow-md h-fit bg-white/70 backdrop-blur-md md:block md:w-1/4 top-24 rounded-2xl'>
-            <TrueValueFilter
-              filters={filters}
-              setFilters={setFilters}
-              brands={brands}
-              fuelTypes={fuelTypes}
-              colors={colors}
-              transmissions={transmissions}
-              bodyTypes={bodyTypes}
-              userTypes={userTypes}
-              modelYears={modelYears}
-              clearFilters={() => setFilters(defaultFilters)}
-            />
-          </aside>
+                    <div className='p-5 pb-24'>
+                      <TrueValueFilter
+                        filters={filters}
+                        setFilters={setFilters}
+                        brands={brands}
+                        fuelTypes={fuelTypes}
+                        colors={colors}
+                        transmissions={transmissions}
+                        bodyTypes={bodyTypes}
+                        userTypes={userTypes}
+                        modelYears={modelYears}
+                        clearFilters={() => setFilters(defaultFilters)}
+                      />
+                    </div>
+                  </motion.aside>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
-          {/* Main Section */}
-          <div className='flex-1'>
-            <div className='flex flex-wrap items-center justify-between gap-3 mb-6'>
-              <h2 className='text-xl font-bold text-gray-800 sm:text-2xl'>
-                {filteredCars.length} Cars Found
-              </h2>
+            {/* Sidebar (Desktop) */}
+            <aside className='sticky hidden w-full p-6 space-y-4 border shadow-md h-fit bg-white/70 backdrop-blur-md md:block md:w-1/4 top-24 rounded-2xl'>
+              <TrueValueFilter
+                filters={filters}
+                setFilters={setFilters}
+                brands={brands}
+                fuelTypes={fuelTypes}
+                colors={colors}
+                transmissions={transmissions}
+                bodyTypes={bodyTypes}
+                userTypes={userTypes}
+                modelYears={modelYears}
+                clearFilters={() => setFilters(defaultFilters)}
+              />
+            </aside>
 
-              <div className='flex flex-wrap items-center justify-end w-full gap-3 sm:w-auto'>
-                <input
-                  type='text'
-                  placeholder='Search cars...'
-                  onChange={(e) =>
-                    setFilters((prev) => ({
-                      ...prev,
-                      search: e.target.value.toLowerCase(),
-                    }))
-                  }
-                  className='w-full px-4 py-2 text-sm border rounded-lg shadow-sm sm:w-56 focus:ring-2 focus:ring-blue-500 focus:outline-none'
-                />
-                <select
-                  value={filters.sortOrder}
-                  onChange={(e) =>
-                    setFilters((p) => ({ ...p, sortOrder: e.target.value }))
-                  }
-                  className='px-4 py-2 text-sm border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none'
-                >
-                  <option value=''>Sort By</option>
-                  <option value='Low to High'>Price: Low to High</option>
-                  <option value='High to Low'>Price: High to Low</option>
-                </select>
+            {/* Main Section */}
+            <div className='flex-1'>
+              <div className='flex flex-wrap items-center justify-between gap-3 mb-6'>
+                <h2 className='text-xl font-bold text-gray-800 sm:text-2xl'>
+                  {filteredCars.length} Cars Found
+                </h2>
+
+                <div className='flex flex-wrap items-center justify-end w-full gap-3 sm:w-auto'>
+                  <input
+                    type='text'
+                    placeholder='Search cars...'
+                    onChange={(e) =>
+                      setFilters((prev) => ({
+                        ...prev,
+                        search: e.target.value.toLowerCase(),
+                      }))
+                    }
+                    className='w-full px-4 py-2 text-sm border rounded-lg shadow-sm sm:w-56 focus:ring-2 focus:ring-blue-500 focus:outline-none'
+                  />
+                  <select
+                    value={filters.sortOrder}
+                    onChange={(e) =>
+                      setFilters((p) => ({ ...p, sortOrder: e.target.value }))
+                    }
+                    className='px-4 py-2 text-sm border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none'
+                  >
+                    <option value=''>Sort By</option>
+                    <option value='Low to High'>Price: Low to High</option>
+                    <option value='High to Low'>Price: High to Low</option>
+                  </select>
+                </div>
               </div>
-            </div>
 
-            <TrueValueGrid cars={filteredCars} />
+              <TrueValueGrid cars={filteredCars} />
+            </div>
           </div>
         </div>
       </div>

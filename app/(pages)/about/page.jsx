@@ -10,8 +10,9 @@ export default function page() {
         mobileSrc='https://www.skyautomobiles.in/_next/image?url=%2Fimages%2Fother%2Foffer_mobile.webp&w=1080&q=75'
         altText='Sky Automobiles Contact Us Banner'
       />
-
-      <About />
+      <div className='mx-auto max-w-7xl'>
+        <About />
+      </div>
     </div>
   );
 }

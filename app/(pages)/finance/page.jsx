@@ -22,7 +22,7 @@ export default function FinancePage() {
   };
 
   return (
-    <div className='min-h-screen bg-gray-50'>
+    <div className=' bg-gray-50'>
       {/* Banner */}
       <section
         className='relative flex items-center justify-center bg-center bg-cover h-60'
@@ -38,7 +38,7 @@ export default function FinancePage() {
       </section>
 
       {/* Main Content */}
-      <div className='container grid grid-cols-1 gap-8 px-4 py-10 mx-auto lg:grid-cols-2'>
+      <div className='container grid grid-cols-1 gap-8 px-4 py-10 mx-auto max-w-7xl lg:grid-cols-2'>
         {/* Left Side (Form) */}
         <FinanceForm />
 

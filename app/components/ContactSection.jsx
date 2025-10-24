@@ -18,7 +18,7 @@ export default function Contact() {
           altText='Sky Automobiles Contact Us Banner'
         />
       </div>
-      <div className='bg-[#0E1224] text-white min-h-screen'>
+      <div className='bg-[#0E1224] text-white '>
         {/* Header */}
         {/* <div className="text-center py-16 bg-[url('/bg-pattern.svg')] bg-cover bg-center">
           <h2 className='font-semibold tracking-wide text-[#e1951a] uppercase'>
@@ -29,7 +29,7 @@ export default function Contact() {
 
         {/* Contact Info Section */}
         <section className='bg-[#E9F0FF] py-16'>
-          <div className='grid max-w-6xl grid-cols-1 gap-6 px-6 mx-auto text-center sm:grid-cols-2 lg:grid-cols-4'>
+          <div className='grid grid-cols-1 gap-6 px-6 mx-auto text-center max-w-7xl sm:grid-cols-2 lg:grid-cols-4'>
             <div className='py-8 bg-white shadow-md rounded-2xl'>
               <FaMapMarkerAlt className='mx-auto mb-3 text-3xl text-[#b97200]' />
               <h3 className='font-semibold text-gray-800'>Location</h3>
@@ -71,7 +71,7 @@ export default function Contact() {
 
         {/* Contact Form & Map Section */}
         <section className='bg-[#E9F0FF] py-20'>
-          <div className='grid max-w-6xl grid-cols-1 gap-10 px-6 mx-auto lg:grid-cols-2'>
+          <div className='grid grid-cols-1 gap-10 px-6 mx-auto max-w-7xl lg:grid-cols-2'>
             <ContactForm />
 
             <div className='overflow-hidden shadow-md rounded-2xl'>

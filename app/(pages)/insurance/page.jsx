@@ -70,7 +70,7 @@ export default function InsurancePage() {
 
       {/* ---------- Contact Section ---------- */}
       <section className='flex flex-col items-center py-24 bg-gradient-to-b from-white to-cyan-50'>
-        <div className='w-full max-w-6xl px-6'>
+        <div className='w-full px-6 max-w-7xl'>
           {/* Header */}
           <div className='text-center mb-14'>
             <h2 className='text-4xl font-bold text-gray-800'>Get In Touch</h2>

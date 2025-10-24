@@ -97,7 +97,7 @@ export default function CareerPage() {
   };
 
   return (
-    <div className='min-h-screen bg-gray-50'>
+    <div className=' bg-gray-50'>
       {/* Hero Banner */}
       <section
         className='relative flex items-center justify-center h-64 bg-center bg-cover'
@@ -114,7 +114,7 @@ export default function CareerPage() {
 
       {/* Form Section */}
       <div className='container px-6 py-12 mx-auto'>
-        <div className='max-w-5xl p-8 mx-auto bg-white shadow-md rounded-xl'>
+        <div className='p-8 mx-auto bg-white shadow-md max-w-7xl rounded-xl'>
           <h2 className='mb-8 text-3xl font-semibold text-center text-gray-800'>
             Career Application Form
           </h2>

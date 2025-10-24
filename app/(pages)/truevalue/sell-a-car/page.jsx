@@ -133,7 +133,8 @@ export default function TrueValueSell() {
       </div>
 
       {/* Form Section */}
-      <section className='max-w-5xl p-6 mx-auto my-16 bg-white border border-gray-100 shadow-2xl sm:p-10 rounded-3xl'>
+
+      <section className='p-6 mx-auto my-16 bg-white border border-gray-100 shadow-2xl max-w-7xl sm:p-10 rounded-3xl'>
         <h2 className='mb-10 text-2xl font-bold text-center text-gray-800 sm:text-3xl'>
           Enter Your Car Details for a Hassle-Free Experience
         </h2>
@@ -246,7 +247,7 @@ export default function TrueValueSell() {
       </section>
 
       {/* FAQ Section */}
-      <section className='max-w-5xl px-6 mx-auto my-20 sm:px-12'>
+      <section className='px-6 mx-auto my-20 max-w-7xl sm:px-12'>
         <h2 className='mb-10 text-3xl font-bold text-center text-gray-800'>
           Frequently Asked Questions
         </h2>
