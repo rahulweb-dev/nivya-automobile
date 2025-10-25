@@ -146,7 +146,7 @@ export default function Navbar() {
                   <MdOutlineArrowDropDown className='ml-1 text-lg' />
                 )}
               </Link>
-              <span className='absolute bottom-0 left-0 w-0 h-[2px] bg-blue-400 transition-all duration-300 group-hover:w-full'></span>
+              <span className='absolute bottom-0 left-0 w-0 transition-all duration-300 bg-blue-400 h-0.5 group-hover:w-full'></span>
 
               {/* --- DROPDOWNS --- */}
               {link.key === 'services' && openDropdown === 'services' && (
@@ -187,6 +187,9 @@ export default function Navbar() {
                   </DropdownItem>
                   <DropdownItem href='/career' onClick={closeAllMenus}>
                     Career
+                  </DropdownItem>
+                   <DropdownItem href='/compare-cars' onClick={closeAllMenus}>
+                    Compare-cars
                   </DropdownItem>
                 </DropdownMenu>
               )}

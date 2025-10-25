@@ -74,7 +74,7 @@ export default function TrueValuePage() {
         />
       </div>
       <div className='mx-auto max-w-7xl'>
-        <div className='relative bg-gradient-to-br from-gray-50 via-white to-gray-100 '>
+        <div className='relative bg-linear-to-br from-gray-50 via-white to-gray-100 '>
           {/* Floating Filter Button (Mobile only) */}
           <button
             onClick={() => setShowSidebar(true)}
@@ -243,7 +243,7 @@ function TrueValueGrid({ cars }) {
             </p>
             <button
               onClick={() => router.push(`/truevalue/buy-a-car/${car.id}`)}
-              className='w-full py-2 text-sm font-medium text-white transition-all rounded-md bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800'
+              className='w-full py-2 text-sm font-medium text-white transition-all rounded-md bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800'
             >
               View Details
             </button>
@@ -382,7 +382,7 @@ function TrueValueFilter({
     <>
       <button
         onClick={clearFilters}
-        className='flex items-center justify-center w-full gap-2 px-4 py-2 mb-4 text-sm font-medium text-white transition rounded-md bg-gradient-to-r from-rose-500 to-red-600 hover:opacity-90'
+        className='flex items-center justify-center w-full gap-2 px-4 py-2 mb-4 text-sm font-medium text-white transition rounded-md bg-linear-to-r from-rose-500 to-red-600 hover:opacity-90'
       >
         <RotateCcw className='w-4 h-4' /> Reset Filters
       </button>

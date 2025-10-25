@@ -240,7 +240,7 @@ export default function PostVehicle() {
   };
 
   return (
-    <div className='min-h-screen p-6 bg-gradient-to-br from-gray-50 to-gray-100'>
+    <div className='min-h-screen p-6 bg-linear-to-br from-gray-50 to-gray-100'>
       <Head>
         <title>Post Your Vehicle for Sale</title>
       </Head>
@@ -603,7 +603,7 @@ export default function PostVehicle() {
             <div className='flex items-center gap-3'>
               <button
                 type='submit'
-                className='px-6 py-2 font-medium text-white rounded-lg shadow-md bg-gradient-to-r from-blue-600 to-indigo-500 hover:opacity-95'
+                className='px-6 py-2 font-medium text-white rounded-lg shadow-md bg-linear-to-r from-blue-600 to-indigo-500 hover:opacity-95'
               >
                 Post Listing
               </button>

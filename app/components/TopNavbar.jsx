@@ -5,7 +5,7 @@ import Navbar from './Navbar';
 
 export default function TopNavbar() {
   return (
-    <div className="w-full bg-gradient-to-r from-[#0b1a3d] to-[#162c5b] text-gray-200 text-sm border-b border-gray-700">
+    <div className="w-full bg-linear-to-r from-[#0b1a3d] to-[#162c5b] text-gray-200 text-sm border-b border-gray-700">
       <div className="container flex flex-col items-center justify-between px-6 py-2 mx-auto md:flex-row">
         {/* Left Section */}
         <div className="flex flex-wrap items-center mb-2 space-x-6 md:mb-0">

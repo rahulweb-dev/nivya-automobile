@@ -120,7 +120,7 @@ export default function CarDetailPage() {
           </div>
           <div className='mt-3 text-center md:mt-0 md:text-right'>
             <span className='block text-sm text-gray-400'>Starting from</span>
-            <span className='text-4xl font-extrabold text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text drop-shadow-sm'>
+            <span className='text-4xl font-extrabold text-transparent bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text drop-shadow-sm'>
               ₹{formatNumber(car.price)}
             </span>
           </div>
@@ -275,7 +275,7 @@ export default function CarDetailPage() {
                     </p>
                     <button
                       onClick={() => router.push(`/truevalue/${s.id}`)}
-                      className='w-full py-2 mt-4 text-white transition rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 hover:opacity-90'
+                      className='w-full py-2 mt-4 text-white transition rounded-lg bg-linear-to-r from-blue-600 to-indigo-600 hover:opacity-90'
                     >
                       View Details
                     </button>
@@ -332,7 +332,7 @@ export default function CarDetailPage() {
                 <button
                   type='submit'
                   disabled={loading}
-                  className='w-full py-2 text-white transition rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 hover:opacity-90 disabled:opacity-50'
+                  className='w-full py-2 text-white transition rounded-lg bg-linear-to-r from-blue-600 to-indigo-600 hover:opacity-90 disabled:opacity-50'
                 >
                   {loading ? 'Submitting...' : 'Send Enquiry'}
                 </button>
