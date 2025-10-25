@@ -2,7 +2,7 @@
 
 import ResponsiveBanner from '@/app/components/ResponsiveBanner';
 import { useState } from 'react';
-
+import Image from 'next/image';
 import toast from 'react-hot-toast';
 
 // ---------- Data ----------
@@ -843,7 +843,6 @@ const accessoriesData = {
   ],
 };
 
-
 // ---------- Components ----------
 const CategoryTabs = ({ active, onChange }) => (
   <div className='flex flex-wrap justify-center gap-3 p-3 mb-8 bg-gray-100 rounded-lg'>
@@ -876,12 +875,15 @@ const AccessoryCard = ({
   message,
 }) => (
   <div className='flex flex-col items-center p-4 transition border rounded-lg shadow-sm hover:shadow-lg'>
-    <img
+    <Image
       src={item.img}
       alt={item.name}
-      className='object-cover w-full h-48 mb-4 rounded-md'
+      width={400} // set a suitable width
+      height={200} // set a suitable height
+      className='object-cover mb-4 rounded-md'
       loading='lazy'
     />
+
     <h3 className='mb-1 text-sm font-medium text-center'>{item.name}</h3>
     <p className='mb-3 text-xs text-gray-500'>{item.code}</p>
 

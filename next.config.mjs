@@ -1,5 +1,13 @@
+// next.config.mjs
+import withBundleAnalyzer from '@next/bundle-analyzer';
+
+const analyzer = withBundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+});
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
   images: {
     remotePatterns: [
       {
@@ -31,8 +39,20 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'www.broaddcast.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'marutistoragenew1.azureedge.net',
+      },
+      {
+        protocol: 'https',
+        hostname: 'az-ci-afde-prd-arena-01-e7fmh3dxacbgeyh5.z01.azurefd.net',
+      },
+      {
+        protocol: 'https',
+        hostname: 'imgd.aeplcdn.com',
+      },
     ],
   },
 };
 
-export default nextConfig;
+export default analyzer(nextConfig);

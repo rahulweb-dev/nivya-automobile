@@ -83,7 +83,11 @@ const EnqTable = ({
             rowDate.getFullYear() === today.getFullYear()
           );
         case 'lastMonth':
-          const lastMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+          const lastMonth = new Date(
+            today.getFullYear(),
+            today.getMonth() - 1,
+            1
+          );
           return (
             rowDate.getMonth() === lastMonth.getMonth() &&
             rowDate.getFullYear() === lastMonth.getFullYear()
@@ -172,7 +176,9 @@ const EnqTable = ({
                   type='date'
                   name='startDate'
                   value={dateRange.startDate}
-                  max={dateRange.endDate || new Date().toISOString().split('T')[0]}
+                  max={
+                    dateRange.endDate || new Date().toISOString().split('T')[0]
+                  }
                   required
                   onChange={handleDateChange}
                   className='border rounded-md px-4 py-1.5'

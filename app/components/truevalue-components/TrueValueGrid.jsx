@@ -6,10 +6,13 @@ export default function TrueValueGrid({ cars }) {
           key={car.id}
           className='overflow-hidden transition bg-white border rounded-lg shadow-sm hover:shadow-md'
         >
-          <img
+          <Image
             src={car.image}
             alt={car.name}
-            className='object-cover w-full h-48'
+            width={400} // set approximate width
+            height={192} // h-48 in Tailwind ≈ 192px
+            className='object-cover w-full'
+            loading='lazy'
           />
           <div className='p-3'>
             <h3 className='text-sm font-semibold'>{car.name}</h3>

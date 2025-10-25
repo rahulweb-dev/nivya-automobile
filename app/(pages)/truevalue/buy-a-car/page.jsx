@@ -5,7 +5,7 @@ import { ChevronDown, ChevronUp, RotateCcw, Filter, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import ResponsiveBanner from '@/app/components/ResponsiveBanner';
-
+import Image from 'next/image';
 /* ===========================
    True Value Cars Page
 =========================== */
@@ -219,10 +219,13 @@ function TrueValueGrid({ cars }) {
           className='overflow-hidden transition-all duration-300 bg-white border border-gray-100 shadow-md rounded-2xl hover:shadow-2xl'
         >
           <div className='relative'>
-            <img
+            <Image
               src={car.image}
               alt={car.name}
-              className='object-cover w-full h-48 rounded-t-2xl'
+              width={400} // set appropriate width
+              height={200} // set appropriate height
+              className='object-cover rounded-t-2xl'
+              loading='lazy'
             />
             <div className='absolute px-3 py-1 text-xs font-semibold text-white bg-blue-600 rounded-full shadow top-3 right-3'>
               ₹{(car.price / 100000).toFixed(1)} Lakh
