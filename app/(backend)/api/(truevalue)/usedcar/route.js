@@ -7,7 +7,7 @@ export async function POST(req) {
     await ConnectDB();
     const { name, email, number, message } = await req.json();
 
-    if (!name || !email || !number || !message) {
+    if (!name || !email || !number ) {
       return NextResponse.json(
         { error: 'All required fields must be filled' },
         { status: 400 }

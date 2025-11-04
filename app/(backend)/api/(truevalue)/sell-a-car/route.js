@@ -1,37 +1,55 @@
 import { ConnectDB } from '@/lib/config/db';
 import Sellcar from '@/lib/models/sell-a-car';
-
 import { NextResponse } from 'next/server';
 
 export async function POST(req) {
   try {
     await ConnectDB();
-    const { name, email, number } = await req.json();
+    const { name, email, number, authorize } = await req.json();
 
-    if (!name || !email || !number) {
+    // Validation
+    if (!name || !number) {
       return NextResponse.json(
-        { error: 'All required fields must be filled' },
+        { success: false, message: 'Name and number are required.' },
         { status: 400 }
       );
     }
 
-    const newEntry = await Sellcar.create({ name, email, number });
+    // Save to MongoDB
+    const newEntry = await Sellcar.create({
+      name,
+      email,
+      number,
+      authorize,
+    });
 
     return NextResponse.json(
-      { success: true, data: newEntry },
+      { success: true, message: 'Form submitted successfully', data: newEntry },
       { status: 201 }
     );
   } catch (error) {
-    return NextResponse.json({ error: error.regNumber }, { status: 500 });
+    console.error('POST /sell-a-car Error:', error);
+    return NextResponse.json(
+      { success: false, message: error.message },
+      { status: 500 }
+    );
   }
 }
 
-export async function GET(req) {
+export async function GET() {
   try {
     await ConnectDB();
-    const Usedcars = await Sellcar.find().sort({ createdAt: -1 });
-    return NextResponse.json({ success: true, data: Sellcar }, { status: 200 });
+    const usedCars = await Sellcar.find().sort({ createdAt: -1 });
+
+    return NextResponse.json(
+      { success: true, data: usedCars },
+      { status: 200 }
+    );
   } catch (error) {
-    return NextResponse.json({ error: error.regNumber }, { status: 500 });
+    console.error('GET /sell-a-car Error:', error);
+    return NextResponse.json(
+      { success: false, message: error.message },
+      { status: 500 }
+    );
   }
 }

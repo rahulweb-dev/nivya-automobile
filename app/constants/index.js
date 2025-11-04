@@ -62,6 +62,42 @@ export const vehicles = {
       { id: 6, name: 'VXI AGS', type: 'Automatic', price: '₹ 4,94,900 Lakh' },
       { id: 7, name: 'VXI+ AGS', type: 'Automatic', price: '₹ 5,44,900 Lakh' },
     ],
+    features: {
+      Exterior: [
+        {
+          title: 'Chrome Front Grille',
+          image: 'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/slide-show/exterior_web_01.webp',
+          description: 'Bold front design with sleek chrome finish.',
+        },
+        {
+          title: 'LED Headlamps',
+          image: 'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/slide-show/exterior_web_05.webp',
+          description: 'Bright LED lamps for better visibility.',
+        },
+         {
+          title: 'Chrome Front Grille',
+          image: 'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/slide-show/exterior_web_01.webp',
+          description: 'Bold front design with sleek chrome finish.',
+        },
+        {
+          title: 'LED Headlamps',
+          image: 'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/slide-show/exterior_web_05.webp',
+          description: 'Bright LED lamps for better visibility.',
+        },
+      ],
+      Interiors: [
+        {
+          title: 'Premium Dashboard',
+          image: 'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/slide-show/Interior_web_04.webp',
+          description: 'Luxurious interior crafted for comfort.',
+        },
+        {
+          title: 'Touchscreen Infotainment',
+          image: 'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/slide-show/highlight_web_01.webp',
+          description: 'Smart connectivity on the go.',
+        },
+      ],
+    },
   },
   victoris: {
     name: 'Maruti VICTORIS',
@@ -69,7 +105,8 @@ export const vehicles = {
     type: 'Hatchback',
     fuel: 'Petrol / CNG',
     engine: 'K15C Smart Hybrid',
-    image: 'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/cars/victoris/colors/red-removebg-preview.png',
+    image:
+      'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/cars/victoris/colors/red-removebg-preview.png',
     desc: 'Compact, stylish, and efficient — the Alto K10 brings comfort and performance at an affordable price.',
     colors: [
       {
@@ -297,6 +334,32 @@ export const vehicles = {
         price: '₹ 14.72 Lakh',
       },
     ],
+    features: {
+      Exterior: [
+        {
+          title: 'Chrome Front Grille',
+          image: '/images/features/grille.webp',
+          description: 'Bold front design with sleek chrome finish.',
+        },
+        {
+          title: 'LED Headlamps',
+          image: '/images/features/headlamp.webp',
+          description: 'Bright LED lamps for better visibility.',
+        },
+      ],
+      Interiors: [
+        {
+          title: 'Premium Dashboard',
+          image: '/images/features/dashboard.webp',
+          description: 'Luxurious interior crafted for comfort.',
+        },
+        {
+          title: 'Touchscreen Infotainment',
+          image: '/images/features/infotainment.webp',
+          description: 'Smart connectivity on the go.',
+        },
+      ],
+    },
   },
   swift: {
     name: 'Maruti Swift',
@@ -368,6 +431,32 @@ export const vehicles = {
         price: '₹ 8,38,900 Lakh',
       },
     ],
+    features: {
+      Exterior: [
+        {
+          title: 'Chrome Front Grille',
+          image: '/images/features/grille.webp',
+          description: 'Bold front design with sleek chrome finish.',
+        },
+        {
+          title: 'LED Headlamps',
+          image: '/images/features/headlamp.webp',
+          description: 'Bright LED lamps for better visibility.',
+        },
+      ],
+      Interiors: [
+        {
+          title: 'Premium Dashboard',
+          image: '/images/features/dashboard.webp',
+          description: 'Luxurious interior crafted for comfort.',
+        },
+        {
+          title: 'Touchscreen Infotainment',
+          image: '/images/features/infotainment.webp',
+          description: 'Smart connectivity on the go.',
+        },
+      ],
+    },
   },
   brezza: {
     name: 'Maruti Brezza',

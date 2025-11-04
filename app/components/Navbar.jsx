@@ -114,7 +114,7 @@ export default function Navbar() {
   ];
 
   return (
-    <header className='fixed top-0 z-50 w-full bg-[#0E1224]/90 backdrop-blur-xl border-b border-white/10 text-white font-nunito'>
+    <header className='fixed top-0 z-50 w-full text-black bg-white border-b backdrop-blur-xl border-white/10 font-nunito'>
       <nav className='flex items-center justify-between h-20 px-6 mx-auto max-w-7xl'>
         {/* LOGO */}
         <Link href='/' className='flex items-center space-x-2'>
@@ -150,7 +150,7 @@ export default function Navbar() {
 
               {/* --- DROPDOWNS --- */}
               {link.key === 'services' && openDropdown === 'services' && (
-                <DropdownMenu>  
+                <DropdownMenu>
                   <DropdownItem href='/book-a-service' onClick={closeAllMenus}>
                     Book a Service
                   </DropdownItem>
@@ -188,7 +188,7 @@ export default function Navbar() {
                   <DropdownItem href='/career' onClick={closeAllMenus}>
                     Career
                   </DropdownItem>
-                   <DropdownItem href='/compare-cars' onClick={closeAllMenus}>
+                  <DropdownItem href='/compare-cars' onClick={closeAllMenus}>
                     Compare-cars
                   </DropdownItem>
                 </DropdownMenu>
@@ -199,7 +199,7 @@ export default function Navbar() {
 
         {/* MOBILE MENU BUTTON */}
         <button
-          className='text-3xl text-white lg:hidden focus:outline-none'
+          className='text-3xl text-black lg:hidden focus:outline-none'
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? <FiX /> : <FiMenu />}
@@ -256,8 +256,8 @@ export default function Navbar() {
 
       {/* --- MOBILE MENU --- */}
       {menuOpen && (
-        <div className='lg:hidden bg-[#0b1a3d]/95 backdrop-blur-md border-t border-gray-700 shadow-xl animate-slideDown'>
-          <ul className='flex flex-col p-6 space-y-4 text-white'>
+        <div className='bg-white border-t border-gray-700 shadow-xl lg:hidden backdrop-blur-md animate-slideDown'>
+          <ul className='flex flex-col p-6 space-y-4 text-black'>
             {navLinks.map((link) => (
               <li key={link.name}>
                 {/* VEHICLES */}
@@ -355,7 +355,7 @@ export default function Navbar() {
 /* --- SMALL REUSABLE COMPONENTS --- */
 function DropdownMenu({ children }) {
   return (
-    <div className='absolute left-0 mt-3 bg-white/90 backdrop-blur-xl text-gray-900 rounded-xl shadow-2xl min-w-[220px] py-3 border border-gray-100 animate-fadeIn'>
+    <div className='absolute left-0 mt-3 bg-white/90 backdrop-blur-xl text-black rounded-xl shadow-2xl min-w-[220px] py-3 border border-gray-100 animate-fadeIn'>
       <ul className='space-y-1'>{children}</ul>
     </div>
   );
@@ -380,13 +380,13 @@ function MobileDropdown({ title, open, toggle, children }) {
     <>
       <button
         onClick={toggle}
-        className='flex items-center justify-between w-full text-lg font-medium transition-all hover:text-blue-300'
+        className='flex items-center justify-between w-full text-lg font-medium transition-all hover:text-blue-300 '
       >
         {title}
         <span>{open ? '▴' : '▾'}</span>
       </button>
       {open && (
-        <div className='pl-4 mt-3 ml-4 space-y-2 border-l border-white/10'>
+        <div className='pl-4 mt-3 ml-4 space-y-2 text-black border-l border-white/10'>
           {children}
         </div>
       )}

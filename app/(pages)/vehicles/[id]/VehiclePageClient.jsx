@@ -6,7 +6,6 @@ import CarPromoBanner from '@/app/components/vehicle-components/CarPromoBanner';
 import FeaturesSection from '@/app/components/vehicle-components/CarFeaturesSection';
 import VariantsGrid from '@/app/components/vehicle-components/VariantsGrid';
 
-
 export default function VehiclePage() {
   const { id } = useParams();
 
@@ -31,16 +30,15 @@ export default function VehiclePage() {
         imageUrl='https://www.skyautomobiles.in/images/car/arena/altok10/altok-10-metallic-sizzling-red1.png'
         colors={vehicle.colors}
       />
-     
-      <FeaturesSection />
+
+      {/* ✅ Pass vehicle name as prop */}
+      <FeaturesSection
+        vehicleName={vehicle.name}
+        featureData={vehicle.features}
+      />
       {vehicle.carVariants && vehicle.carVariants.length > 0 && (
         <VariantsGrid title='Explore Variants' variants={vehicle.carVariants} />
       )}
     </div>
   );
 }
-
-
-
-
-
