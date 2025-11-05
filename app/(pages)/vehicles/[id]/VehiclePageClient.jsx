@@ -29,6 +29,8 @@ export default function VehiclePage() {
         engine={vehicle.engine}
         imageUrl='https://www.skyautomobiles.in/images/car/arena/altok10/altok-10-metallic-sizzling-red1.png'
         colors={vehicle.colors}
+        seatingCapacity={vehicle.seatingCapacity}
+        mileage={vehicle.mileage}
       />
 
       {/* ✅ Pass vehicle name as prop */}

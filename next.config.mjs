@@ -51,6 +51,12 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'imgd.aeplcdn.com',
       },
+       {
+        protocol: 'https',
+        hostname: 'ik.imagekit.io',
+      },
+
+      
     ],
   },
 };

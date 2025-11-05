@@ -69,8 +69,8 @@ export default function Testimonials() {
                   } flex items-start gap-4 hover:shadow-xl transition-all duration-300`}
                 >
                   <Image
-                    src={t.image}
-                    alt={t.name}
+                    src='https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/saboonexa/icons/Saboo-Nexa-Profile-Icon.webp'
+                    alt='image'
                     width={60}
                     height={60}
                     className='object-cover rounded-full'
