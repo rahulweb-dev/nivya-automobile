@@ -6,30 +6,42 @@ export default function BookNowForm({ open, setOpen, carName }) {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
-    mobile: '',
+    number: '',
+    model: carName || '',
   });
   const [errors, setErrors] = useState({});
 
+  // Update model field when carName changes
+  useEffect(() => {
+    setFormData((prev) => ({ ...prev, model: carName }));
+  }, [carName]);
+
   // Lock scroll when modal is open
   useEffect(() => {
-    if (open) document.body.style.overflow = 'hidden';
-    else document.body.style.overflow = 'auto';
+    document.body.style.overflow = open ? 'hidden' : 'auto';
     return () => (document.body.style.overflow = 'auto');
   }, [open]);
 
+  // Handle field changes
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    setErrors({ ...errors, [e.target.name]: '' });
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
+  // Validate all fields
   const validate = () => {
     const newErrors = {};
-    if (!formData.name) newErrors.name = 'This field is required*';
-    if (!formData.mobile) newErrors.mobile = 'This field is required*';
-
+    if (!formData.name.trim()) newErrors.name = 'This field is required*';
+    if (!formData.number.trim()) {
+      newErrors.number = 'This field is required*';
+    } else if (!/^[0-9]{10}$/.test(formData.number.trim())) {
+      newErrors.number = 'Enter a valid 10-digit number';
+    }
     return newErrors;
   };
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
@@ -40,19 +52,19 @@ export default function BookNowForm({ open, setOpen, carName }) {
 
     setLoading(true);
     try {
-      const res = await fetch('/api/book-service', {
+      const res = await fetch('/api/vehicle', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...formData, car: carName }), // send car name to API
+        body: JSON.stringify(formData),
       });
+
       const result = await res.json();
       if (result.success) {
-        toast.success(`✅ ${carName} booked successfully!`);
-        console.log(result);
-        setFormData({ name: '', mobile: '' });
+        toast.success(`✅ ${formData.model} booked successfully!`);
+        setFormData({ name: '', number: '', model: carName }); // reset form
         setOpen(false);
       } else {
-        toast.error(`❌ Error: ${result.error}`);
+        toast.error(`❌ Error: ${result.error || 'Submission failed'}`);
       }
     } catch (err) {
       console.error(err);
@@ -62,84 +74,94 @@ export default function BookNowForm({ open, setOpen, carName }) {
     }
   };
 
+  if (!open) return null;
+
   return (
-    <>
-      {open && (
-        <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-md'>
-          <div className='relative w-full max-w-md p-6 rounded-lg shadow-lg bg-white/90'>
-            {/* Close Button */}
+    <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-md'>
+      <div className='relative w-full max-w-md p-6 rounded-lg shadow-lg bg-white/90'>
+        {/* Close Button */}
+        <button
+          onClick={() => setOpen(false)}
+          className='absolute text-gray-500 top-3 right-3 hover:text-black'
+        >
+          ✕
+        </button>
+
+        <h2 className='mb-2 text-xl font-bold text-center'>BOOK A VEHICLE</h2>
+
+        <form className='space-y-4' onSubmit={handleSubmit}>
+          {/* Vehicle Model (Read Only) */}
+          <div>
+            <input
+              type='text'
+              name='model'
+              value={formData.model}
+              readOnly
+              className='w-full px-3 py-2 font-semibold bg-gray-100 border-b border-gray-400 cursor-not-allowed'
+            />
+          </div>
+
+          {/* Name Field */}
+          <div>
+            <input
+              type='text'
+              name='name'
+              placeholder='Name'
+              value={formData.name}
+              onChange={handleChange}
+              className={`w-full px-3 py-2 border-b focus:outline-none ${
+                errors.name ? 'border-red-500' : 'border-gray-400'
+              }`}
+            />
+            {errors.name && (
+              <p className='text-xs text-red-500'>{errors.name}</p>
+            )}
+          </div>
+
+          {/* number Field */}
+          <div>
+            <input
+              type='tel'
+              name='number'
+              placeholder=' Number'
+              value={formData.number}
+              onChange={handleChange}
+              maxLength={10}
+              className={`w-full px-3 py-2 border-b focus:outline-none ${
+                errors.number ? 'border-red-500' : 'border-gray-400'
+              }`}
+            />
+            {errors.number && (
+              <p className='text-xs text-red-500'>{errors.number}</p>
+            )}
+          </div>
+
+          {/* Buttons */}
+          <div className='flex justify-between mt-4'>
             <button
+              type='button'
               onClick={() => setOpen(false)}
-              className='absolute text-gray-500 top-3 right-3 hover:text-black'
+              className='px-6 py-2 font-medium text-black border rounded-md hover:bg-gray-100'
             >
-              ✕
+              Back
             </button>
 
-            {/* Form Heading */}
-            <h2 className='mb-2 text-xl font-bold text-center'>
-              BOOK A VEHICLE
-            </h2>
-            <p className='mb-6 text-sm text-center text-gray-500'>
-              Selected Vehicle: <strong>{carName}</strong>
-            </p>
-
-            <form className='space-y-4' onSubmit={handleSubmit}>
-              <div>
-                <input
-                  type='text'
-                  name='name'
-                  placeholder='Name'
-                  value={formData.name}
-                  onChange={handleChange}
-                  className='w-full px-3 py-2 border-b border-gray-400 focus:outline-none'
-                />
-                {errors.name && (
-                  <p className='text-xs text-red-500'>{errors.name}</p>
-                )}
-              </div>
-
-              <div>
-                <input
-                  type='text'
-                  name='mobile'
-                  placeholder='Mobile Number'
-                  value={formData.mobile}
-                  onChange={handleChange}
-                  className='w-full px-3 py-2 border-b border-gray-400 focus:outline-none'
-                />
-                {errors.mobile && (
-                  <p className='text-xs text-red-500'>{errors.mobile}</p>
-                )}
-              </div>
-
-              <div className='flex justify-between mt-4'>
-                <button
-                  type='button'
-                  onClick={() => setOpen(false)}
-                  className='px-6 py-2 font-medium text-black border rounded-md hover:bg-gray-100'
-                >
-                  Back
-                </button>
-
-                <button
-                  type='submit'
-                  disabled={loading}
-                  className={`px-6 py-2 font-medium text-white bg-black rounded-md hover:bg-gray-800 ${
-                    loading ? 'opacity-50 cursor-not-allowed' : ''
-                  }`}
-                >
-                  {loading ? 'Submitting...' : 'Submit'}
-                </button>
-              </div>
-            </form>
-
-            <p className='mt-3 text-xs text-gray-500'>
-              *Disclaimer: By clicking 'Submit', you have agreed to our Terms
-              and Conditions.
-            </p>
+            <button
+              type='submit'
+              disabled={loading}
+              className={`px-6 py-2 rounded-md font-medium text-white bg-black hover:bg-gray-800 ${
+                loading ? 'opacity-50 cursor-not-allowed' : ''
+              }`}
+            >
+              {loading ? 'Submitting...' : 'Submit'}
+            </button>
           </div>
-        </div>
-      )}
-    </>
+        </form>
+
+        <p className='mt-3 text-xs text-center text-gray-500'>
+          *By clicking 'Submit', you agree to our Terms & Conditions.
+        </p>
+      </div>
+    </div>
   );
 }

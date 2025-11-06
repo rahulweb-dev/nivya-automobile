@@ -6,7 +6,6 @@ export default function ServiceForm() {
   const [formData, setFormData] = useState({
     name: '',
     number: '',
-    service: '',
     message: '',
   });
   const [loading, setLoading] = useState(false);
@@ -18,7 +17,7 @@ export default function ServiceForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.number || !formData.service) {
+    if (!formData.name || !formData.number ) {
       toast.error('Please fill in all required fields.');
       return;
     }
@@ -36,7 +35,7 @@ export default function ServiceForm() {
 
       if (res.ok) {
         toast.success(' Form submitted successfully!');
-        setFormData({ name: '', number: '', service: '', message: '' });
+        setFormData({ name: '', number: '', message: '' });
       } else {
         toast.error(data.error || '❌ Something went wrong.');
       }
@@ -83,34 +82,6 @@ export default function ServiceForm() {
             className='py-2 text-black bg-transparent border-b border-gray-400 focus:border-black focus:outline-none'
           />
         </div>
-
-        {/* Select Service */}
-        <div className='flex flex-col space-y-2'>
-          <label className='text-sm text-black'>Select Service</label>
-          <select
-            name='service'
-            value={formData.service}
-            onChange={handleChange}
-            className='py-2 text-black bg-transparent border-b border-gray-400 focus:border-black focus:outline-none'
-          >
-            <option value='' disabled className='text-gray-500 bg-[#181818]'>
-              Select Service
-            </option>
-            <option value='Maintenance' className='text-black'>
-              Maintenance
-            </option>
-            <option value='Detailing' className='text-black'>
-              Detailing
-            </option>
-            <option value='Insurance/Warranty' className='text-black'>
-              Insurance/Warranty
-            </option>
-            <option value='Consultation' className='text-black'>
-              Consultation
-            </option>
-          </select>
-        </div>
-
         {/* Message */}
         <div className='flex flex-col space-y-2'>
           <label className='text-sm text-black'>Message</label>

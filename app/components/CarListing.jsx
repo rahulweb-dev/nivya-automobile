@@ -158,7 +158,6 @@ export default function CarListing() {
                 {/* Buttons */}
                 <div className='flex justify-center gap-3'>
                   <Link href={car.link}>
-                 
                     <button className='px-6 py-2 text-xs font-semibold text-black transition-all duration-200 border rounded-full border-white/30 hover:bg-black hover:text-white'>
                       EXPLORE
                     </button>
