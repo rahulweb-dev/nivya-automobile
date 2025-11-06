@@ -1,31 +1,18 @@
 'use client';
 import { useState, useEffect } from 'react';
-import {
-  FaFacebookF,
-  FaTwitter,
-  FaInstagram,
-  FaLinkedinIn,
-} from 'react-icons/fa';
+import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 import Image from 'next/image';
 import Link from 'next/link';
 import TestDriveForm from './forms/TestDriveForm';
+import { FaYoutube } from 'react-icons/fa';
 
 export default function Footer() {
   const [open, setOpen] = useState(false);
   const [car, setCar] = useState(null);
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [hideNearFooter, setHideNearFooter] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const viewportHeight = window.innerHeight;
-      const fullHeight = document.body.scrollHeight;
-
-      setShowScrollTop(scrollY > 300);
-      setHideNearFooter(scrollY + viewportHeight >= fullHeight - 200);
-    };
-
+    const handleScroll = () => setShowScrollTop(window.scrollY > 300);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -35,7 +22,7 @@ export default function Footer() {
   return (
     <footer className='relative bg-gradient-to-b from-[#0E1224] to-[#121736] text-gray-300'>
       <div className='px-6 py-12 mx-auto max-w-7xl md:px-12'>
-        {/* Top CTA Section */}
+        {/* --- Top CTA Section --- */}
         <div className='flex flex-col items-center justify-between gap-6 pb-10 border-b border-gray-700 md:flex-row'>
           <div className='flex items-center gap-2 text-white transition cursor-pointer hover:opacity-80'>
             <Image
@@ -67,11 +54,13 @@ export default function Footer() {
               width={24}
               height={24}
             />
-            <span className='font-medium tracking-wide'>Find A Store Near You</span>
+            <span className='font-medium tracking-wide'>
+              Find A Store Near You
+            </span>
           </div>
         </div>
 
-        {/* Footer Links Section */}
+        {/* --- Footer Links Section --- */}
         <div className='grid grid-cols-2 gap-8 py-10 sm:grid-cols-3 md:grid-cols-4'>
           {[
             {
@@ -128,82 +117,84 @@ export default function Footer() {
           ))}
         </div>
 
-    {/* Divider + Logo + Developer Info */}
-<div className="pt-6 mt-6 border-t border-gray-700">
-  <div className="flex flex-col items-center justify-between gap-6 text-sm text-gray-400 md:flex-row">
-    
-    {/* Left: Privacy Links */}
-    <div className="flex items-center gap-4">
-      <Link
-        href="#"
-        className="transition-colors hover:text-white"
-      >
-        Privacy Policy
-      </Link>
-      <span className="text-gray-600">|</span>
-      <Link
-        href="#"
-        className="transition-colors hover:text-white"
-      >
-        Terms of Service
-      </Link>
-    </div>
+        {/* --- Social Media Section --- */}
+        <div className='flex items-center justify-center gap-5 py-6 border-t border-gray-700'>
+          {[
+            {
+              icon: FaFacebookF,
+              href: 'https://www.facebook.com/nivyaautomobilesofficial',
+            },
+            {
+              icon: FaInstagram,
+              href: 'https://www.instagram.com/nivyamarutiofficial/',
+            },
+            { icon: FaTwitter, href: 'https://x.com/NivyaAutomobile' },
+            {
+              icon: FaYoutube,
+              href: 'https://www.youtube.com/channel/UC0s6iElSlQu2n8SzVGTH2Qw',
+            },
+          ].map(({ icon: Icon, href }, i) => (
+            <a
+              key={i}
+              href={href}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='p-3 text-white transition-all rounded-full bg-white/10 hover:bg-white hover:text-black'
+            >
+              <Icon size={18} />
+            </a>
+          ))}
+        </div>
 
-    {/* Center: Logo + Copyright */}
-    <div className="flex flex-col items-center">
-      <Image
-        src="/nivya_logo.png"
-        alt="Nivya Automobiles"
-        width={180}
-        height={60}
-        className="transition-opacity opacity-90 hover:opacity-100"
-      />
-      <p className="mt-2 text-xs md:text-sm">
-        © 2025 Nivya Automobiles. All Rights Reserved.
-      </p>
-    </div>
+        {/* --- Divider + Logo + Developer Info --- */}
+        <div className='pt-6 mt-6 border-t border-gray-700'>
+          <div className='flex flex-col items-center justify-between gap-6 text-sm text-gray-400 md:flex-row'>
+            <div className='flex items-center gap-4'>
+              <Link href='#' className='transition-colors hover:text-white'>
+                Privacy Policy
+              </Link>
+              <span className='text-gray-600'>|</span>
+              <Link href='#' className='transition-colors hover:text-white'>
+                Terms of Service
+              </Link>
+            </div>
 
-    {/* Right: Developed By */}
-    <div className="flex items-center gap-2">
-      <span>Developed by</span>
-      <Link
-        href="https://www.broaddcast.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="transition-opacity hover:opacity-80"
-      >
-        <Image
-          src="https://www.broaddcast.com/assets/images/logo-white.svg"
-          alt="Developed by Broaddcast"
-          width={120}
-          height={40}
-          className="object-contain"
-        />
-      </Link>
-    </div>
+            <div className='flex flex-col items-center'>
+              <Image
+                src='/nivya_logo.png'
+                alt='Nivya Automobiles'
+                width={180}
+                height={60}
+                className='transition-opacity opacity-90 hover:opacity-100'
+              />
+              <p className='mt-2 text-xs md:text-sm'>
+                © 2025 Nivya Automobiles. All Rights Reserved.
+              </p>
+            </div>
 
-  </div>
-</div>
-
-      </div>
-
-      {/* Floating Social Icons */}
-      <div className='fixed right-4 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-[600]'>
-        {[FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn].map((Icon, i) => (
-          <a
-            key={i}
-            href='#'
-            target='_blank'
-            rel='noopener noreferrer'
-            className='p-3 text-white transition-all rounded-lg shadow-md bg-white/10 hover:bg-white hover:text-black'
-          >
-            <Icon size={16} />
-          </a>
-        ))}
+            <div className='flex items-center gap-2'>
+              <span>Developed by</span>
+              <Link
+                href='https://www.broaddcast.com'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='transition-opacity hover:opacity-80'
+              >
+                <Image
+                  src='https://www.broaddcast.com/assets/images/logo-white.svg'
+                  alt='Developed by Broaddcast'
+                  width={120}
+                  height={40}
+                  className='object-contain'
+                />
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Scroll to Top Button */}
-      {showScrollTop && !hideNearFooter && (
+      {showScrollTop && (
         <div className='fixed z-50 right-6 bottom-6'>
           <button
             onClick={scrollToTop}
@@ -214,7 +205,7 @@ export default function Footer() {
         </div>
       )}
 
-      {/* Test Drive Form Modal (optional) */}
+      {/* Test Drive Form Modal */}
       {/* {open && <TestDriveForm open={open} setOpen={setOpen} car={car} />} */}
     </footer>
   );
