@@ -13,44 +13,58 @@ export const vehicles = {
     desc: 'Compact, stylish, and efficient — the Alto K10 brings comfort and performance at an affordable price.',
     colors: [
       {
+        id: 0,
         name: 'Red',
-        code: '#BF001B',
+        hex: '#BF001B',
         image:
           'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_red.webp',
       },
       {
+        id: 1,
+        name: 'Red',
+        hex: '#BF001B',
+        image:
+          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_red.webp',
+      },
+      {
+        id: 2,
         name: 'Blue',
-        code: '#0047AB',
+        hex: '#0047AB',
         image:
           'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_blue.webp',
       },
       {
+        id: 3,
         name: 'Grey',
-        code: '#6E6E6E',
+        hex: '#6E6E6E',
         image:
           'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_grey.webp',
       },
       {
+        id: 4,
         name: 'Silver',
-        code: '#C0C0C0',
+        hex: '#C0C0C0',
         image:
           'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_silver.webp',
       },
       {
+        id: 5,
         name: 'White',
-        code: '#FFFFFF',
+        hex: '#FFFFFF',
         image:
           'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_white.webp',
       },
       {
+        id: 6,
         name: 'Gold',
-        code: '#D4AF37',
+        hex: '#D4AF37',
         image:
           'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_gold.webp',
       },
       {
+        id: 7,
         name: 'Black',
-        code: '#000000',
+        hex: '#000000',
         image:
           'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/cars/alto-k10/altok10-black.webp',
       },
@@ -120,22 +134,77 @@ export const vehicles = {
     desc: 'Compact, stylish, and efficient — the Alto K10 brings comfort and performance at an affordable price.',
     colors: [
       {
-        name: 'Red',
-        code: '#b30000',
+        id: 0,
+        name: 'Eternal Blue with Bluish Black Roof',
+        thumbnail:
+          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/cars/victoris/colors/blue.png',
         image:
-          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/cars/victoris/colors/red-removebg-preview.png',
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Victoris/Colors/Eternal_blue_with_bluish_roof-min.png?updatedAt=1762336384588',
       },
       {
-        name: 'White',
-        code: '#f5f5f5',
+        id: 1,
+        name: 'Splendid Silver With Bluish Black Roof',
+        thumbnail:
+          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/cars/victoris/colors/splended-silver-bluish.png',
         image:
-          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_blue.webp',
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Victoris/Colors/splendid_silver_with_Bluishblackroof-min.png?updatedAt=1762336384450',
       },
       {
-        name: 'Black',
-        code: '#000000',
+        id: 2,
+        name: 'Splendid Silver',
+        hex: '#737373',
         image:
-          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_grey.webp',
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Victoris/Colors/splendid_silver-min.png?updatedAt=1762336384590',
+      },
+      {
+        id: 3,
+        name: 'Sizzling Red With Bluish Black Roof',
+        thumbnail:
+          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/cars/victoris/colors/red-black.png',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Victoris/Colors/sizzling_red_black_roof-min.png?updatedAt=1762336384527',
+      },
+      {
+        id: 4,
+        name: 'Sizzling Red',
+        hex: '#A10000',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Victoris/Colors/sizzling_red-min.png?updatedAt=1762336384483',
+      },
+      {
+        id: 5,
+        name: 'Mystic Green',
+        hex: '#233B47',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Victoris/Colors/mystic_green-min.png?updatedAt=1762336384471',
+      },
+      {
+        id: 6,
+        name: 'Bluish Black',
+        hex: '#141414',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Victoris/Colors/Blusih_Black-min.png?updatedAt=1762336384487',
+      },
+      {
+        id: 7,
+        name: 'Pearl Arctic White',
+        hex: '#F3F3F3',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Victoris/Colors/pearl_arctic_white-min.png?updatedAt=1762336384519',
+      },
+      {
+        id: 8,
+        name: 'Magma Grey',
+        hex: '#2B2C31',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Victoris/Colors/Magma_Grey-min.png?updatedAt=1762336384579',
+      },
+      {
+        id: 9,
+        name: 'Eternal Blue',
+        hex: '#24475B',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Victoris/Colors/enternal_blue-min.png?updatedAt=1762336384579',
       },
     ],
     carVariants: [
@@ -382,22 +451,70 @@ export const vehicles = {
     image: 'https://www.saboomaruti.in/images/alto-k10.png',
     colors: [
       {
-        name: 'Red',
-        code: '#b30000',
+        id: 0,
+        name: 'Pearl Arctic White',
+        hex: '#FFFFFF',
         image:
           'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/cars/swift-2024/colors/car-01.webp',
       },
       {
-        name: 'White',
-        code: '#f5f5f5',
+        id: 1,
+        name: 'Splendid Silver',
+        hex: '#AEAEAF',
         image:
-          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_blue.webp',
+          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/cars/swift-2024/colors/car-02.webp',
       },
       {
-        name: 'Black',
-        code: '#000000',
+        id: 2,
+        name: 'Bluish Black',
+        hex: '#6A6A65',
         image:
-          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_grey.webp',
+          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/cars/swift-2024/colors/car-03.webp',
+      },
+      {
+        id: 3,
+        name: 'Novel Orange',
+        hex: '#BF4315',
+        image:
+          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/cars/swift-2024/colors/car-06.webp',
+      },
+      {
+        id: 4,
+        name: 'Luster Blue',
+        hex: '#113F73',
+        image:
+          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/cars/swift-2024/colors/car-04.webp',
+      },
+      {
+        id: 5,
+        name: 'Sizzling Red',
+        hex: '#D82929',
+        image:
+          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/cars/swift-2024/colors/car-05.webp',
+      },
+      {
+        id: 6,
+        name: 'Pearl Arctic White with Bluish Black Roof',
+        thumbnail:
+          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/cars/swift-2024/colors/pa-white--pm-black.png',
+        image:
+          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/cars/swift-2024/colors/car-07.webp',
+      },
+      {
+        id: 7,
+        name: 'Luster Blue with Bluish Black Roof',
+        thumbnail:
+          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/cars/swift-2024/colors/pmm-blue--pa-white.webp',
+        image:
+          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/cars/swift-2024/colors/car-09.webp',
+      },
+      {
+        id: 8,
+        name: 'Sizzling Red with Bluish Black Roof',
+        thumbnail:
+          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/cars/swift-2024/colors/msr-red--pm-black.png',
+        image:
+          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/cars/swift-2024/colors/car-10.webp',
       },
     ],
     carVariants: [
@@ -479,22 +596,77 @@ export const vehicles = {
     image: 'https://www.saboomaruti.in/images/alto-k10.png',
     colors: [
       {
-        name: 'Red',
-        code: '#b30000',
+        id: 0,
+        name: 'Brave Khaki with Pearl Arctic White roof',
+        thumbnail:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Brezza/Colors/image.png?updatedAt=1762412823005',
         image:
-          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/cars/brezza/colors/brave_khaki.webp',
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Brezza/Colors/Brave_Khaki_pearl_arctic_white_roof-removebg-preview-min.png?updatedAt=1762412295828',
       },
       {
-        name: 'White',
-        code: '#f5f5f5',
+        id: 1,
+        name: 'Splendid silver + Bluish black',
+        thumbnail:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Brezza/Colors/image2.png?updatedAt=1762413130178',
         image:
-          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_blue.webp',
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Brezza/Colors/splendid_silver+Bluish_black-removebg-preview-min.png?updatedAt=1762412295836',
       },
       {
-        name: 'Black',
-        code: '#000000',
+        id: 2,
+        name: 'Metallic sizzling red + Bluish black',
+        thumbnail:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Brezza/Colors/image_red.png?updatedAt=1762412957108',
         image:
-          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_grey.webp',
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Brezza/Colors/metallic_sizzling_red+bluish_black-removebg-preview-min.png?updatedAt=1762412295884',
+      },
+      {
+        id: 3,
+        name: 'Sizzling Red',
+        hex: '#b30000',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Brezza/Colors/sizzling_red-removebg-preview-min.png?updatedAt=1762412295879',
+      },
+      {
+        id: 4,
+        name: 'Bluish Black',
+        hex: '#141414',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Brezza/Colors/Bluish_black-removebg-preview-min.png?updatedAt=1762412295388',
+      },
+      {
+        id: 5,
+        name: 'Brave Khakhi',
+        hex: '#26230C',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Brezza/Colors/Brave_khakhi-removebg-preview-min.png?updatedAt=1762412295421',
+      },
+      {
+        id: 6,
+        name: 'Exuberant Blue',
+        hex: '#106291',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Brezza/Colors/exuberant_blue-removebg-preview-min.png?updatedAt=1762412295359',
+      },
+      {
+        id: 7,
+        name: 'Magma Grey',
+        hex: '#2B2C31',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Brezza/Colors/magma_grey-removebg-preview-min.png?updatedAt=1762412295702',
+      },
+      {
+        id: 8,
+        name: 'Pearl Arctic White',
+        hex: '#F3F3F3',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Brezza/Colors/pearl_arctic_white-removebg-preview-min.png?updatedAt=1762412295762',
+      },
+      {
+        id: 9,
+        name: 'Splendid Silver',
+        hex: '#737373',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Brezza/Colors/splendid_silver-removebg-preview-min.png?updatedAt=1762412295821',
       },
     ],
     features: {
@@ -582,22 +754,53 @@ export const vehicles = {
     image: 'https://www.saboomaruti.in/images/alto-k10.png',
     colors: [
       {
-        name: 'Red',
-        code: '#b30000',
+        id: 0,
+        name: 'Gallant Red',
+        hex: '#D2232B',
         image:
-          'https://www.marutisuzuki.com/images/dzire_brand/images/threesixty/red.webp',
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Dzire/Colors/gallant_red-removebg-preview-min.png?updatedAt=1762414278218',
       },
       {
-        name: 'White',
-        code: '#f5f5f5',
+        id: 1,
+        name: 'Alluring Blue',
+        hex: '#415159',
         image:
-          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_blue.webp',
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Dzire/Colors/alluring_blue-removebg-preview-min.png?updatedAt=1762414278124',
       },
       {
-        name: 'Black',
-        code: '#000000',
+        id: 2,
+        name: 'Nutmeg Brown',
+        hex: '#54473C',
         image:
-          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_grey.webp',
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Dzire/Colors/Nutmeg_brown-removebg-preview-min.png?updatedAt=1762414278256',
+      },
+      {
+        id: 3,
+        name: 'Bluish Black',
+        hex: '#141414',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Dzire/Colors/Bluish_black-removebg-preview-min.png?updatedAt=1762414277767',
+      },
+      {
+        id: 4,
+        name: 'Splendid Silver',
+        hex: '#737373',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Dzire/Colors/splendid_silver-removebg-preview-min.png?updatedAt=1762414278202',
+      },
+      {
+        id: 5,
+        name: 'Pearl Arctic White',
+        hex: '#F3F3F3',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Dzire/Colors/pearl_arctic_white-removebg-preview-min.png?updatedAt=1762414278274',
+      },
+      {
+        id: 6,
+        name: 'Magma Grey',
+        hex: '#2B2C31',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Dzire/Colors/magma_grey-removebg-preview-min.png?updatedAt=1762414278263',
       },
     ],
     features: {
@@ -649,22 +852,53 @@ export const vehicles = {
     image: 'https://www.saboomaruti.in/images/alto-k10.png',
     colors: [
       {
-        name: 'Red',
-        code: '#b30000',
+        id: 0,
+        name: 'Pearl Starry Blue',
+        hex: '#114887',
         image:
-          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_red.webp',
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/s-presso/Colors/pearl_starry_blue.png?updatedAt=1762337102162',
       },
       {
-        name: 'White',
-        code: '#f5f5f5',
+        id: 1,
+        name: 'Solid White',
+        hex: '#f5f5f5',
         image:
-          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_blue.webp',
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/s-presso/Colors/solid_white.png?updatedAt=1762337102713',
       },
       {
-        name: 'Black',
-        code: '#000000',
+        id: 2,
+        name: 'Solid Sizzle Orange',
+        hex: '#A83C0F',
         image:
-          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_grey.webp',
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/s-presso/Colors/solid_sizzle_orange.png?updatedAt=1762337102693',
+      },
+      {
+        id: 3,
+        name: 'Solid Fire Red',
+        hex: '#8E0D0F',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/s-presso/Colors/solid_fire_red.png?updatedAt=1762337102684',
+      },
+      {
+        id: 4,
+        name: 'Metallic Granite Grey',
+        hex: '#222526',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/s-presso/Colors/metallic_granite_grey.png?updatedAt=1762337102640',
+      },
+      {
+        id: 5,
+        name: 'Metallic Silky Silver',
+        hex: '#737373',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/s-presso/Colors/metallic_silky_silver.png?updatedAt=1762337102615',
+      },
+      {
+        id: 6,
+        name: 'Bluish Black',
+        hex: '#141414',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/s-presso/Colors/bluish_black.png?updatedAt=1762337102676',
       },
     ],
     features: {
@@ -725,22 +959,69 @@ export const vehicles = {
     image: 'https://www.saboomaruti.in/images/alto-k10.png',
     colors: [
       {
-        name: 'Red',
-        code: '#b30000',
+        id: 0,
+        name: 'Solid White',
+        hex: '#B7B7B7',
         image:
-          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_red.webp',
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/WagonR/Colors/solid_white.png?updatedAt=1762339308634',
       },
       {
-        name: 'White',
-        code: '#f5f5f5',
+        id: 1,
+        name: 'Metallic Silky Silver',
+        hex: '#737373',
         image:
-          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_blue.webp',
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/WagonR/Colors/metallic_silky_silver.png?updatedAt=1762339308646',
       },
       {
-        name: 'Black',
-        code: '#000000',
+        id: 2,
+        name: 'Metallic Magma Grey',
+        hex: '#2B2C31',
         image:
-          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_grey.webp',
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/WagonR/Colors/metallic_magma_grey.png?updatedAt=1762339308698',
+      },
+      {
+        id: 3,
+        name: 'Pearl Metallic Gallant Red',
+        hex: '#D2232B',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/WagonR/Colors/metallic_red.png?updatedAt=1762339308679',
+      },
+      {
+        id: 4,
+        name: 'Pearl Metallic Nutmeg Brown',
+        hex: '#54473C',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/WagonR/Colors/pearl_metallic_nutmeg_brown.png?updatedAt=1762339308607',
+      },
+      {
+        id: 5,
+        name: 'Pearl Metallic Poolside Blue',
+        hex: '#1188C5',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/WagonR/Colors/poolside_blue.png?updatedAt=1762339308678',
+      },
+      {
+        id: 6,
+        name: 'Prime gallant red + Bluish black',
+        thumbnail:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/WagonR/Colors/image.png?updatedAt=1762401690802',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/WagonR/Colors/gallant_red_blusih_black.png?updatedAt=1762339308100',
+      },
+      {
+        id: 7,
+        name: 'Magma grey + Bluish black',
+        thumbnail:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/WagonR/Colors/image.png?updatedAt=1762401690802',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/WagonR/Colors/magma_grey+bluish_black.png?updatedAt=1762339308688',
+      },
+      {
+        id: 8,
+        name: 'Pearl Bluish Black',
+        hex: '#141414',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/WagonR/Colors/bluish_black.png?updatedAt=1762339308671',
       },
     ],
     features: {
@@ -816,22 +1097,46 @@ export const vehicles = {
     image: 'https://www.saboomaruti.in/images/alto-k10.png',
     colors: [
       {
-        name: 'Red',
-        code: '#b30000',
+        id: 0,
+        name: 'Auburn Red',
+        hex: '#732112',
         image:
-          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_red.webp',
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Ertiga/Colors/Auburn_red-removebg-preview-min.png?updatedAt=1762415003374',
       },
       {
-        name: 'White',
-        code: '#f5f5f5',
+        id: 1,
+        name: 'Pearl Metallic Dignity Brown',
+        hex: '#1F1412',
         image:
-          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_blue.webp',
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Ertiga/Colors/pearl_metallic_diginity_brown-removebg-preview-min.png?updatedAt=1762415003754',
       },
       {
-        name: 'Black',
-        code: '#000000',
+        id: 2,
+        name: 'Magma Grey',
+        hex: '#744C3C',
         image:
-          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_grey.webp',
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Ertiga/Colors/magma_grey-removebg-preview-min.png?updatedAt=1762415003676',
+      },
+      {
+        id: 3,
+        name: 'Prime Oxford Blue',
+        hex: '#314BA0',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Ertiga/Colors/prime_oxford_blue-removebg-preview-min.png?updatedAt=1762415003761',
+      },
+      {
+        id: 4,
+        name: 'Splendid Silver',
+        hex: '#737373',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Ertiga/Colors/splendid_silver-removebg-preview-min.png?updatedAt=1762415003663',
+      },
+      {
+        id: 5,
+        name: 'Bluish Black',
+        hex: '#18191D',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Ertiga/Colors/bluish_black-removebg-preview-min.png?updatedAt=1762415003377',
       },
     ],
     features: {
@@ -906,22 +1211,53 @@ export const vehicles = {
     image: 'https://www.saboomaruti.in/images/alto-k10.png',
     colors: [
       {
-        name: 'Red',
-        code: '#b30000',
+        id: 0,
+        name: 'Metallic Speedy Blue',
+        hex: '#1F47C2',
         image:
-          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_red.webp',
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/celerio/Colors/metallic_speedy_blue.png?updatedAt=1762337759295',
       },
       {
-        name: 'White',
-        code: '#f5f5f5',
+        id: 1,
+        name: 'Metallic Glistening Grey',
+        hex: '#4A4A4A',
         image:
-          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_blue.webp',
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/celerio/Colors/metallic_glistening_grey.png?updatedAt=1762337758849',
       },
       {
-        name: 'Black',
-        code: '#000000',
+        id: 2,
+        name: 'Pearl Arctic White',
+        hex: '#F3F3F3',
         image:
-          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_grey.webp',
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/celerio/Colors/pearl_Arctic_white.png?updatedAt=1762337759323',
+      },
+      {
+        id: 3,
+        name: 'Metallic Silky Silver',
+        hex: '#737373',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/celerio/Colors/metallic_silky_silver.png?updatedAt=1762337759292',
+      },
+      {
+        id: 4,
+        name: 'Solid Fire Red',
+        hex: '#8E0D0F',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/celerio/Colors/solid_fire_red.png?updatedAt=1762337759340',
+      },
+      {
+        id: 5,
+        name: 'Pearl Caffeine Brown',
+        hex: '#5A382E',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/celerio/Colors/pearl_caffeine_brown.png?updatedAt=1762337759336',
+      },
+      {
+        id: 6,
+        name: 'Pearl Bluish Black',
+        hex: '#0F0F17',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/celerio/Colors/pearl_bluish_black-.png?updatedAt=1762337759335',
       },
     ],
     features: {
@@ -972,23 +1308,41 @@ export const vehicles = {
     image: 'https://www.saboomaruti.in/images/alto-k10.png',
     colors: [
       {
-        name: 'Red',
-        code: '#b30000',
+        id:0,
+        name: 'Bluish Black',
+        hex: '#141414',
         image:
-          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_red.webp',
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Eeco/Colors/bluish_black-removebg-preview-min.png?updatedAt=1762416003912',
       },
       {
-        name: 'White',
-        code: '#f5f5f5',
+        id:1,
+        name: 'Metallic Glistening Grey',
+        hex: '#4A4A4A',
         image:
-          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_blue.webp',
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Eeco/Colors/metallic_glisting_grey-removebg-preview-min.png?updatedAt=1762416003841',
       },
       {
-        name: 'Black',
-        code: '#000000',
+        id:2,
+        name: 'Solid White',
+        hex: '#B7B7B7',
         image:
-          'https://images-saboomaruti-in.s3.ap-south-1.amazonaws.com/Arena/new-alto-k10/colors/color_range_688x360_grey.webp',
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Eeco/Colors/solid_white-removebg-preview-min.png?updatedAt=1762416003996',
       },
+       {
+        id:3,
+        name: 'Metallic Brisk Blue',
+        hex: '#0D6DC3',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Eeco/Colors/metallic_brisk_blue-removebg-preview-min.png?updatedAt=1762416003920',
+      },
+      {
+        id:4,
+        name: 'Metallic Silky Silver',
+        hex: '#737373',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Eeco/Colors/metallic_silky_silver-removebg-preview-min.png?updatedAt=1762416003892',
+      },
+      
     ],
     features: {
       Exterior: [

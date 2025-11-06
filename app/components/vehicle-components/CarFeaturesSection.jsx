@@ -582,6 +582,86 @@ const featureData = {
       },
     ],
   },
+  'Maruti Dzire': {
+    Exterior: [
+      {
+        title: 'Sleek Line LED DRLs',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Dzire/Exterior/DRL_desktop.avif?updatedAt=1762416480165',
+        description:
+          ' Flowing seamlessly around the grille, these add a bold, futuristic edge to the Dzire’s front profile.',
+      },
+      {
+        title: 'LED Crystal Vision Headlamps',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Dzire/Exterior/Dzire_Desktop_Image_Front_02.avif?updatedAt=1762416510378',
+        description:
+          ' Light up the road ahead with precision and style. These headlamps offer enhanced visibility and a signature look that stands out.',
+      },
+      {
+        title: '3D Trinity Rear Lamps',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Dzire/Exterior/Taillight_desk.avif?updatedAt=1762416480110',
+        description:
+          ' A distinctive rear design with LED lamps that leave a lasting impression—day or night.',
+      },
+      {
+        title: 'Two-Tone Precision-Cut Alloy Wheels',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Dzire/Exterior/Tyre_desk.avif?updatedAt=1762416480111',
+        description:
+          ' Engineered for performance, styled for admiration. These alloys bring a premium finish and sharp character to every spin.',
+      },
+      {
+        title: 'Shark-Fin Antenna',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Dzire/Exterior/Finn_desk.avif?updatedAt=1762416480045',
+        description:
+          ' Sleek by design, smart by function, it slices through the air while sharpening your car’s sporty edge.',
+      },
+    ],
+    Interiors: [
+      {
+        title: 'Electric Sunroof',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Dzire/Interior/sunroof_desk.avif?updatedAt=1762416537705',
+        description:
+          ' Invites the outside in — flooding the cabin with natural light and creating an expansive, airy atmosphere.',
+      },
+
+      {
+        title: 'SmartPlay Pro+ infotainment System with Surround Sense by ARKAMYS™',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Dzire/Interior/Infotainment_desk.avif?updatedAt=1762416537716',
+        description:
+          ' Gives you immersive sound and seamless connectivity with wireless Apple CarPlay® and Android Auto™.',
+      },
+      {
+        title: 'Automatic Climate Control',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Dzire/Interior/Climate_control_desk.avif?updatedAt=1762416537714',
+        description: ' Wraps you in comfort, adjusting effortlessly to keep your drive as smooth as your success.',
+      },
+      {
+        title: 'Wireless Charger',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Dzire/Interior/wireless_charger_desk.avif?updatedAt=1762416537687',
+        description: ' Keeps your devices powered and your space clutter-free, so you can stay connected on the go.',
+      },
+      {
+        title: 'Rear AC Vents',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Dzire/Interior/Rear_ac_vent_desk.avif?updatedAt=1762416537712',
+        description: ' Personalise your comfort, front to back — with faster cooling and consistent airflow throughout the cabin.',
+      },
+      {
+        title: 'Dual-Tone Sophisticated Interiors',
+        image:
+          'https://ik.imagekit.io/hsukyjske/Nivya-automobiles/Dzire/Interior/cabin_space_desk.avif?updatedAt=1762416537717',
+        description: 'Transforms your cabin into a perfect blend of style and elegance, elevating your driving experience.',
+      },
+    ],
+  },
 };
 
 export default function FeaturesSection({ vehicleName }) {
