@@ -4,6 +4,7 @@ import { upload } from "@imagekit/next";
 import Head from "next/head";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { LuImagePlus } from "react-icons/lu";
 
 const MAX_IMAGES = 15;
 const FEATURES = [
@@ -256,9 +257,7 @@ export default function PostVehicle() {
         throw new Error(data.error || "Failed to save vehicle");
 
       setMessage(
-        isDraft
-          ? "💾 Draft saved successfully!"
-          : "🚗 Vehicle posted successfully!"
+        isDraft ? "Draft saved successfully!" : "Vehicle posted successfully!"
       );
       resetForm();
     } catch (err) {
@@ -396,12 +395,14 @@ export default function PostVehicle() {
                 onClick={() => fileInputRef.current?.click()}
                 className="flex flex-col items-center justify-center p-6 mb-4 transition border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"
               >
-                <Image
+                <LuImagePlus className="h-7 w-7" />
+
+                {/* <Image
                   src="/upload-icon.svg"
                   alt="upload"
                   width={48}
                   height={48}
-                />
+                /> */}
                 <p className="mt-2 text-sm text-gray-500">
                   Drag & Drop or Click to Upload
                 </p>
@@ -462,20 +463,23 @@ export default function PostVehicle() {
                 Accessories & Features
               </h3>
               <div className="flex flex-wrap gap-3">
-                {FEATURES.map((f) => (
-                  <button
-                    key={f}
-                    type="button"
-                    onClick={() => toggleFeature(f)}
-                    className={`px-3 py-2 rounded-lg border transition ${
-                      form.features.includes(f)
-                        ? "bg-blue-600 text-white border-blue-600"
-                        : "bg-white text-gray-700 border-gray-200"
-                    }`}
-                  >
-                    {f}
-                  </button>
-                ))}
+                {FEATURES.map((f) => {
+                  const isSelected = form.features.includes(f);
+                  return (
+                    <label
+                      key={f}
+                      className={`flex items-center px-3 py-2 rounded-lg border cursor-pointer transition bg-white text-gray-700 border-gray-300 hover:bg-gray-50 `}
+                    >
+                      <input
+                        type="checkbox"
+                        checked={isSelected}
+                        onChange={() => toggleFeature(f)}
+                        className="mr-2 accent-blue-600"
+                      />
+                      {f}
+                    </label>
+                  );
+                })}
               </div>
 
               <label className="block mt-6 text-sm text-gray-600">
