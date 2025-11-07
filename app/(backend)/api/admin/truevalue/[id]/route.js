@@ -1,4 +1,6 @@
-//this api route is for admin only
+// File: app/api/admin/truevalue/[id]/route.js
+// This API route is for admin only
+
 import { NextResponse } from "next/server";
 import Rajesh from "@/lib/models/trueSchema";
 import { ConnectDB } from "@/lib/config/db";
@@ -6,8 +8,14 @@ import { ConnectDB } from "@/lib/config/db";
 export const GET = async (req, { params }) => {
   try {
     await ConnectDB();
+    const { id } = params; // ✅ FIXED: no await
 
-    const { id } = await params;
+    if (!id) {
+      return NextResponse.json(
+        { success: false, error: "Missing vehicle ID" },
+        { status: 400 }
+      );
+    }
 
     const vehicle = await Rajesh.findById(id);
 
@@ -18,7 +26,10 @@ export const GET = async (req, { params }) => {
       );
     }
 
-    return NextResponse.json({ success: true, vehicle }, { status: 200 });
+    return NextResponse.json(
+      { success: true, data: vehicle },
+      { status: 200 }
+    );
   } catch (err) {
     console.error("GET /api/admin/truevalue/[id] failed:", err);
     return NextResponse.json(
@@ -32,9 +43,9 @@ export const PUT = async (req, { params }) => {
   try {
     await ConnectDB();
     const body = await req.json();
-    const { id } = await params;
+    const { id } = params; // ✅ FIXED: no await
 
-    // Validate ID format
+    // Validate ID
     if (!id || id.trim() === "") {
       return NextResponse.json(
         { success: false, error: "Invalid vehicle ID" },
@@ -127,8 +138,14 @@ export const PUT = async (req, { params }) => {
 export const DELETE = async (req, { params }) => {
   try {
     await ConnectDB();
+    const { id } = params; // ✅ FIXED: no await
 
-    const { id } = await params;
+    if (!id) {
+      return NextResponse.json(
+        { success: false, error: "Missing vehicle ID" },
+        { status: 400 }
+      );
+    }
 
     const vehicle = await Rajesh.findById(id);
 
@@ -144,15 +161,14 @@ export const DELETE = async (req, { params }) => {
       try {
         await Promise.all(
           vehicle.images.map(async (image) => {
+            if (!image?.fileId) return;
             try {
-              // Use absolute API path if it's a local route
               const res = await fetch(
                 `${
                   process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
                 }/api/imagekit/${image.fileId}`,
                 { method: "DELETE" }
               );
-
               if (!res.ok) {
                 console.error(`Failed to delete image: ${image.fileId}`);
               }

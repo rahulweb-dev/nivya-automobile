@@ -1,19 +1,20 @@
-//this api route is for admin only
+// File: app/api/admin/truevalue/route.js
 
 import { NextResponse } from "next/server";
 import { ConnectDB } from "@/lib/config/db";
 import Rajesh from "@/lib/models/trueSchema";
 
-// GET: Fetch all vehicles
+// ✅ GET: Fetch all vehicles
 export async function GET() {
   try {
     await ConnectDB();
+    const vehicles = await Rajesh.find().sort({ createdAt: -1 });
 
-    const vehicles = await Rajesh.find({
-      // published: true,
-    }).sort({ createdAt: -1 });
-
-    return NextResponse.json({ success: true, vehicles }, { status: 200 });
+    // Always return an array (even if empty)
+    return NextResponse.json(
+      { success: true, vehicles: vehicles || [] },
+      { status: 200 }
+    );
   } catch (err) {
     console.error("GET vehicles failed:", err);
     return NextResponse.json(
@@ -23,12 +24,13 @@ export async function GET() {
   }
 }
 
-// POST: Create a new vehicle
+// ✅ POST: Create a new vehicle
 export async function POST(req) {
   try {
     await ConnectDB();
     const body = await req.json();
-    // 🔍 Validate required fields
+
+    // Validate required fields
     const requiredFields = ["brand", "model", "ownerType"];
     const missing = requiredFields.filter((f) => !body[f]);
     if (missing.length > 0) {
@@ -42,44 +44,44 @@ export async function POST(req) {
     }
 
     const formData = {
-      name: String(body.brand).trim() + " " + String(body.model).trim(),
+      name: `${String(body.brand).trim()} ${String(body.model).trim()}`,
       brand: String(body.brand).trim(),
       model: String(body.model).trim(),
       ownerType: String(body.ownerType).trim(),
-      fuelType: String(body.fuelType).trim(),
+      fuelType: String(body.fuelType || "Unknown").trim(),
       modelYear: body.modelYear ? Number(body.modelYear) : null,
-      price: body.price ? Number(body.price) : 0,
-      kmDriven: body.kmDriven ? Number(body.kmDriven) : 0,
-      fuelType: body.fuelType?.trim() || "Unknown",
-      transmission: "Manual",
-      // transmission: body.transmission?.trim() || "Manual",
+      price: Number(body.price) || 0,
+      kmDriven: Number(body.kmDriven) || 0,
+      transmission: body.transmission?.trim() || "Manual",
       bodyType: body.bodyType?.trim() || "Other",
       color: body.color?.trim() || "Unspecified",
       userType: body.userType?.trim() || "Dealer",
       location: body.location?.trim() || "Unknown",
-      images: Array.isArray(body.images)
-        ? body.images
-            .filter(
-              (img) =>
-                img &&
-                typeof img === "object" &&
-                typeof img.url === "string" &&
-                img.url.trim() !== ""
-            )
-            .map((img) => ({
-              url: img.url.trim(),
-              fileId: img.fileId || null,
-            }))
-        : [],
-      published: body.published || true,
+
+      // Ensure clean images array
+      images:
+        Array.isArray(body.images) && body.images.length > 0
+          ? body.images
+              .filter(
+                (img) =>
+                  img &&
+                  typeof img === "object" &&
+                  typeof img.url === "string" &&
+                  img.url.trim() !== ""
+              )
+              .map((img) => ({
+                url: img.url.trim(),
+                fileId: img.fileId || null,
+              }))
+          : [],
+
+      published: typeof body.published === "boolean" ? body.published : true,
       features: Array.isArray(body.features) ? body.features : [],
       description: body.description?.trim() || "",
     };
 
-    // 💾 Save to DB
+    // Save to DB
     const vehicle = await Rajesh.create(formData);
-
-    console.log(vehicle);
 
     return NextResponse.json(
       {
